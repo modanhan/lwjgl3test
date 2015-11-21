@@ -22,6 +22,7 @@ public class HelloWorld {
 		window = glfwCreateWindow(WIDTH, HEIGHT, "palce holder", NULL, NULL);
 
 		glfwMakeContextCurrent(window);
+		glfwSwapInterval(1);
 		glfwShowWindow(window);
 
 		GL.createCapabilities();
@@ -41,12 +42,6 @@ public class HelloWorld {
 
 	static void update() {
 		Time.update();
-		try {
-			Thread.sleep(50);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		glClearColor(0, 0, 0, 0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
