@@ -1,14 +1,15 @@
+import game.GlobalVars;
+import game.ModeHandler;
+
 import org.lwjgl.opengl.*;
 
 import util.Keyboard;
 import util.Time;
-
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 public class HelloWorld {
-	private static long window;
 	private static boolean running;
 	static final int WIDTH = 720, HEIGHT = 480;
 
@@ -19,11 +20,11 @@ public class HelloWorld {
 
 		glfwInit();
 
-		window = glfwCreateWindow(WIDTH, HEIGHT, "palce holder", NULL, NULL);
+		GlobalVars.window = glfwCreateWindow(WIDTH, HEIGHT, "palce holder", NULL, NULL);
 
-		glfwMakeContextCurrent(window);
+		glfwMakeContextCurrent(GlobalVars.window);
 		glfwSwapInterval(1);
-		glfwShowWindow(window);
+		glfwShowWindow(GlobalVars.window);
 
 		GL.createCapabilities();
 
@@ -33,8 +34,9 @@ public class HelloWorld {
 		glMatrixMode(GL_MODELVIEW);
 
 		Time.init();
+		ModeHandler.init();
 		keyboard = new Keyboard();
-		glfwSetKeyCallback(window, keyboard);
+		glfwSetKeyCallback(GlobalVars.window, keyboard);
 	}
 
 	static int px = 0, py = 0;
@@ -66,8 +68,10 @@ public class HelloWorld {
 			glVertex2f((float) Math.cos(x / 180 * Math.PI) * 100 + px, (float) Math.sin(x / 180 * Math.PI) * 100 + py);
 		}
 		glEnd();
+		
+		ModeHandler.update();
 
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(GlobalVars.window);
 		glfwPollEvents();
 	}
 
@@ -79,7 +83,7 @@ public class HelloWorld {
 		init();
 		while (running) {
 			update();
-			if (glfwWindowShouldClose(window) == GL_TRUE) {
+			if (glfwWindowShouldClose(GlobalVars.window) == GL_TRUE) {
 				running = false;
 			}
 		}
