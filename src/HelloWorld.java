@@ -28,6 +28,7 @@ public class HelloWorld {
 		window = glfwCreateWindow(WIDTH, HEIGHT, "placeholder", NULL, NULL);
 
 		glfwMakeContextCurrent(window);
+		glfwSwapInterval(1);
 		glfwShowWindow(window);
 
 		GL.createCapabilities();
