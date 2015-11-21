@@ -1,98 +1,94 @@
-import org.lwjgl.Sys;
 import org.lwjgl.opengl.*;
+
+import util.Keyboard;
+import util.Time;
 
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 public class HelloWorld {
+	private static long window;
+	private static boolean running;
+	static final int WIDTH = 720, HEIGHT = 480;
 
-	// We need to strongly reference callback instances.
+	static Keyboard keyboard;
 
-	// The window handle
-	private long window;
+	static void init() {
+		running = true;
 
-	public void run() {
-		System.out.println("Hello LWJGL " + Sys.getVersion() + "!");
+		glfwInit();
 
-		try {
-			init();
-			loop();
+		window = glfwCreateWindow(WIDTH, HEIGHT, "palce holder", NULL, NULL);
 
-			// Release window and window callbacks
-			glfwDestroyWindow(window);
-		} finally {
-			// Terminate GLFW and release the GLFWErrorCallback
-			glfwTerminate();
-		}
-	}
-
-	private void init() {
-		// Setup an error callback. The default implementation
-		// will print the error message in System.err.
-
-		// Initialize GLFW. Most GLFW functions will not work before doing this.
-		if (glfwInit() != GL11.GL_TRUE)
-			throw new IllegalStateException("Unable to initialize GLFW");
-
-		// Configure our window
-		glfwDefaultWindowHints(); // optional, the current window hints are
-									// already the default
-		glfwWindowHint(GLFW_VISIBLE, GL_FALSE); // the window will stay hidden
-												// after creation
-		glfwWindowHint(GLFW_RESIZABLE, GL_TRUE); // the window will be resizable
-
-		int WIDTH = 600;
-		int HEIGHT = 300;
-
-		// Create the window
-		window = glfwCreateWindow(WIDTH, HEIGHT, "Hello World!", NULL, NULL);
-		if (window == NULL)
-			throw new RuntimeException("Failed to create the GLFW window");
-
-		// Setup a key callback. It will be called every time a key is pressed,
-		// repeated or released.
-
-		// Get the resolution of the primary monitor
-		// Center our window
-		glfwSetWindowPos(window, (WIDTH), (HEIGHT));
-
-		// Make the OpenGL context current
 		glfwMakeContextCurrent(window);
-		// Enable v-sync
-		glfwSwapInterval(1);
-
-		// Make the window visible
 		glfwShowWindow(window);
-	}
 
-	private void loop() {
-		// This line is critical for LWJGL's interoperation with GLFW's
-		// OpenGL context, or any context that is managed externally.
-		// LWJGL detects the context that is current in the current thread,
-		// creates the GLCapabilities instance and makes the OpenGL
-		// bindings available for use.
 		GL.createCapabilities();
 
-		// Set the clear color
-		glClearColor(0.0f, 0.0f, 0.75f, 0.0f);
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0, WIDTH, 0, HEIGHT, 1, -1);
+		glMatrixMode(GL_MODELVIEW);
 
-		// Run the rendering loop until the user has attempted to close
-		// the window or has pressed the ESCAPE key.
-		while (glfwWindowShouldClose(window) == GL_FALSE) {
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the
-																// framebuffer
+		Time.init();
+		keyboard = new Keyboard();
+		glfwSetKeyCallback(window, keyboard);
+	}
 
-			glfwSwapBuffers(window); // swap the color buffers
+	static int px = 0, py = 0;
+	static final float SPEED = .25f;
 
-			// Poll for window events. The key callback above will only be
-			// invoked during this call.
-			glfwPollEvents();
+	static void update() {
+		Time.update();
+		try {
+			Thread.sleep(50);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		glClearColor(0, 0, 0, 0);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		glColor3f(1, 1, 1);
+
+		int d = (int) (SPEED * Time.getDelta());
+		if (Keyboard.isKeyDown(GLFW_KEY_UP)) {
+			py += d;
+		}
+		if (Keyboard.isKeyDown(GLFW_KEY_DOWN)) {
+			py -= d;
+		}
+		if (Keyboard.isKeyDown(GLFW_KEY_LEFT)) {
+			px -= d;
+		}
+		if (Keyboard.isKeyDown(GLFW_KEY_RIGHT)) {
+			px += d;
+		}
+
+		glBegin(GL_TRIANGLE_FAN);
+		for (float x = 0; x < 360; x += 1) {
+			glVertex2f((float) Math.cos(x / 180 * Math.PI) * 100 + px, (float) Math.sin(x / 180 * Math.PI) * 100 + py);
+		}
+		glEnd();
+
+		glfwSwapBuffers(window);
+		glfwPollEvents();
+	}
+
+	static void exit() {
+
 	}
 
 	public static void main(String[] args) {
-		new HelloWorld().run();
+		init();
+		while (running) {
+			update();
+			if (glfwWindowShouldClose(window) == GL_TRUE) {
+				running = false;
+			}
+		}
+		exit();
 	}
 
 }

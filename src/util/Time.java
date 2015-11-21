@@ -20,9 +20,8 @@ public class Time {
 	}
 
 	public static void updateDelta() {
-		long t = time;
-		delta = (int) (t - lastlooptime);
-		lastlooptime = t;
+		delta = (int) (time - lastlooptime);
+		lastlooptime = time;
 	}
 
 	public static void updateFPS() {
