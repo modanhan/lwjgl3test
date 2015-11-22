@@ -1,14 +1,14 @@
 import org.lwjgl.opengl.*;
 
+import events.Event;
+import events.EventHandler;
 import graphics.Shader;
 import graphics.Texture;
 import util.Keyboard;
 import util.Time;
-
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
-
 import static org.lwjgl.system.MemoryUtil.*;
 
 import java.io.File;
@@ -43,11 +43,36 @@ public class HelloWorld {
 		s.link();
 		glUseProgram(s.getID());
 		glEnable(GL_TEXTURE_2D);
-        glEnable(GL_BLEND);
+		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		Texture t = Texture.loadTexture(new File("res/glow.png"));
 		glBindTexture(GL_TEXTURE_2D, t.getID());
 		Time.init();
+		Time.update();
+		EventHandler.init();
+		
+		EventHandler.add(new Event(1000) {
+			@Override
+			public void run() {
+				System.out.println(+(Time.getTimeMillis())
+						+ "\t: event 0 triggered");
+			}
+		});
+		EventHandler.add(new Event(5000) {
+			@Override
+			public void run() {
+				System.out.println(+(Time.getTimeMillis())
+						+ "\t: event 1 triggered");
+			}
+		});
+		EventHandler.add(new Event(5000) {
+			@Override
+			public void run() {
+				System.out.println(+(Time.getTimeMillis())
+						+ "\t: event 2 triggered");
+			}
+		});
+		
 		keyboard = new Keyboard();
 		glfwSetKeyCallback(window, keyboard);
 	}
@@ -57,6 +82,7 @@ public class HelloWorld {
 
 	static void update() {
 		Time.update();
+		EventHandler.update();
 		glClearColor(0, 0, 0, 0);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -78,8 +104,10 @@ public class HelloWorld {
 
 		glBegin(GL_TRIANGLE_FAN);
 		for (float x = 0; x < 360; x += 1) {
-			glTexCoord2d(Math.cos(x / 180 * Math.PI)/2f+0.5f, Math.sin(x / 180 * Math.PI)/2f+0.5f);
-			glVertex2f((float) Math.cos(x / 180 * Math.PI) * 100 + px, (float) Math.sin(x / 180 * Math.PI) * 100 + py);
+			glTexCoord2d(Math.cos(x / 180 * Math.PI) / 2f + 0.5f,
+					Math.sin(x / 180 * Math.PI) / 2f + 0.5f);
+			glVertex2f((float) Math.cos(x / 180 * Math.PI) * 100 + px,
+					(float) Math.sin(x / 180 * Math.PI) * 100 + py);
 		}
 		glEnd();
 
