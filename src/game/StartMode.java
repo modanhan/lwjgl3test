@@ -17,7 +17,10 @@ public class StartMode implements Mode{
 			System.out.println("entering game");
 			ModeHandler.setMode(new GameMode());
 		}
-		
+		if(Keyboard.isKeyDown(GLFW.GLFW_KEY_Q)){
+			System.out.println("gg!");
+			GlobalVars.running=false;
+		}
 	}
 
 }

@@ -10,13 +10,12 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 public class HelloWorld {
-	private static boolean running;
 	static final int WIDTH = 720, HEIGHT = 480;
 
 	static Keyboard keyboard;
 
 	static void init() {
-		running = true;
+		GlobalVars.running = true;
 
 		glfwInit();
 
@@ -81,10 +80,10 @@ public class HelloWorld {
 
 	public static void main(String[] args) {
 		init();
-		while (running) {
+		while (GlobalVars.running) {
 			update();
 			if (glfwWindowShouldClose(GlobalVars.window) == GL_TRUE) {
-				running = false;
+				GlobalVars.running = false;
 			}
 		}
 		exit();
