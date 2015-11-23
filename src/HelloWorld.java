@@ -76,7 +76,12 @@ public class HelloWorld {
 	static void update() {
 		Time.update();
 
-
+		if(Keyboard.isKeyPressed(GLFW_KEY_SPACE)){
+			System.out.println("space pressed");
+		}
+		if(Keyboard.isKeyReleased(GLFW_KEY_SPACE)){
+			System.out.println("space released");
+		}
 
 		int d = (int) (SPEED * Time.getDelta());
 		if (Keyboard.isKeyDown(GLFW_KEY_UP)) {
@@ -138,6 +143,9 @@ public class HelloWorld {
 		glTexCoord2f(1, 1);	glVertex2f(WIDTH, HEIGHT);
 		glTexCoord2f(1, 0);	glVertex2f(WIDTH, 0);
 		glEnd();
+		
+		Keyboard.update();
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
