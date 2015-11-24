@@ -4,22 +4,20 @@ import org.lwjgl.glfw.GLFW;
 
 import util.Keyboard;
 
-public class StartMode implements Mode{
-	
-	public StartMode(){
-		GLFW.glfwSetWindowTitle(GlobalVars.window, "start screen");
+public class StartMode implements Mode {
+
+	public StartMode() {
+		GLFW.glfwSetWindowTitle(GlobalVars.window,
+				"press enter to play, esc to exit");
 	}
 
 	@Override
 	public void update() {
-		if(Keyboard.isKeyDown(GLFW.GLFW_KEY_ENTER)){
-			// switch to game mode
-			System.out.println("entering game");
+		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_ENTER)) {
 			ModeHandler.setMode(new GameMode());
 		}
-		if(Keyboard.isKeyDown(GLFW.GLFW_KEY_Q)){
-			System.out.println("gg!");
-			GlobalVars.running=false;
+		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_ESCAPE)) {
+			GlobalVars.running = false;
 		}
 	}
 
