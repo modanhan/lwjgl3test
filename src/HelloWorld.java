@@ -1,3 +1,5 @@
+import events.Event;
+import events.EventHandler;
 import game.GlobalVars;
 import game.ModeHandler;
 
@@ -12,7 +14,6 @@ import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
 import static org.lwjgl.opengl.EXTFramebufferObject.*;
-
 import static org.lwjgl.system.MemoryUtil.*;
 
 import java.io.File;
@@ -59,14 +60,40 @@ public class HelloWorld {
 		loc = glGetUniformLocation(blurv.getID(), "texture");
 	    GL20.glUniform1i(loc, 0); 
 		glEnable(GL_TEXTURE_2D);
-        glEnable(GL_BLEND);
+		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		t = Texture.loadTexture(new File("res/glow.png"));
 		framebufferh = new FrameBuffer(WIDTH,HEIGHT);
 		framebufferv = new FrameBuffer(WIDTH,HEIGHT);
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		Time.init();
+
+		Time.update();
+		EventHandler.init();
 		ModeHandler.init();
+		
+		EventHandler.add(new Event(1000) {
+			@Override
+			public void run() {
+				System.out.println(+(Time.getTimeMillis())
+						+ "\t: event 0 triggered");
+			}
+		});
+		EventHandler.add(new Event(5000) {
+			@Override
+			public void run() {
+				System.out.println(+(Time.getTimeMillis())
+						+ "\t: event 1 triggered");
+			}
+		});
+		EventHandler.add(new Event(5000) {
+			@Override
+			public void run() {
+				System.out.println(+(Time.getTimeMillis())
+						+ "\t: event 2 triggered");
+			}
+		});
+		
 		keyboard = new Keyboard();
 		glfwSetKeyCallback(GlobalVars.window, keyboard);
 	}
@@ -77,6 +104,9 @@ public class HelloWorld {
 	static void update() {
 		Time.update();
 		ModeHandler.update();
+		EventHandler.update();
+		glClearColor(0, 0, 0, 0);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		if(Keyboard.isKeyPressed(GLFW_KEY_SPACE)){
 			System.out.println("space pressed");
@@ -106,8 +136,10 @@ public class HelloWorld {
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glBegin(GL_TRIANGLE_FAN);
 		for (float x = 0; x < 360; x += 1) {
-			glTexCoord2d(Math.cos(x / 180 * Math.PI)/2f+0.5f, Math.sin(x / 180 * Math.PI)/2f+0.5f);
-			glVertex2f((float) Math.cos(x / 180 * Math.PI) * 100 + px, (float) Math.sin(x / 180 * Math.PI) * 100 + py);
+			glTexCoord2d(Math.cos(x / 180 * Math.PI) / 2f + 0.5f,
+					Math.sin(x / 180 * Math.PI) / 2f + 0.5f);
+			glVertex2f((float) Math.cos(x / 180 * Math.PI) * 100 + px,
+					(float) Math.sin(x / 180 * Math.PI) * 100 + py);
 		}
 		glEnd();
 
