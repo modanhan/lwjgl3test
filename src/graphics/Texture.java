@@ -17,7 +17,7 @@ public class Texture{
 
 	private int textureID;
 
-	private Texture(int ID) {
+	public Texture(int ID) {
 		this.textureID = ID;
 	}
 	public int getID(){
