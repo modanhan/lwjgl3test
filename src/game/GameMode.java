@@ -2,6 +2,7 @@ package game;
 
 import org.lwjgl.glfw.GLFW;
 
+import events.EventHandler;
 import util.Keyboard;
 
 public class GameMode implements Mode {
@@ -18,9 +19,12 @@ public class GameMode implements Mode {
 	public void update() {
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_ESCAPE)) {
 			ModeHandler.setMode(new StartMode());
+			EventHandler.clear();
 		}
+		// TODO player is sometimes unkillable
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_K)) {
-			System.err.println("player killed");
+			System.out.println("player killed");
+			EventHandler.clear();
 			Game.remove(p);
 		}
 		Game.update();

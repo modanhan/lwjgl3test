@@ -23,4 +23,8 @@ public class EventHandler {
 		pq.add(e);
 	}
 
+	public static void clear() {
+		pq.clear();
+	}
+
 }
