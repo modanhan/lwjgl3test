@@ -1,12 +1,17 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+package graphics;
+import java.io.File;
+import java.util.Scanner;
+
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL20.*;
 public class Shader {
-	int programID,vertexShaderID,fragmentShaderID;
+	private int programID,vertexShaderID,fragmentShaderID;
 
 	public Shader(){
 		programID = glCreateProgram();
+	}
+	public int getID(){
+		return programID;
 	}
 	public void attachVertexShader(String name)
 	{
@@ -70,23 +75,19 @@ public class Shader {
 	    // Delete the program
 	    glDeleteProgram(programID);
 	}
+	public static int getBoundID(){
+		return glGetInteger(GL_CURRENT_PROGRAM);
+	}
 	public static String readFromFile(String name)
 	{
 	    StringBuilder source = new StringBuilder();
 	    try
 	    {
-	        BufferedReader reader = new BufferedReader(
-	                                    new InputStreamReader(
-	                                        Shader.class
-	                                                     .getClassLoader()
-	                                                     .getResourceAsStream(name)));
-
-	        String line;
-	        while ((line = reader.readLine()) != null)
+	        Scanner reader = new Scanner(new File(name));
+	        while (reader.hasNextLine())
 	        {
-	            source.append(line).append("\n");
+	            source.append(reader.nextLine()).append("\n");
 	        }
-
 	        reader.close();
 	    }
 	    catch (Exception e)
@@ -97,5 +98,4 @@ public class Shader {
 
 	    return source.toString();
 	}
-	
 }
