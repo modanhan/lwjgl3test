@@ -21,7 +21,6 @@ public class GameMode implements Mode {
 			ModeHandler.setMode(new StartMode());
 			EventHandler.clear();
 		}
-		// TODO player is sometimes unkillable
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_K)) {
 			System.out.println("player killed");
 			EventHandler.clear();
