@@ -1,5 +1,6 @@
 package game;
 
+import java.io.File;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -18,18 +19,12 @@ public class Game {
 		toremove = new TreeSet<GameObject>();
 		hbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
 		vbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
-		hblur = new Shader();
-		hblur.attachVertexShader(Shader.readFromFile("shaders/mainvertex.glsl"));
-		hblur.attachFragmentShader(Shader.readFromFile("shaders/blurhfragment.glsl"));
-		hblur.link();
+		hblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurhfragment.glsl"));
 		int loc;
 		Shader.use(hblur);
 		loc = glGetUniformLocation(hblur.getID(), "texture");
 		glUniform1i(loc, 0);
-		vblur = new Shader();
-		vblur.attachVertexShader(Shader.readFromFile("shaders/mainvertex.glsl"));
-		vblur.attachFragmentShader(Shader.readFromFile("shaders/blurvfragment.glsl"));
-		vblur.link();
+		vblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurvfragment.glsl"));
 		Shader.use(vblur);
 		loc = glGetUniformLocation(vblur.getID(), "texture");
 		glUniform1i(loc, 0);

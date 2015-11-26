@@ -16,9 +16,11 @@ public class Texture{
 	private static final int BYTES_PER_PIXEL = 4;// 3 for RGB 4 for RGBA
 
 	private int textureID;
-
+	public Texture(File f){
+		textureID = loadTexture(f).getID();
+	}
 	Texture(int ID) {
-		this.textureID = ID;
+		textureID = ID;
 	}
 	public int getID(){
 		return textureID;
