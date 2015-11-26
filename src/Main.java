@@ -1,6 +1,7 @@
 import events.EventHandler;
 import game.GlobalVars;
 import game.ModeHandler;
+import graphics.Graphics;
 
 import org.lwjgl.opengl.*;
 
@@ -16,7 +17,7 @@ public class Main {
 		GlobalVars.running = true;
 
 		glfwInit();
-
+		glfwWindowHint(GLFW_SAMPLES, 4);
 		GlobalVars.window = glfwCreateWindow(GlobalVars.WIDTH,
 				GlobalVars.HEIGHT, "placeholder", NULL, NULL);
 
@@ -41,8 +42,7 @@ public class Main {
 	}
 
 	static void update() {
-		glClearColor(0, 0, 0, 0);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		Graphics.clearBuffers();
 		
 		Time.update();
 		ModeHandler.update();

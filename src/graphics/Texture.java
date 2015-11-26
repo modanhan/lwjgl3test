@@ -17,7 +17,7 @@ public class Texture{
 
 	private int textureID;
 
-	public Texture(int ID) {
+	Texture(int ID) {
 		this.textureID = ID;
 	}
 	public int getID(){
@@ -26,7 +26,7 @@ public class Texture{
 	public void dispose(){
 		glDeleteTextures(textureID);
 	}
-	public static int getBoundID() {
+	public static int getCurrentID() {
 		return glGetInteger(GL_TEXTURE_BINDING_2D);
 	}
 	public static Texture loadTexture(File f){
@@ -72,5 +72,11 @@ public class Texture{
 				GL_UNSIGNED_BYTE, buffer);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return textureID;
+	}
+	public static void bind(Texture t){
+		glBindTexture(GL_TEXTURE_2D, t!=null?t.getID():0);
+	}
+	public static void bind(int id){
+		glBindTexture(GL_TEXTURE_2D, id);
 	}
 }

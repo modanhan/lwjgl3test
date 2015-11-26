@@ -75,7 +75,7 @@ public class Shader {
 	    // Delete the program
 	    glDeleteProgram(programID);
 	}
-	public static int getBoundID(){
+	public static int getCurrentID(){
 		return glGetInteger(GL_CURRENT_PROGRAM);
 	}
 	public static String readFromFile(String name)
@@ -97,5 +97,11 @@ public class Shader {
 	    }
 
 	    return source.toString();
+	}
+	public static void use(Shader s){
+		glUseProgram(s!=null?s.getID():0);
+	}
+	public static void use(int id){
+		glUseProgram(id);
 	}
 }
