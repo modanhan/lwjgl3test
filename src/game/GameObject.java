@@ -1,24 +1,25 @@
 package game;
 
-import util.Time;
+import java.util.Random;
 
 public abstract class GameObject implements Comparable<GameObject> {
-	private long timecreated;
+	private long uuid;
 
 	public GameObject() {
-		timecreated = Time.getTimeMillis();
+		uuid = new Random().nextLong();
 	}
 
 	public abstract void update();
 
 	public abstract void render();
 
-	// TODO this function is utter garbage/complete bs, someone do sth abt this
+	@Override
+	public boolean equals(Object g) {
+		return uuid == ((GameObject) g).uuid;
+	}
+
+	@Override
 	public int compareTo(GameObject g) {
-		if (equals(g))
-			return 0;
-		// seriously hashcode??
-		return timecreated < g.timecreated ? 1 : (hashCode() < g.hashCode() ? 1
-				: -1);
+		return Long.compare(this.uuid, g.uuid);
 	}
 }
