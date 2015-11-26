@@ -13,7 +13,7 @@ public abstract class Event implements Comparable<Event> {
 	 * the amount of time to wait until the event triggers
 	 */
 	public Event(long time) {
-		this.time = Time.getTimeMillis() + time;
+		this.time = Time.getTime() + time;
 	}
 
 	public int compareTo(Event e) {

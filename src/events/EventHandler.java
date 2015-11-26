@@ -13,7 +13,7 @@ public class EventHandler {
 	}
 
 	public static void update() {
-		long time = Time.getTimeMillis();
+		long time = Time.getTime();
 		while (!pq.isEmpty() && pq.peek().getTime() <= time) {
 			pq.poll().run();
 		}
