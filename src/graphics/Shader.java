@@ -10,6 +10,12 @@ public class Shader {
 	public Shader(){
 		programID = glCreateProgram();
 	}
+	public Shader(File vertex, File fragment){
+		programID = glCreateProgram();
+		attachVertexShader(readFromFile(vertex));
+		attachFragmentShader(readFromFile(fragment));
+		link();
+	}
 	public int getID(){
 		return programID;
 	}
@@ -75,7 +81,7 @@ public class Shader {
 	    // Delete the program
 	    glDeleteProgram(programID);
 	}
-	public static int getBoundID(){
+	public static int getCurrentID(){
 		return glGetInteger(GL_CURRENT_PROGRAM);
 	}
 	public static String readFromFile(String name)
@@ -97,5 +103,31 @@ public class Shader {
 	    }
 
 	    return source.toString();
+	}
+	public static String readFromFile(File f)
+	{
+	    StringBuilder source = new StringBuilder();
+	    try
+	    {
+	        Scanner reader = new Scanner(f);
+	        while (reader.hasNextLine())
+	        {
+	            source.append(reader.nextLine()).append("\n");
+	        }
+	        reader.close();
+	    }
+	    catch (Exception e)
+	    {
+	        System.err.println("Error loading source code: " + f.getName());
+	        e.printStackTrace();
+	    }
+
+	    return source.toString();
+	}
+	public static void use(Shader s){
+		glUseProgram(s!=null?s.getID():0);
+	}
+	public static void use(int id){
+		glUseProgram(id);
 	}
 }
