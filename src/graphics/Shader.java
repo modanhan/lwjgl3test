@@ -16,6 +16,9 @@ public class Shader {
 		attachFragmentShader(readFromFile(fragment));
 		link();
 	}
+	public void setUniformi(String name, int value){
+		glUniform1i(glGetUniformLocation(programID, name), value);
+	}
 	public int getID(){
 		return programID;
 	}

@@ -39,6 +39,15 @@ public class Main {
 		ModeHandler.init();
 
 		glfwSetKeyCallback(GlobalVars.window, new Keyboard());
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				while(true){
+					glfwWaitEvents();
+				}
+			}
+		});
 	}
 
 	static void update() {

@@ -20,14 +20,11 @@ public class Game {
 		hbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
 		vbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
 		hblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurhfragment.glsl"));
-		int loc;
 		Shader.use(hblur);
-		loc = glGetUniformLocation(hblur.getID(), "texture");
-		glUniform1i(loc, 0);
+		hblur.setUniformi("texture", 0);
 		vblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurvfragment.glsl"));
 		Shader.use(vblur);
-		loc = glGetUniformLocation(vblur.getID(), "texture");
-		glUniform1i(loc, 0);
+		vblur.setUniformi("texture", 0);
 		Shader.use(0);
 		glEnable(GL_TEXTURE_2D);
         glEnable(GL_BLEND);
