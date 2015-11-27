@@ -1,14 +1,11 @@
 package game;
 
-import java.util.List;
 import java.util.ListIterator;
 
 import org.lwjgl.opengl.GL11;
 
 import events.Event;
-import events.EventHandler;
 import game.Player.PlayerBullet;
-import util.Time;
 
 public abstract class Enemy extends GameEntity{
 	protected boolean hit = false;
@@ -47,6 +44,13 @@ public abstract class Enemy extends GameEntity{
 				hit=true;
 			}
 		}
+		if(GameMode.player!=null){
+			if(GameEntity.checkCollision(this, GameMode.player)){
+				GameMode.player.kill();
+				hp--;
+				hit=true;
+			}
+		}
 		if(hp<=0){
 			kill();
 		}
@@ -59,9 +63,12 @@ public abstract class Enemy extends GameEntity{
 
 		@Override
 		public void run() {
-			Game.add(new EnemyBullet(px, py));
+			addBullet(new EnemyBullet(px, py));
 		}
-
+		void addBullet(EnemyBullet p){
+			Game.add(p);
+			GameMode.enemybullets.add(p);
+		}
 	}
 
 	class EnemyBullet extends Bullet {
@@ -90,9 +97,11 @@ public abstract class Enemy extends GameEntity{
 		@Override
 		public void update() {
 			super.update();
-			if(checkCollision(this,GameMode.player)){
-				GameMode.player.kill();
-				
+			if(GameMode.player!=null){
+				if(checkCollision(this,GameMode.player)){
+					GameMode.player.kill();
+					this.kill();
+				}
 			}
 		}
 
@@ -101,7 +110,7 @@ public abstract class Enemy extends GameEntity{
 			GL11.glPushMatrix();
 			GL11.glTranslatef(px, py, 0);
 			GL11.glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
-			GL11.glColor3f(1, 1, 1);
+			GL11.glColor3f(1, 0, 0);
 			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 			GL11.glVertex2f( - size,  - size);
 			GL11.glVertex2f( - size,  + size);

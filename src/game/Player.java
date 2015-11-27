@@ -56,7 +56,11 @@ public class Player extends GameEntity {
 		GL11.glVertex2f(px + size, py - size);
 		GL11.glEnd();
 	}
-
+	public void kill(){
+		EventHandler.clear();
+		Game.remove(this);
+		GameMode.player = null;
+	}
 	class PlayerBulletEvent extends Event {
 
 		public PlayerBulletEvent(long time) {
