@@ -1,11 +1,10 @@
 package game;
 
+import static org.lwjgl.opengl.GL11.*;
+
 import java.util.ListIterator;
 
-import org.lwjgl.opengl.GL11;
-
 import events.Event;
-import events.EventHandler;
 import game.Player.PlayerBullet;
 import util.Time;
 
@@ -28,20 +27,20 @@ public abstract class Enemy extends GameEntity{
 	}
 	@Override
 	public void render() {
-		GL11.glPushMatrix();
-		GL11.glTranslatef(px, py, 0);
+		glPushMatrix();
+		glTranslatef(px, py, 0);
 		if(!hit){
-			GL11.glColor3f(1, 0, 0);
+			glColor3f(1, 0, 0);
 		}else{
-			GL11.glColor3f(1, 1, 1);
+			glColor3f(1, 1, 1);
 		}
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glVertex2f(- size, - size);
-		GL11.glVertex2f(- size, + size);
-		GL11.glVertex2f(+ size, + size);
-		GL11.glVertex2f(+ size, - size);
-		GL11.glEnd();
-		GL11.glPopMatrix();
+		glBegin(GL_TRIANGLE_FAN);
+		glTexCoord2f(0,0); glVertex2f(- size, - size);
+		glTexCoord2f(0,1); glVertex2f(- size, + size);
+		glTexCoord2f(1,1); glVertex2f(+ size, + size);
+		glTexCoord2f(1,0); glVertex2f(+ size, - size);
+		glEnd();
+		glPopMatrix();
 	}
 	protected void move(){
 		float d = Time.getDelta();
@@ -137,17 +136,17 @@ public abstract class Enemy extends GameEntity{
 
 		@Override
 		public void render() {
-			GL11.glPushMatrix();
-			GL11.glTranslatef(px, py, 0);
-			GL11.glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
-			GL11.glColor3f(1, 0, 0);
-			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-			GL11.glVertex2f( - size,  - size);
-			GL11.glVertex2f( - size,  + size);
-			GL11.glVertex2f( + size,  + size);
-			GL11.glVertex2f( + size,  - size);
-			GL11.glEnd();
-			GL11.glPopMatrix();
+			glPushMatrix();
+			glTranslatef(px, py, 0);
+			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
+			glColor3f(1, 0, 0);
+			glBegin(GL_TRIANGLE_FAN);
+			glTexCoord2f(0,0); glVertex2f( - size,  - size);
+			glTexCoord2f(0,1); glVertex2f( - size,  + size);
+			glTexCoord2f(1,1); glVertex2f( + size,  + size);
+			glTexCoord2f(1,0); glVertex2f( + size,  - size);
+			glEnd();
+			glPopMatrix();
 		}
 	}
 	static class EnemySpawnEvent extends Event{

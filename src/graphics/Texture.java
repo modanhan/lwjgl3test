@@ -11,6 +11,7 @@ import javax.imageio.ImageIO;
 import org.lwjgl.BufferUtils;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.*;
+import static org.lwjgl.opengl.GL14.*;
 
 public class Texture{
 	private static final int BYTES_PER_PIXEL = 4;// 3 for RGB 4 for RGBA
@@ -68,7 +69,8 @@ public class Texture{
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE); 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
 				image.getWidth(), image.getHeight(), 0, GL_RGBA,
 				GL_UNSIGNED_BYTE, buffer);

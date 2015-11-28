@@ -6,7 +6,6 @@ import java.util.List;
 import org.lwjgl.glfw.GLFW;
 
 import events.EventHandler;
-import game.Enemies.ShooterEnemy;
 import game.Enemy.EnemyBullet;
 import game.Player.PlayerBullet;
 import util.Keyboard;

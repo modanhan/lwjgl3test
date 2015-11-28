@@ -1,7 +1,7 @@
 package game;
 
 import org.lwjgl.glfw.GLFW;
-import org.lwjgl.opengl.GL11;
+import static org.lwjgl.opengl.GL11.*;
 
 import events.Event;
 import events.EventHandler;
@@ -41,13 +41,16 @@ public class Player extends GameEntity {
 
 	@Override
 	public void render() {
-		GL11.glColor3f(1, 1, 1);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glVertex2f(px - size, py - size);
-		GL11.glVertex2f(px - size, py + size);
-		GL11.glVertex2f(px + size, py + size);
-		GL11.glVertex2f(px + size, py - size);
-		GL11.glEnd();
+		glPushMatrix();
+		glTranslatef(px,py,0);
+		glColor3f(1, 1, 1);
+		glBegin(GL_TRIANGLE_FAN);
+		glTexCoord2f(0,0); glVertex2f(- size, - size);
+		glTexCoord2f(0,1); glVertex2f(- size, + size);
+		glTexCoord2f(1,1); glVertex2f(+ size, + size);
+		glTexCoord2f(1,0); glVertex2f(+ size, - size);
+		glEnd();
+		glPopMatrix();
 	}
 	public void kill(){
 		EventHandler.clear();
@@ -110,17 +113,17 @@ public class Player extends GameEntity {
 		}
 		@Override
 		public void render() {
-			GL11.glPushMatrix();
-			GL11.glTranslatef(px, py, 0);
-			GL11.glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
-			GL11.glColor3f(1, 1, 1);
-			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-			GL11.glVertex2f( - size,  - size);
-			GL11.glVertex2f( - size,  + size);
-			GL11.glVertex2f( + size,  + size);
-			GL11.glVertex2f( + size,  - size);
-			GL11.glEnd();
-			GL11.glPopMatrix();
+			glPushMatrix();
+			glTranslatef(px, py, 0);
+			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
+			glColor3f(1, 1, 1);
+			glBegin(GL_TRIANGLE_FAN);
+			glTexCoord2f(0,0); glVertex2f( - size,  - size);
+			glTexCoord2f(0,1); glVertex2f( - size,  + size);
+			glTexCoord2f(1,1); glVertex2f( + size,  + size);
+			glTexCoord2f(1,0); glVertex2f( + size,  - size);
+			glEnd();
+			glPopMatrix();
 		}
 
 	}
