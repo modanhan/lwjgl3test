@@ -55,6 +55,7 @@ public abstract class Enemy extends GameEntity{
 			kill();
 		}
 	}
+
 	class EnemyBulletEvent extends Event {
 
 		public EnemyBulletEvent(long time) {
@@ -63,6 +64,7 @@ public abstract class Enemy extends GameEntity{
 
 		@Override
 		public void run() {
+			if(hp<=0)return;
 			addBullet(new EnemyBullet(px, py));
 		}
 		void addBullet(EnemyBullet p){

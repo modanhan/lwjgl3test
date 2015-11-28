@@ -1,13 +1,6 @@
 package game;
 
-import java.util.ListIterator;
-
-import org.lwjgl.opengl.GL11;
-
-import events.Event;
 import events.EventHandler;
-import game.Enemy.EnemyBullet;
-import game.Player.PlayerBullet;
 
 public class Enemies {
 	public static class BasicEnemy extends Enemy{
@@ -51,8 +44,9 @@ public class Enemies {
 			}
 			@Override
 			public void run() {
+				if(hp<=0)return;
 				addBullet(new EnemyBullet(px, py));
-				if(!(hp<=0))EventHandler.add(new EnemyShooterBulletEvent(1000));
+				EventHandler.add(new EnemyShooterBulletEvent(1000));
 			}
 		}
 	}
@@ -80,8 +74,9 @@ public class Enemies {
 			}
 			@Override
 			public void run() {
+				if(hp<=0)return;
 				addBullet(new EnemyBullet(px, py, GameMode.player.px-px, GameMode.player.py-py));
-				if(!(hp<=0))EventHandler.add(new EnemyShooterBulletEvent(1000));
+				EventHandler.add(new EnemyShooterBulletEvent(1000));
 			}
 		}
 	}

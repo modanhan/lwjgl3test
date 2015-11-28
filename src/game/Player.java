@@ -1,18 +1,10 @@
 package game;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Vector;
-
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 import events.Event;
 import events.EventHandler;
-import game.Player.PlayerBullet;
 import util.Keyboard;
 import util.Time;
 

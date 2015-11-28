@@ -1,11 +1,13 @@
 package game;
 
+import static org.lwjgl.opengl.GL11.GL_BLEND;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
+import static org.lwjgl.opengl.GL11.glEnable;
+
 import java.io.File;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL20.*;
 import graphics.FrameBuffer;
 import graphics.Graphics;
 import graphics.Shader;
