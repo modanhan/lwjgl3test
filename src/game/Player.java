@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import events.Event;
 import events.EventHandler;
+import graphics.Graphics;
 import util.Keyboard;
 import util.Time;
 
@@ -44,12 +45,7 @@ public class Player extends GameEntity {
 		glPushMatrix();
 		glTranslatef(px,py,0);
 		glColor3f(1, 1, 1);
-		glBegin(GL_TRIANGLE_FAN);
-		glTexCoord2f(0,0); glVertex2f(- size, - size);
-		glTexCoord2f(0,1); glVertex2f(- size, + size);
-		glTexCoord2f(1,1); glVertex2f(+ size, + size);
-		glTexCoord2f(1,0); glVertex2f(+ size, - size);
-		glEnd();
+		Graphics.quad(size);
 		glPopMatrix();
 	}
 	public void kill(){
@@ -117,12 +113,7 @@ public class Player extends GameEntity {
 			glTranslatef(px, py, 0);
 			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
 			glColor3f(1, 1, 1);
-			glBegin(GL_TRIANGLE_FAN);
-			glTexCoord2f(0,0); glVertex2f( - size,  - size);
-			glTexCoord2f(0,1); glVertex2f( - size,  + size);
-			glTexCoord2f(1,1); glVertex2f( + size,  + size);
-			glTexCoord2f(1,0); glVertex2f( + size,  - size);
-			glEnd();
+			Graphics.quad(size);
 			glPopMatrix();
 		}
 

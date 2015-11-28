@@ -34,6 +34,13 @@ public class Graphics {
 		FrameBuffer.bind(initialframebuffer);
 		Texture.bind(initialtexture);
 		Shader.use(initialshader);
-
+	}
+	public static void quad(float size){
+		glBegin(GL_TRIANGLE_FAN);
+		glTexCoord2f(0,0); glVertex2f( - size,  - size);
+		glTexCoord2f(0,1); glVertex2f( - size,  + size);
+		glTexCoord2f(1,1); glVertex2f( + size,  + size);
+		glTexCoord2f(1,0); glVertex2f( + size,  - size);
+		glEnd();
 	}
 }

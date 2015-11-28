@@ -6,6 +6,7 @@ import java.util.ListIterator;
 
 import events.Event;
 import game.Player.PlayerBullet;
+import graphics.Graphics;
 import util.Time;
 
 public abstract class Enemy extends GameEntity{
@@ -34,12 +35,7 @@ public abstract class Enemy extends GameEntity{
 		}else{
 			glColor3f(1, 1, 1);
 		}
-		glBegin(GL_TRIANGLE_FAN);
-		glTexCoord2f(0,0); glVertex2f(- size, - size);
-		glTexCoord2f(0,1); glVertex2f(- size, + size);
-		glTexCoord2f(1,1); glVertex2f(+ size, + size);
-		glTexCoord2f(1,0); glVertex2f(+ size, - size);
-		glEnd();
+		Graphics.quad(size);
 		glPopMatrix();
 	}
 	protected void move(){
@@ -140,12 +136,7 @@ public abstract class Enemy extends GameEntity{
 			glTranslatef(px, py, 0);
 			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
 			glColor3f(1, 0, 0);
-			glBegin(GL_TRIANGLE_FAN);
-			glTexCoord2f(0,0); glVertex2f( - size,  - size);
-			glTexCoord2f(0,1); glVertex2f( - size,  + size);
-			glTexCoord2f(1,1); glVertex2f( + size,  + size);
-			glTexCoord2f(1,0); glVertex2f( + size,  - size);
-			glEnd();
+			Graphics.quad(size);
 			glPopMatrix();
 		}
 	}
