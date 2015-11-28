@@ -5,6 +5,7 @@ import java.util.ListIterator;
 import org.lwjgl.opengl.GL11;
 
 import events.Event;
+import events.EventHandler;
 import game.Player.PlayerBullet;
 
 public abstract class Enemy extends GameEntity{
@@ -53,6 +54,20 @@ public abstract class Enemy extends GameEntity{
 		}
 		if(hp<=0){
 			kill();
+			EventHandler.add(new Event(2500) {
+				@Override
+				public void run() {
+					if(Enemy.this instanceof Enemies.BasicEnemy){
+						Game.add(new Enemies.BasicEnemy((int)px, (int)py));
+					}
+					if(Enemy.this instanceof Enemies.ShooterEnemy){
+						Game.add(new Enemies.ShooterEnemy((int)px, (int)py));
+					}
+					if(Enemy.this instanceof Enemies.SniperEnemy){
+						Game.add(new Enemies.SniperEnemy((int)px, (int)py));
+					}
+				}
+			});
 		}
 	}
 	class EnemyBulletEvent extends Event {
