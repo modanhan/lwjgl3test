@@ -10,7 +10,7 @@ import util.Time;
 
 public class Player extends GameEntity {
 	private final float SPEED = .3f;
-
+	private final float SLOWSPEED = .1f;
 	public Player() {
 		size = 10;
 		px = GlobalVars.WIDTH / 2;
@@ -20,21 +20,22 @@ public class Player extends GameEntity {
 
 	@Override
 	public void update() {
-		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_SPACE)) {
-			System.out.println("alive");
+		float speed = SPEED;
+		if (Keyboard.isKeyDown(GLFW.GLFW_KEY_SPACE)) {
+			speed = SLOWSPEED;
 		}
 		int d = Time.getDelta();
 		if (Keyboard.isKeyDown(GLFW.GLFW_KEY_UP)) {
-			py += (int) (d * SPEED);
+			py += (d * speed);
 		}
 		if (Keyboard.isKeyDown(GLFW.GLFW_KEY_DOWN)) {
-			py -= (int) (d * SPEED);
+			py -= (d * speed);
 		}
 		if (Keyboard.isKeyDown(GLFW.GLFW_KEY_LEFT)) {
-			px -= (int) (d * SPEED);
+			px -= (d * speed);
 		}
 		if (Keyboard.isKeyDown(GLFW.GLFW_KEY_RIGHT)) {
-			px += (int) (d * SPEED);
+			px += (d * speed);
 		}
 	}
 

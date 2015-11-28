@@ -104,10 +104,10 @@ public class Enemies {
 		public void render(){
 			super.render();
 		}
-		private static final int maxcount1 = 10;
-		private static int count1 = maxcount1;
-		private static final int maxcount2 = 80;
-		private static int count2 = maxcount2;
+		private static final float maxcount1 = 10;
+		private static float count1 = maxcount1;
+		private static final float maxcount2 = 20;
+		private static float count2 = maxcount2;
 		class EnemyBossBulletEvent1 extends EnemyBulletEvent {
 			static final int rings = 24;
 			public EnemyBossBulletEvent1(long time) {
@@ -123,7 +123,7 @@ public class Enemies {
 				}
 				if(count1>0){
 					EventHandler.add(new EnemyBossBulletEvent1(400));
-					count1--;
+					count1-=1;
 				}else{
 					count1 = maxcount1;
 					EventHandler.add(new EnemyBossBulletEvent2(4000));
@@ -145,7 +145,7 @@ public class Enemies {
 					
 				if(count2>0){
 					EventHandler.add(new EnemyBossBulletEvent2(100));
-					count2--;
+					count2-=0.5f;
 				}else{
 					count2 = maxcount2;
 					EventHandler.add(new EnemyBossBulletEvent1(4000));
