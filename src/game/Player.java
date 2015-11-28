@@ -62,7 +62,7 @@ public class Player extends GameEntity {
 
 		@Override
 		public void run() {
-			EventHandler.add(new PlayerBulletEvent(100));
+			EventHandler.add(new PlayerBulletEvent((GlobalVars.cheats&&GlobalVars.bulletstorm)?10:100));
 
 			addBullet(new PlayerBullet(px, py, -30));
 			addBullet(new PlayerBullet(px, py, -15));

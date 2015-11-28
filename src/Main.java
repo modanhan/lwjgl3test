@@ -5,6 +5,7 @@ import graphics.Graphics;
 
 import org.lwjgl.opengl.*;
 
+import util.Console;
 import util.Keyboard;
 import util.Time;
 import static org.lwjgl.glfw.GLFW.*;
@@ -12,7 +13,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 public class Main {
-
+	static Thread consolethread;
 	static void init() {
 		GlobalVars.running = true;
 
@@ -37,17 +38,9 @@ public class Main {
 		Time.update();
 		EventHandler.init();
 		ModeHandler.init();
-
+		consolethread = new Thread(new Console());
+		consolethread.start();
 		glfwSetKeyCallback(GlobalVars.window, new Keyboard());
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				while(true){
-					glfwWaitEvents();
-				}
-			}
-		});
 	}
 
 	static void update() {
@@ -63,7 +56,8 @@ public class Main {
 	}
 
 	static void exit() {
-
+		consolethread.interrupt();
+		glfwDestroyWindow(GlobalVars.window);
 	}
 
 	public static void main(String[] args) {

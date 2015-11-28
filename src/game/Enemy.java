@@ -70,27 +70,15 @@ public abstract class Enemy extends GameEntity{
 		}
 		if(GameMode.player!=null){
 			if(GameEntity.checkCollision(this, GameMode.player)){
-				GameMode.player.kill();
+				if(!GlobalVars.godmode&&GlobalVars.cheats){
+					GameMode.player.kill();
+				}
 				hp--;
 				hit=true;
 			}
 		}
 		if(hp<=0){
 			kill();
-			EventHandler.add(new Event(2500) {
-				@Override
-				public void run() {
-					if(Enemy.this instanceof Enemies.BasicEnemy){
-						Game.add(new Enemies.BasicEnemy((int)px, (int)py));
-					}
-					if(Enemy.this instanceof Enemies.ShooterEnemy){
-						Game.add(new Enemies.ShooterEnemy((int)px, (int)py));
-					}
-					if(Enemy.this instanceof Enemies.SniperEnemy){
-						Game.add(new Enemies.SniperEnemy((int)px, (int)py));
-					}
-				}
-			});
 		}
 	}
 
@@ -139,7 +127,9 @@ public abstract class Enemy extends GameEntity{
 			super.update();
 			if(GameMode.player!=null){
 				if(checkCollision(this,GameMode.player)){
-					GameMode.player.kill();
+					if(!GlobalVars.godmode&&GlobalVars.cheats){
+						GameMode.player.kill();
+					}
 					this.kill();
 				}
 			}
