@@ -6,6 +6,7 @@ import java.util.List;
 import org.lwjgl.glfw.GLFW;
 
 import events.EventHandler;
+import game.Enemies.ShooterEnemy;
 import game.Enemy.EnemyBullet;
 import game.Player.PlayerBullet;
 import util.Keyboard;
@@ -20,10 +21,34 @@ public class GameMode implements Mode {
 		Game.init();
 		player = new Player();
 		Game.add(player);
-		Enemy e1 = new Enemies.SniperEnemy(GlobalVars.WIDTH*3/4, GlobalVars.HEIGHT*3/4);
+		Enemy e1 = new Enemies.BasicEnemy(GlobalVars.WIDTH*2/4, GlobalVars.HEIGHT*3/4);
 		Enemy e2 = new Enemies.ShooterEnemy(GlobalVars.WIDTH*1/4, GlobalVars.HEIGHT*3/4);
-		Game.add(e1);
-		Game.add(e2);
+		Enemy e3 = new Enemies.SniperEnemy(GlobalVars.WIDTH*1/4, GlobalVars.HEIGHT+100);
+		Enemy e4 = new Enemies.SniperEnemy(GlobalVars.WIDTH*3/4, GlobalVars.HEIGHT+100);
+		Enemy e5 = new Enemies.SniperEnemy(GlobalVars.WIDTH*2/4, -100);
+		Enemy e6 = new Enemies.BossEnemy(GlobalVars.WIDTH*2/4, GlobalVars.HEIGHT+100);
+		e1.spawn();
+		e2.spawn();
+		EventHandler.add(new Enemy.EnemyDespawnEvent(4000,e2));
+		EventHandler.add(new Enemy.EnemyMoveEvent(5000,e1,GlobalVars.WIDTH*2/4, GlobalVars.HEIGHT+100));
+		EventHandler.add(new Enemy.EnemySpawnEvent(5000,e3));
+		EventHandler.add(new Enemy.EnemySpawnEvent(5000,e4));
+
+		EventHandler.add(new Enemy.EnemyMoveEvent(5000,e3,GlobalVars.WIDTH*1/4, GlobalVars.HEIGHT*3/4));
+		EventHandler.add(new Enemy.EnemyMoveEvent(5000,e4,GlobalVars.WIDTH*3/4, GlobalVars.HEIGHT*3/4));
+
+		EventHandler.add(new Enemy.EnemyDespawnEvent(7000,e1));
+
+		EventHandler.add(new Enemy.EnemySpawnEvent(10000,e5));
+		EventHandler.add(new Enemy.EnemyMoveEvent(10000,e5,GlobalVars.WIDTH*2/4, GlobalVars.HEIGHT*1/4));
+
+		EventHandler.add(new Enemy.EnemyDespawnEvent(15000,e3));
+		EventHandler.add(new Enemy.EnemyDespawnEvent(15000,e4));
+		EventHandler.add(new Enemy.EnemyDespawnEvent(15000,e5));
+
+		EventHandler.add(new Enemy.EnemySpawnEvent(15000,e6));
+		EventHandler.add(new Enemy.EnemyMoveEvent(15000,e6,GlobalVars.WIDTH*2/4, GlobalVars.HEIGHT*3/4));
+
 	}
 
 	@Override

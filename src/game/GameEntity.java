@@ -2,7 +2,7 @@ package game;
 
 public abstract class GameEntity extends GameObject {
 	protected float px,py;
-	protected float size;
+	protected float size=10;
 	public void kill(){
 		Game.remove(this);
 	}

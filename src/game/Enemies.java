@@ -4,12 +4,11 @@ import events.EventHandler;
 
 public class Enemies {
 	public static class BasicEnemy extends Enemy{
-		boolean hit =false;
 		{
 			hp = 20;
 			size = 12;
 		}
-		public BasicEnemy(int px, int py) {
+		public BasicEnemy(float px, float py) {
 			super(px, py);
 		}
 		@Override
@@ -21,13 +20,15 @@ public class Enemies {
 		}
 	}
 	public static class ShooterEnemy extends Enemy{
-		boolean hit =false;
 		{
 			hp = 20;
 			size = 12;
 		}
-		public ShooterEnemy(int px, int py) {
+		public ShooterEnemy(float px, float py) {
 			super(px, py);
+		}
+		public void spawn(){
+			super.spawn();
 			EventHandler.add(new EnemyShooterBulletEvent(1000));
 		}
 		@Override
@@ -51,13 +52,16 @@ public class Enemies {
 		}
 	}
 	public static class SniperEnemy extends Enemy{
-		boolean hit =false;
 		{
 			hp = 20;
 			size = 12;
+			speed = 0.1f;
 		}
-		public SniperEnemy(int px, int py) {
+		public SniperEnemy(float px, float py) {
 			super(px, py);
+		}
+		public void spawn(){
+			super.spawn();
 			EventHandler.add(new EnemyShooterBulletEvent(1000));
 		}
 		@Override
@@ -80,4 +84,75 @@ public class Enemies {
 			}
 		}
 	}
+	public static class BossEnemy extends Enemy{
+		{
+			hp = 500;
+			size = 24;
+			speed = 0.1f;
+		}
+		public BossEnemy(float px, float py) {
+			super(px, py);
+		}
+		public void spawn(){
+			super.spawn();
+			EventHandler.add(new EnemyBossBulletEvent1(4000));
+		}
+		@Override
+		public void update() {
+			super.update();
+		}
+		public void render(){
+			super.render();
+		}
+		private static final int maxcount1 = 10;
+		private static int count1 = maxcount1;
+		private static final int maxcount2 = 80;
+		private static int count2 = maxcount2;
+		class EnemyBossBulletEvent1 extends EnemyBulletEvent {
+			static final int rings = 24;
+			public EnemyBossBulletEvent1(long time) {
+				super(time);
+			}
+			@Override
+			public void run() {
+				if(hp<=0)return;
+				for(float i=0;i<360f;i+=360f/rings){
+					addBullet(new EnemyBullet(px, py, 
+							(float)Math.sin(Math.toRadians(i+ count1*360f/rings/maxcount1)),
+							(float)Math.cos(Math.toRadians(i+ count1*360f/rings/maxcount1))));
+				}
+				if(count1>0){
+					EventHandler.add(new EnemyBossBulletEvent1(400));
+					count1--;
+				}else{
+					count1 = maxcount1;
+					EventHandler.add(new EnemyBossBulletEvent2(4000));
+				}
+			}
+		}
+		class EnemyBossBulletEvent2 extends EnemyBulletEvent {
+			static final int rings = 24;
+			public EnemyBossBulletEvent2(long time) {
+				super(time);
+			}
+			@Override
+			public void run() {
+				if(hp<=0)return;
+					float dx = (float)Math.sin(Math.toRadians(360f*count2/maxcount2));
+					float dy = (float)Math.cos(Math.toRadians(360f*count2/maxcount2));
+					addBullet(new EnemyBullet(px, py,dx,dy));
+					addBullet(new EnemyBullet(px, py,-dx,-dy));
+					
+				if(count2>0){
+					EventHandler.add(new EnemyBossBulletEvent2(100));
+					count2--;
+				}else{
+					count2 = maxcount2;
+					EventHandler.add(new EnemyBossBulletEvent1(4000));
+				}
+			}
+		}
+	}
+	
+	
 }

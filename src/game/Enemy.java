@@ -6,13 +6,24 @@ import org.lwjgl.opengl.GL11;
 
 import events.Event;
 import game.Player.PlayerBullet;
+import util.Time;
 
 public abstract class Enemy extends GameEntity{
 	protected boolean hit = false;
 	protected int hp=1;
-	public Enemy(int px,int py) {
+	protected float tx,ty,speed=0.1f;
+	public Enemy(float px,float py) {
 		this.px = px;
 		this.py = py;
+		this.tx = px;
+		this.ty = py;
+	}
+	public void spawn(){
+		Game.add(this);
+	}
+	public void kill(){
+		super.kill();
+		hp=0;
 	}
 	@Override
 	public void render() {
@@ -31,7 +42,19 @@ public abstract class Enemy extends GameEntity{
 		GL11.glEnd();
 		GL11.glPopMatrix();
 	}
+	protected void move(){
+		float d = Time.getDelta();
+		float dist = (float) Math.hypot(ty-py, tx-px);
+		if(dist>speed*d){
+			px += (tx-px)/dist*speed*d;
+			py += (ty-py)/dist*speed*d;
+		}else{
+			px=tx;
+			py=ty;
+		}
+	}
 	public void update() {
+		move();
 		hit = false;
 		Bullet b = null;
 		ListIterator<PlayerBullet> i = GameMode.playerbullets.listIterator();
@@ -121,6 +144,57 @@ public abstract class Enemy extends GameEntity{
 			GL11.glEnd();
 			GL11.glPopMatrix();
 		}
-
 	}
+	static class EnemySpawnEvent extends Event{
+		Enemy e;
+		public EnemySpawnEvent(long time) {
+			super(time);
+		}
+		public EnemySpawnEvent(long time,Enemy e) {
+			super(time);
+			this.e = e;
+		}
+
+		@Override
+		public void run() {
+			e.spawn();
+		}
+		
+	}
+	static class EnemyDespawnEvent extends Event{
+		Enemy e;
+		public EnemyDespawnEvent(long time) {
+			super(time);
+		}
+		public EnemyDespawnEvent(long time,Enemy e) {
+			super(time);
+			this.e = e;
+		}
+
+		@Override
+		public void run() {
+			e.kill();
+		}
+		
+	}
+	static class EnemyMoveEvent extends Event{
+		Enemy e;
+		float x,y;
+		public EnemyMoveEvent(long time) {
+			super(time);
+		}
+		public EnemyMoveEvent(long time,Enemy e,float x,float y) {
+			super(time);
+			this.e = e;
+			this.x = x;
+			this.y = y;
+		}
+		@Override
+		public void run() {
+			e.tx=x;
+			e.ty=y;
+		}
+		
+	}
+	
 }
