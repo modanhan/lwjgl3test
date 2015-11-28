@@ -70,7 +70,7 @@ public abstract class Enemy extends GameEntity{
 		}
 		if(GameMode.player!=null){
 			if(GameEntity.checkCollision(this, GameMode.player)){
-				if(!GlobalVars.godmode&&GlobalVars.cheats){
+				if(!(GlobalVars.godmode&&GlobalVars.cheats)){
 					GameMode.player.kill();
 				}
 				hp--;
@@ -127,7 +127,7 @@ public abstract class Enemy extends GameEntity{
 			super.update();
 			if(GameMode.player!=null){
 				if(checkCollision(this,GameMode.player)){
-					if(!GlobalVars.godmode&&GlobalVars.cheats){
+					if(!(GlobalVars.godmode&&GlobalVars.cheats)){
 						GameMode.player.kill();
 					}
 					this.kill();
