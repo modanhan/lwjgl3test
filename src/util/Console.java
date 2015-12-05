@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import game.GameMode;
 import game.GlobalVars;
+import game.Level;
 
 public class Console implements Runnable{
 	public static BufferedReader in;
@@ -32,6 +34,31 @@ public class Console implements Runnable{
 				case "/bulletstorm":
 					GlobalVars.bulletstorm = !GlobalVars.bulletstorm;
 					System.out.println("Cheats "+GlobalVars.bulletstorm!=null?GlobalVars.bulletstorm?"on":"off":"off");
+					break;
+				case "/power":
+					if(GameMode.player!=null){
+						GameMode.player.power = Integer.parseInt(args[1]);
+						System.out.println("power set to "+args[1]);
+					}else{
+						System.out.println("player is dead");
+					}
+					break;
+				case "/mode":
+					if(GameMode.player!=null){
+						GameMode.player.mode = Integer.parseInt(args[1]);
+						System.out.println("mode set to "+args[1]);
+					}else{
+						System.out.println("player is dead");
+					}
+					break;
+				case "/level":
+					Level.level(Integer.parseInt(args[1]));
+					System.out.println("level set to "+args[1]);
+					break;
+				case "/respawn":
+					if(GameMode.player!=null)break;
+					GameMode.resetPlayer();
+					System.out.println("player respawned");
 					break;
 				case "/exit":
 					return;

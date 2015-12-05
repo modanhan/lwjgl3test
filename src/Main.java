@@ -13,15 +13,16 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
 public class Main {
-	static Thread consolethread;
+	private static Keyboard keyboard;
+	private static Thread consolethread;
 	static void init() {
 		GlobalVars.running = true;
 
 		glfwInit();
 		glfwWindowHint(GLFW_SAMPLES, 4);
+		glfwWindowHint(GLFW_FLOATING,1);
 		GlobalVars.window = glfwCreateWindow(GlobalVars.WIDTH,
 				GlobalVars.HEIGHT, "placeholder", NULL, NULL);
-
 		glfwMakeContextCurrent(GlobalVars.window);
 		glfwSwapInterval(1);
 		glfwShowWindow(GlobalVars.window);
@@ -40,7 +41,8 @@ public class Main {
 		ModeHandler.init();
 		consolethread = new Thread(new Console());
 		consolethread.start();
-		glfwSetKeyCallback(GlobalVars.window, new Keyboard());
+		keyboard = new Keyboard();
+		glfwSetKeyCallback(GlobalVars.window, keyboard);
 	}
 
 	static void update() {

@@ -79,7 +79,7 @@ public class Enemies {
 			@Override
 			public void run() {
 				if(hp<=0)return;
-				addBullet(new EnemyBullet(px, py, GameMode.player.px-px, GameMode.player.py-py));
+				if(GameMode.player!=null)addBullet(new EnemyBullet(px, py, GameMode.player.px-px, GameMode.player.py-py));
 				EventHandler.add(new EnemyShooterBulletEvent(1000));
 			}
 		}
@@ -106,7 +106,7 @@ public class Enemies {
 		}
 		private static final float maxcount1 = 10;
 		private static float count1 = maxcount1;
-		private static final float maxcount2 = 40;
+		private static final float maxcount2 = 20;
 		private static float count2 = maxcount2;
 		class EnemyBossBulletEvent1 extends EnemyBulletEvent {
 			static final int rings = 24;

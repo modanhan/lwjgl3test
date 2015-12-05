@@ -5,6 +5,7 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.glEnable;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -72,5 +73,8 @@ public class Game {
 
 	public static void remove(GameObject e) {
 		toremove.add(e);
+	}
+	public static void removeAll(Collection<? extends GameObject> e) {
+		toremove.addAll(e);
 	}
 }

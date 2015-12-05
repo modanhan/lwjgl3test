@@ -13,13 +13,16 @@ public class Player extends GameEntity {
 	private final float SPEED = .3f;
 	private final float SLOWSPEED = .1f;
 	public int mode = 1;
+	public int power=1;
 	public Player() {
 		size = 10;
 		px = GlobalVars.WIDTH / 2;
 		py = GlobalVars.HEIGHT / 2;
-		EventHandler.add(new PlayerBulletEvent(200));
+		shoot();
 	}
-
+	public void shoot(){
+		EventHandler.add(new PlayerBulletEvent((GlobalVars.cheats&&GlobalVars.bulletstorm)?10:100));
+	}
 	@Override
 	public void update() {
 		float speed = SPEED;
@@ -47,6 +50,10 @@ public class Player extends GameEntity {
 				power--;
 			}
 		}
+		if(px<0)px=0;
+		if(py<0)py=0;
+		if(px>GlobalVars.WIDTH)px = GlobalVars.WIDTH;
+		if(py>GlobalVars.HEIGHT)py = GlobalVars.HEIGHT;
 	}
 
 	@Override
@@ -68,11 +75,9 @@ public class Player extends GameEntity {
 		glPopMatrix();
 	}
 	public void kill(){
-		EventHandler.clear();
 		Game.remove(this);
 		GameMode.player = null;
 	}
-	static int power=2;
 	static float seekercount = 0;
 
 	class PlayerBulletEvent extends Event {
@@ -82,6 +87,7 @@ public class Player extends GameEntity {
 
 		@Override
 		public void run() {
+			if(GameMode.player==null)return;
 			switch(mode){
 			case 0:
 				normalBullet(power);
@@ -92,7 +98,7 @@ public class Player extends GameEntity {
 			}
 		}
 		public void normalBullet(int level){
-			EventHandler.add(new PlayerBulletEvent((GlobalVars.cheats&&GlobalVars.bulletstorm)?10:100));
+			shoot();
 			switch(level){
 			case 1:
 				addBullet(new PlayerBullet(px,py));
