@@ -106,7 +106,7 @@ public class Enemies {
 		}
 		private static final float maxcount1 = 10;
 		private static float count1 = maxcount1;
-		private static final float maxcount2 = 20;
+		private static final float maxcount2 = 40;
 		private static float count2 = maxcount2;
 		class EnemyBossBulletEvent1 extends EnemyBulletEvent {
 			static final int rings = 24;
@@ -144,7 +144,7 @@ public class Enemies {
 					addBullet(new EnemyBullet(px, py,-dx,-dy));
 					
 				if(count2>0){
-					EventHandler.add(new EnemyBossBulletEvent2(100));
+					EventHandler.add(new EnemyBossBulletEvent2(50));
 					count2-=0.5f;
 				}else{
 					count2 = maxcount2;

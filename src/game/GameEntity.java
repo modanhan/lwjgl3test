@@ -18,4 +18,7 @@ public abstract class GameEntity extends GameObject {
 		}
 		return false;
 	}
+	public static float getDistance(GameEntity a,GameEntity b){
+		return (float) Math.hypot(b.px-a.px, b.py-a.py);
+	}
 }

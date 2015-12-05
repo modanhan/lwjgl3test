@@ -14,11 +14,15 @@ public class GameMode implements Mode {
 	static Player player;
 	static List<PlayerBullet> playerbullets = new LinkedList<PlayerBullet>();
 	static List<EnemyBullet> enemybullets = new LinkedList<EnemyBullet>();
+	static List<Enemy> enemies = new LinkedList<Enemy>();
 
 	public GameMode() {
 		GLFW.glfwSetWindowTitle(GlobalVars.window, "press esc to quit game");
 		Game.init();
 		player = new Player();
+		playerbullets.clear();
+		enemybullets.clear();
+		enemies.clear();
 		Game.add(player);
 		Enemy e1 = new Enemies.BasicEnemy(GlobalVars.WIDTH*2/4, GlobalVars.HEIGHT*3/4);
 		Enemy e2 = new Enemies.ShooterEnemy(GlobalVars.WIDTH*1/4, GlobalVars.HEIGHT*3/4);

@@ -23,12 +23,12 @@ public class Game {
 	public static void init() {
 		s = new TreeSet<GameObject>();
 		toremove = new TreeSet<GameObject>();
-		hbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
-		vbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
-		hblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurhfragment.glsl"));
+		if(hbuf==null)hbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
+		if(vbuf==null)vbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
+		if(hblur==null)hblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurhfragment.glsl"));
 		Shader.use(hblur);
 		hblur.setUniformi("texture", 0);
-		vblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurvfragment.glsl"));
+		if(vblur==null)vblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurvfragment.glsl"));
 		Shader.use(vblur);
 		vblur.setUniformi("texture", 0);
 		Shader.use(0);
@@ -54,7 +54,6 @@ public class Game {
 		for (GameObject g : s) {
 			g.render();
 		}
-		Texture.bind(0);
 		FrameBuffer.bind(hbuf);
 		Graphics.clearBuffers();
 		for (GameObject g : s) {

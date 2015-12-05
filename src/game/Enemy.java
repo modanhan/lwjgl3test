@@ -21,9 +21,11 @@ public abstract class Enemy extends GameEntity{
 	}
 	public void spawn(){
 		Game.add(this);
+		GameMode.enemies.add(this);
 	}
 	public void kill(){
 		super.kill();
+		GameMode.enemies.remove(this);
 		hp=0;
 	}
 	@Override
@@ -52,14 +54,14 @@ public abstract class Enemy extends GameEntity{
 	public void update() {
 		move();
 		hit = false;
-		Bullet b = null;
+		PlayerBullet b = null;
 		ListIterator<PlayerBullet> i = GameMode.playerbullets.listIterator();
 		while (i.hasNext()){
 			b = i.next();
 			if(GameEntity.checkCollision(this, b)){
 				Game.remove(b);
 				i.remove();
-				hp--;
+				hp-=b.power;
 				hit=true;
 			}
 		}
