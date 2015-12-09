@@ -4,7 +4,10 @@ import static org.lwjgl.opengl.GL11.GL_BLEND;
 import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.glEnable;
 
+import java.awt.List;
 import java.io.File;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -16,13 +19,12 @@ import graphics.Shader;
 import graphics.Texture;
 
 public class Game {
-	private static Set<GameObject> s, toremove;
+	private static LinkedList<GameObject> s;
 	static FrameBuffer hbuf, vbuf;
 	static Shader hblur, vblur;
 	static Texture main;
 	public static void init() {
-		s = new TreeSet<GameObject>();
-		toremove = new TreeSet<GameObject>();
+		s=new LinkedList<GameObject>();
 		if(hbuf==null)hbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
 		if(vbuf==null)vbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
 		if(hblur==null)hblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurhfragment.glsl"));
@@ -44,12 +46,16 @@ public class Game {
 		Graphics.set();
 		
 		Texture.bind(main);
-		for (GameObject g : toremove) {
-			s.remove(g);
-		}
-		toremove.clear();
-		for (GameObject g : s) {
-			g.update();
+		
+		Iterator<GameObject> it=s.iterator();
+		System.out.println(s.size());
+		while(it.hasNext()){
+			GameObject go=it.next();
+			if(go.remove){
+				it.remove();
+			}else{
+				go.update();
+			}
 		}
 		for (GameObject g : s) {
 			g.render();
@@ -71,6 +77,6 @@ public class Game {
 	}
 
 	public static void remove(GameObject e) {
-		toremove.add(e);
+		e.remove();
 	}
 }
