@@ -1,4 +1,4 @@
-package game.mode;
+package mode;
 
 import java.util.LinkedList;
 import java.util.List;

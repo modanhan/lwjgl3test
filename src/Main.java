@@ -1,7 +1,7 @@
 import events.EventHandler;
-import game.mode.ModeHandler;
 import global.Global;
 import graphics.Graphics;
+import mode.ModeHandler;
 
 import org.lwjgl.opengl.*;
 

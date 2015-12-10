@@ -5,8 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import game.Level;
-import game.mode.GameMode;
 import global.Global;
+import mode.GameMode;
 
 public class Console implements Runnable{
 	public static BufferedReader in;

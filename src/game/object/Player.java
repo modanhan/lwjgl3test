@@ -6,9 +6,9 @@ import static org.lwjgl.opengl.GL11.*;
 import events.Event;
 import events.EventHandler;
 import game.Game;
-import game.mode.GameMode;
 import global.Global;
 import graphics.Graphics;
+import mode.GameMode;
 import util.Keyboard;
 import util.Time;
 

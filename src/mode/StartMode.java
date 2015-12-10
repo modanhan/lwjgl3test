@@ -1,4 +1,4 @@
-package game.mode;
+package mode;
 
 import org.lwjgl.glfw.GLFW;
 

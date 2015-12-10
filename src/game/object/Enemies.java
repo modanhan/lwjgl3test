@@ -1,7 +1,7 @@
 package game.object;
 
 import events.EventHandler;
-import game.mode.GameMode;
+import mode.GameMode;
 
 public class Enemies {
 	public static class BasicEnemy extends Enemy{

@@ -6,10 +6,10 @@ import java.util.ListIterator;
 
 import events.Event;
 import game.Game;
-import game.mode.GameMode;
 import game.object.Player.PlayerBullet;
 import global.Global;
 import graphics.Graphics;
+import mode.GameMode;
 import util.Time;
 
 public abstract class Enemy extends CircleGameObject{

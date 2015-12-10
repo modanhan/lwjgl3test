@@ -1,10 +1,10 @@
 package game;
 
 import events.EventHandler;
-import game.mode.GameMode;
 import game.object.Enemies;
 import game.object.Enemy;
 import global.Global;
+import mode.GameMode;
 
 public abstract class Level {
 	public abstract void init();
