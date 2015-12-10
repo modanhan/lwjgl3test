@@ -1,8 +1,9 @@
-package game;
+package game.object;
 
+import global.Global;
 import util.Time;
 
-public abstract class Bullet extends GameEntity{
+public abstract class Bullet extends CircleGameObject{
 	protected float dx, dy;
 	protected float speed = 0.2f;
 	protected void move(){
@@ -12,8 +13,8 @@ public abstract class Bullet extends GameEntity{
 		py += d*dy;
 	}
 	protected void checkPosition(){
-		if (py > GlobalVars.HEIGHT + GlobalVars.MARGIN|| py < -GlobalVars.MARGIN
-				||px > GlobalVars.WIDTH + GlobalVars.MARGIN||px < - GlobalVars.MARGIN) {
+		if (py > Global.HEIGHT + Global.MARGIN|| py < -Global.MARGIN
+				||px > Global.WIDTH + Global.MARGIN||px < - Global.MARGIN) {
 			kill();
 		}
 	}

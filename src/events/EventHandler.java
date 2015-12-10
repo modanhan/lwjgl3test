@@ -4,6 +4,11 @@ import java.util.PriorityQueue;
 
 import util.Time;
 
+/**
+ * 
+ * Handles the game's events.
+ *
+ */
 public class EventHandler {
 
 	public static PriorityQueue<Event> pq;

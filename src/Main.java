@@ -1,6 +1,6 @@
 import events.EventHandler;
-import game.GlobalVars;
-import game.ModeHandler;
+import game.mode.ModeHandler;
+import global.Global;
 import graphics.Graphics;
 
 import org.lwjgl.opengl.*;
@@ -16,22 +16,22 @@ public class Main {
 	private static Keyboard keyboard;
 	private static Thread consolethread;
 	static void init() {
-		GlobalVars.running = true;
+		Global.running = true;
 
 		glfwInit();
 		glfwWindowHint(GLFW_SAMPLES, 4);
 		glfwWindowHint(GLFW_FLOATING,1);
-		GlobalVars.window = glfwCreateWindow(GlobalVars.WIDTH,
-				GlobalVars.HEIGHT, "placeholder", NULL, NULL);
-		glfwMakeContextCurrent(GlobalVars.window);
+		Global.window = glfwCreateWindow(Global.WIDTH,
+				Global.HEIGHT, "placeholder", NULL, NULL);
+		glfwMakeContextCurrent(Global.window);
 		glfwSwapInterval(1);
-		glfwShowWindow(GlobalVars.window);
+		glfwShowWindow(Global.window);
 
 		GL.createCapabilities();
 		
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, GlobalVars.WIDTH, 0, GlobalVars.HEIGHT, 1, -1);
+		glOrtho(0, Global.WIDTH, 0, Global.HEIGHT, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
 
 		Time.init();
@@ -42,7 +42,7 @@ public class Main {
 		consolethread = new Thread(new Console());
 		consolethread.start();
 		keyboard = new Keyboard();
-		glfwSetKeyCallback(GlobalVars.window, keyboard);
+		glfwSetKeyCallback(Global.window, keyboard);
 	}
 
 	static void update() {
@@ -53,21 +53,21 @@ public class Main {
 		EventHandler.update();
 
 		Keyboard.update();
-		glfwSwapBuffers(GlobalVars.window);
+		glfwSwapBuffers(Global.window);
 		glfwPollEvents();
 	}
 
 	static void exit() {
 		consolethread.interrupt();
-		glfwDestroyWindow(GlobalVars.window);
+		glfwDestroyWindow(Global.window);
 	}
 
 	public static void main(String[] args) {
 		init();
-		while (GlobalVars.running) {
+		while (Global.running) {
 			update();
-			if (glfwWindowShouldClose(GlobalVars.window) == GL_TRUE) {
-				GlobalVars.running = false;
+			if (glfwWindowShouldClose(Global.window) == GL_TRUE) {
+				Global.running = false;
 			}
 		}
 		exit();

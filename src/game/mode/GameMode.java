@@ -1,4 +1,4 @@
-package game;
+package game.mode;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,8 +6,13 @@ import java.util.List;
 import org.lwjgl.glfw.GLFW;
 
 import events.EventHandler;
-import game.Enemy.EnemyBullet;
-import game.Player.PlayerBullet;
+import game.Game;
+import game.Level;
+import game.object.Enemy;
+import game.object.Enemy.EnemyBullet;
+import game.object.Player;
+import game.object.Player.PlayerBullet;
+import global.Global;
 import util.Keyboard;
 
 public class GameMode implements Mode {
@@ -18,7 +23,7 @@ public class GameMode implements Mode {
 	public static List<Enemy> enemies = new LinkedList<Enemy>();
 	public static Level level;
 	public GameMode() {
-		GLFW.glfwSetWindowTitle(GlobalVars.window, "press esc to quit game");
+		GLFW.glfwSetWindowTitle(Global.window, "press esc to quit game");
 		Game.init();
 		player = new Player();
 		deadplayer = player;
@@ -50,7 +55,7 @@ public class GameMode implements Mode {
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_K)) {
 			System.out.println("player killed");
 			EventHandler.clear();
-			Game.remove(player);
+			player.remove();
 		}
 		Game.update();
 		if(level.isDone()){

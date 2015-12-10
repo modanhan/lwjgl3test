@@ -1,17 +1,20 @@
-package game;
+package game.object;
 
 import static org.lwjgl.opengl.GL11.*;
 
 import java.util.ListIterator;
 
 import events.Event;
-import game.Player.PlayerBullet;
+import game.Game;
+import game.mode.GameMode;
+import game.object.Player.PlayerBullet;
+import global.Global;
 import graphics.Graphics;
 import util.Time;
 
-public abstract class Enemy extends GameEntity{
+public abstract class Enemy extends CircleGameObject{
 	protected boolean hit = false;
-	protected int hp=1;
+	public int hp=1;
 	protected float tx,ty,speed=0.1f;
 	public Enemy(float px,float py) {
 		this.px = px;
@@ -23,8 +26,8 @@ public abstract class Enemy extends GameEntity{
 		Game.add(this);
 		GameMode.enemies.add(this);
 	}
-	public void kill(){
-		super.kill();
+	public void death(){
+		super.death();
 		GameMode.enemies.remove(this);
 		hp=0;
 	}
@@ -58,16 +61,16 @@ public abstract class Enemy extends GameEntity{
 		ListIterator<PlayerBullet> i = GameMode.playerbullets.listIterator();
 		while (i.hasNext()){
 			b = i.next();
-			if(GameEntity.checkCollision(this, b)){
-				Game.remove(b);
+			if(CircleGameObject.checkCollision(this, b)){
+				b.remove();
 				i.remove();
 				hp-=b.power;
 				hit=true;
 			}
 		}
 		if(GameMode.player!=null){
-			if(GameEntity.checkCollision(this, GameMode.player)){
-				if(!(GlobalVars.godmode&&GlobalVars.cheats)){
+			if(CircleGameObject.checkCollision(this, GameMode.player)){
+				if(!(Global.godmode&&Global.cheats)){
 					GameMode.player.kill();
 				}
 				hp--;
@@ -79,7 +82,7 @@ public abstract class Enemy extends GameEntity{
 		}
 	}
 
-	class EnemyBulletEvent extends Event {
+	public class EnemyBulletEvent extends Event {
 
 		public EnemyBulletEvent(long time) {
 			super(time);
@@ -96,7 +99,7 @@ public abstract class Enemy extends GameEntity{
 		}
 	}
 
-	class EnemyBullet extends Bullet {
+	public class EnemyBullet extends Bullet {
 		{
 			size=4;
 			speed=0.1f;
@@ -124,7 +127,7 @@ public abstract class Enemy extends GameEntity{
 			super.update();
 			if(GameMode.player!=null){
 				if(checkCollision(this,GameMode.player)){
-					if(!(GlobalVars.godmode&&GlobalVars.cheats)){
+					if(!(Global.godmode&&Global.cheats)){
 						GameMode.player.kill();
 					}
 					this.kill();
@@ -142,7 +145,7 @@ public abstract class Enemy extends GameEntity{
 			glPopMatrix();
 		}
 	}
-	static class EnemySpawnEvent extends Event{
+	public static class EnemySpawnEvent extends Event{
 		Enemy e;
 		public EnemySpawnEvent(long time) {
 			super(time);
@@ -158,7 +161,7 @@ public abstract class Enemy extends GameEntity{
 		}
 		
 	}
-	static class EnemyDespawnEvent extends Event{
+	public static class EnemyDespawnEvent extends Event{
 		Enemy e;
 		public EnemyDespawnEvent(long time) {
 			super(time);
@@ -174,7 +177,7 @@ public abstract class Enemy extends GameEntity{
 		}
 		
 	}
-	static class EnemyMoveEvent extends Event{
+	public static class EnemyMoveEvent extends Event{
 		Enemy e;
 		float x,y;
 		public EnemyMoveEvent(long time) {

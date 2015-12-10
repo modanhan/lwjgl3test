@@ -12,11 +12,19 @@ import java.util.function.Consumer;
 
 import org.lwjgl.opengl.GL13;
 
+import game.object.GameObject;
+import global.Global;
 import graphics.FrameBuffer;
 import graphics.Graphics;
 import graphics.Shader;
 import graphics.Texture;
 
+/**
+ * 
+ * Handles the gameplay, this class should only be called by modes
+ * that handle gameplay, i.e. GameMode.
+ *
+ */
 public class Game {
 	private static LinkedList<GameObject> s;
 	static FrameBuffer hbuf, vbuf;
@@ -24,8 +32,8 @@ public class Game {
 	static Texture main;
 	public static void init() {
 		s=new LinkedList<GameObject>();
-		if(hbuf==null)hbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
-		if(vbuf==null)vbuf = new FrameBuffer(GlobalVars.WIDTH, GlobalVars.HEIGHT);
+		if(hbuf==null)hbuf = new FrameBuffer(Global.WIDTH, Global.HEIGHT);
+		if(vbuf==null)vbuf = new FrameBuffer(Global.WIDTH, Global.HEIGHT);
 		if(hblur==null)hblur = new Shader(new File("shaders/mainvertex.glsl"),new File("shaders/blurhfragment.glsl"));
 		Shader.use(hblur);
 		hblur.setUniformi("texture", 0);
@@ -74,9 +82,6 @@ public class Game {
 		s.add(e);
 	}
 
-	public static void remove(GameObject e) {
-		e.remove();
-	}
 	public static void removeAll(Collection<? extends GameObject> e) {
 		e.forEach(new Consumer<GameObject>() {
 			@Override

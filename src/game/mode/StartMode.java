@@ -1,13 +1,14 @@
-package game;
+package game.mode;
 
 import org.lwjgl.glfw.GLFW;
 
+import global.Global;
 import util.Keyboard;
 
 public class StartMode implements Mode {
 
 	public StartMode() {
-		GLFW.glfwSetWindowTitle(GlobalVars.window,
+		GLFW.glfwSetWindowTitle(Global.window,
 				"press enter to play, esc to exit");
 	}
 
@@ -17,7 +18,7 @@ public class StartMode implements Mode {
 			ModeHandler.setMode(new GameMode());
 		}
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_ESCAPE)) {
-			GlobalVars.running = false;
+			Global.running = false;
 		}
 	}
 

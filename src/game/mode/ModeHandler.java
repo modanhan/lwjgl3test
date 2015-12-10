@@ -1,5 +1,11 @@
-package game;
+package game.mode;
 
+/**
+ * 
+ * Handles the game's modes.
+ * Mode switching is done by calling setMode(Mode m).
+ *
+ */
 public class ModeHandler {
 	private static Mode m;
 

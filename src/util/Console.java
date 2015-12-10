@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import game.GameMode;
-import game.GlobalVars;
 import game.Level;
+import game.mode.GameMode;
+import global.Global;
 
 public class Console implements Runnable{
 	public static BufferedReader in;
@@ -17,23 +17,23 @@ public class Console implements Runnable{
 	public void run() {
 		do{
 			try {
-				while(!in.ready()&&GlobalVars.running==true){
+				while(!in.ready()&&Global.running==true){
 					Thread.sleep(200);
 				}
 				String line = in.readLine();
 				String[] args = line.split(" ");
 				switch(args[0]){
 				case "/cheats": //enables/disables cheats
-					GlobalVars.cheats = !GlobalVars.cheats;
-					System.out.println("Cheats "+GlobalVars.cheats!=null?GlobalVars.cheats?"on":"off":"off");
+					Global.cheats = !Global.cheats;
+					System.out.println("Cheats "+Global.cheats!=null?Global.cheats?"on":"off":"off");
 					break;
 				case "/godmode": //enables/disables invincibility
-					GlobalVars.godmode = !GlobalVars.godmode;
-					System.out.println("Cheats "+GlobalVars.godmode!=null?GlobalVars.godmode?"on":"off":"off");
+					Global.godmode = !Global.godmode;
+					System.out.println("Cheats "+Global.godmode!=null?Global.godmode?"on":"off":"off");
 					break;
 				case "/bulletstorm": //enables/disables rapid-fire
-					GlobalVars.bulletstorm = !GlobalVars.bulletstorm;
-					System.out.println("Cheats "+GlobalVars.bulletstorm!=null?GlobalVars.bulletstorm?"on":"off":"off");
+					Global.bulletstorm = !Global.bulletstorm;
+					System.out.println("Cheats "+Global.bulletstorm!=null?Global.bulletstorm?"on":"off":"off");
 					break;
 				case "/power": //changes powerup level (1-10)
 					if(GameMode.player!=null){

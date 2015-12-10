@@ -1,27 +1,30 @@
-package game;
+package game.object;
 
 import org.lwjgl.glfw.GLFW;
 import static org.lwjgl.opengl.GL11.*;
 
 import events.Event;
 import events.EventHandler;
+import game.Game;
+import game.mode.GameMode;
+import global.Global;
 import graphics.Graphics;
 import util.Keyboard;
 import util.Time;
 
-public class Player extends GameEntity {
+public class Player extends CircleGameObject {
 	private final float SPEED = .3f;
 	private final float SLOWSPEED = .1f;
 	public int mode = 1;
 	public int power=1;
 	public Player() {
 		size = 10;
-		px = GlobalVars.WIDTH / 2;
-		py = GlobalVars.HEIGHT / 2;
+		px = Global.WIDTH / 2;
+		py = Global.HEIGHT / 2;
 		shoot();
 	}
 	public void shoot(){
-		EventHandler.add(new PlayerBulletEvent((GlobalVars.cheats&&GlobalVars.bulletstorm)?10:100));
+		EventHandler.add(new PlayerBulletEvent((Global.cheats&&Global.bulletstorm)?10:100));
 	}
 	@Override
 	public void update() {
@@ -42,7 +45,7 @@ public class Player extends GameEntity {
 		if (Keyboard.isKeyDown(GLFW.GLFW_KEY_RIGHT)) {
 			px += (d * speed);
 		}
-		if(GlobalVars.cheats){
+		if(Global.cheats){
 			if(Keyboard.isKeyPressed(GLFW.GLFW_KEY_EQUAL)){
 				power++; //increase powerup level
 			}
@@ -52,8 +55,8 @@ public class Player extends GameEntity {
 		}
 		if(px<0)px=0;
 		if(py<0)py=0;
-		if(px>GlobalVars.WIDTH)px = GlobalVars.WIDTH;
-		if(py>GlobalVars.HEIGHT)py = GlobalVars.HEIGHT;
+		if(px>Global.WIDTH)px = Global.WIDTH;
+		if(py>Global.HEIGHT)py = Global.HEIGHT;
 	}
 
 	@Override
@@ -74,8 +77,8 @@ public class Player extends GameEntity {
 		}
 		glPopMatrix();
 	}
-	public void kill(){
-		Game.remove(this);
+	public void death(){
+		super.death();
 		GameMode.player = null;
 	}
 	static float seekercount = 0;
@@ -190,7 +193,7 @@ public class Player extends GameEntity {
 		}
 		public void seekerBullet(int level){
 			final float angle = 18;
-			EventHandler.add(new PlayerBulletEvent((GlobalVars.cheats&&GlobalVars.bulletstorm)?10:100));
+			EventHandler.add(new PlayerBulletEvent((Global.cheats&&Global.bulletstorm)?10:100));
 			addBullet(new PlayerBullet(px,py));
 			if(seekercount>0){
 				seekercount--;
@@ -287,7 +290,7 @@ public class Player extends GameEntity {
 
 	}
 
-	class PlayerBullet extends Bullet {
+	public class PlayerBullet extends Bullet {
 		public int power=1;
 		{
 			size=4;
@@ -315,8 +318,7 @@ public class Player extends GameEntity {
 		public void update() {
 			super.update();
 		}
-		public void kill(){
-			Game.remove(this);
+		public void death(){
 			GameMode.playerbullets.remove(this);
 		}
 		@Override
@@ -330,7 +332,7 @@ public class Player extends GameEntity {
 		}
 
 	}
-	class SeekerBullet extends PlayerBullet {
+	public class SeekerBullet extends PlayerBullet {
 		static final float ACCELERATION = 4.0f;
 		static final float MINSPEED = 0.4f;
 		static final float MAXSPEED = 0.4f;
@@ -358,7 +360,7 @@ public class Player extends GameEntity {
 			Enemy nearest = null;
 			float distance=Float.MAX_VALUE;
 			for(Enemy e:GameMode.enemies){
-				float cdist = GameEntity.getDistance(this, e);
+				float cdist = CircleGameObject.getDistance(this, e);
 				if(cdist<distance){
 					nearest = e;
 					distance = cdist;
@@ -379,9 +381,6 @@ public class Player extends GameEntity {
 					dy = dy*MINSPEED/speed;
 				}
 			}
-		}
-		public void kill(){
-			super.kill();
 		}
 		@Override
 		public void render() {
