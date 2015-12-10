@@ -44,10 +44,10 @@ public class Player extends GameEntity {
 		}
 		if(GlobalVars.cheats){
 			if(Keyboard.isKeyPressed(GLFW.GLFW_KEY_EQUAL)){
-				power++;
+				power++; //increase powerup level
 			}
 			if(Keyboard.isKeyPressed(GLFW.GLFW_KEY_MINUS)){
-				power--;
+				power--; //decrease powerup level
 			}
 		}
 		if(px<0)px=0;

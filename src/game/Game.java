@@ -47,7 +47,6 @@ public class Game {
 		Texture.bind(main);
 		
 		Iterator<GameObject> it=s.iterator();
-		System.out.println(s.size());
 		while(it.hasNext()){
 			GameObject go=it.next();
 			if(go.remove){

@@ -23,19 +23,19 @@ public class Console implements Runnable{
 				String line = in.readLine();
 				String[] args = line.split(" ");
 				switch(args[0]){
-				case "/cheats":
+				case "/cheats": //enables/disables cheats
 					GlobalVars.cheats = !GlobalVars.cheats;
 					System.out.println("Cheats "+GlobalVars.cheats!=null?GlobalVars.cheats?"on":"off":"off");
 					break;
-				case "/godmode":
+				case "/godmode": //enables/disables invincibility
 					GlobalVars.godmode = !GlobalVars.godmode;
 					System.out.println("Cheats "+GlobalVars.godmode!=null?GlobalVars.godmode?"on":"off":"off");
 					break;
-				case "/bulletstorm":
+				case "/bulletstorm": //enables/disables rapid-fire
 					GlobalVars.bulletstorm = !GlobalVars.bulletstorm;
 					System.out.println("Cheats "+GlobalVars.bulletstorm!=null?GlobalVars.bulletstorm?"on":"off":"off");
 					break;
-				case "/power":
+				case "/power": //changes powerup level (1-10)
 					if(GameMode.player!=null){
 						GameMode.player.power = Integer.parseInt(args[1]);
 						System.out.println("power set to "+args[1]);
@@ -43,7 +43,7 @@ public class Console implements Runnable{
 						System.out.println("player is dead");
 					}
 					break;
-				case "/mode":
+				case "/mode": //changes powerup type (0-1)
 					if(GameMode.player!=null){
 						GameMode.player.mode = Integer.parseInt(args[1]);
 						System.out.println("mode set to "+args[1]);
@@ -51,11 +51,11 @@ public class Console implements Runnable{
 						System.out.println("player is dead");
 					}
 					break;
-				case "/level":
+				case "/level": //changes current level (0-1)
 					Level.level(Integer.parseInt(args[1]));
 					System.out.println("level set to "+args[1]);
 					break;
-				case "/respawn":
+				case "/respawn": //respawns the player
 					if(GameMode.player!=null)break;
 					GameMode.resetPlayer();
 					System.out.println("player respawned");
