@@ -5,11 +5,11 @@ public class Time {
 	static int delta, fps, tfps;
 
 	public static void init() {
-		lastlooptime = System.currentTimeMillis();
+		lastlooptime = System.nanoTime() / 1000000;
 		lastfps = lastlooptime;
 	}
 
-	public static long getTimeMillis() {
+	public static long getTime() {
 		return time;
 	}
 

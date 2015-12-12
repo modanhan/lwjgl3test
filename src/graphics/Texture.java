@@ -11,14 +11,17 @@ import javax.imageio.ImageIO;
 import org.lwjgl.BufferUtils;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.*;
+import static org.lwjgl.opengl.GL14.*;
 
 public class Texture{
 	private static final int BYTES_PER_PIXEL = 4;// 3 for RGB 4 for RGBA
 
 	private int textureID;
-
-	public Texture(int ID) {
-		this.textureID = ID;
+	public Texture(File f){
+		textureID = loadTexture(f).getID();
+	}
+	Texture(int ID) {
+		textureID = ID;
 	}
 	public int getID(){
 		return textureID;
@@ -26,7 +29,7 @@ public class Texture{
 	public void dispose(){
 		glDeleteTextures(textureID);
 	}
-	public static int getBoundID() {
+	public static int getCurrentID() {
 		return glGetInteger(GL_TEXTURE_BINDING_2D);
 	}
 	public static Texture loadTexture(File f){
@@ -66,11 +69,18 @@ public class Texture{
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_GENERATE_MIPMAP, GL_TRUE); 
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
 				image.getWidth(), image.getHeight(), 0, GL_RGBA,
 				GL_UNSIGNED_BYTE, buffer);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return textureID;
+	}
+	public static void bind(Texture t){
+		glBindTexture(GL_TEXTURE_2D, t!=null?t.getID():0);
+	}
+	public static void bind(int id){
+		glBindTexture(GL_TEXTURE_2D, id);
 	}
 }
