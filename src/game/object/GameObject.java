@@ -21,7 +21,8 @@ public abstract class GameObject implements Comparable<GameObject> {
 	public abstract void render();
 	
 	/**
-	 * Defines the events triggered upon death.
+	 * Performs the action upon death WITHOUT removing
+	 * the object.
 	 * This method should not be called explicitly,
 	 * unless for very specific reasons.
 	 */
