@@ -28,6 +28,7 @@ public class Main {
 		glfwWindowHint(GLFW_FLOATING, 1);
 		Global.width = Global.fullscreen ? Toolkit.getDefaultToolkit().getScreenSize().width : Global.width;
 		Global.height = Global.fullscreen ? Toolkit.getDefaultToolkit().getScreenSize().height : Global.height;
+		Global.length = Global.height;
 		Global.window = glfwCreateWindow(Global.width, Global.height, "placeholder",
 				Global.fullscreen ? GLFW.glfwGetPrimaryMonitor() : NULL, NULL);
 		glfwMakeContextCurrent(Global.window);

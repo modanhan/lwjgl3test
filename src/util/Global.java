@@ -3,7 +3,7 @@ package util;
 import java.util.Random;
 
 public class Global {
-	public static int width = 1280, height = 720, margin = 500, length = height;
+	public static int width = 1280, height = 720, margin = 500, length;
 	public static boolean fullscreen = true;
 	public static long window;
 	public static boolean running;

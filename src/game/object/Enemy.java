@@ -33,7 +33,7 @@ public abstract class Enemy extends CircleGameObject{
 		glPushMatrix();
 		glTranslatef(px, py, 0);
 		if(!hit){
-			glColor3f(1, 0, 0);
+			glColor3f(.05f, .05f, .05f);
 		}else{
 			glColor3f(1, 1, 1);
 		}
@@ -136,7 +136,7 @@ public abstract class Enemy extends CircleGameObject{
 			glPushMatrix();
 			glTranslatef(px, py, 0);
 			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
-			glColor3f(1, 0, 0);
+			glColor3f(.05f, .05f, .05f);
 			Graphics.quad(size);
 			glPopMatrix();
 		}

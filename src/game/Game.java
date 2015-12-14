@@ -45,14 +45,14 @@ public class Game {
 		initGraphics();
 
 		spawnEnemies();
-		
+
 	}
-	
+
 	/**
 	 * this is just for testing.. remove this
 	 */
-	private static void spawnEnemies(){
-		EventHandler.add(new Enemy.EnemySpawnEvent(1000, new Enemies.BossEnemy(100, 100)));
+	private static void spawnEnemies() {
+		EventHandler.add(new Enemy.EnemySpawnEvent(1000, new Enemies.BossEnemy(Global.width / 2, Global.length / 4)));
 	}
 
 	private static void initGraphics() {
@@ -79,7 +79,12 @@ public class Game {
 
 	public static void update() {
 		updateGraphics();
-		player.update();
+		if (player != null) {
+			if (player.remove)
+				player = null;
+			else
+				player.update();
+		}
 		updateList(playerbullets.iterator());
 		updateList(enemies.iterator());
 		updateList(enemybullets.iterator());
@@ -105,7 +110,8 @@ public class Game {
 	}
 
 	private static void render() {
-		player.render();
+		if (player != null)
+			player.render();
 		for (GameObject g : enemies)
 			g.render();
 		for (GameObject g : playerbullets)
@@ -115,6 +121,8 @@ public class Game {
 
 		FrameBuffer.bind(hbuf);
 		Graphics.clearBuffers();
+		if (player != null)
+			player.render();
 		for (GameObject g : enemies)
 			g.render();
 		for (GameObject g : playerbullets)
