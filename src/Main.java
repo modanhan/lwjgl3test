@@ -1,37 +1,44 @@
 import events.EventHandler;
-import global.Global;
 import graphics.Graphics;
 import mode.ModeHandler;
 
 import org.lwjgl.opengl.*;
 
 import util.Console;
+import util.Global;
 import util.Keyboard;
 import util.Time;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
 
+import java.awt.Toolkit;
+
+import org.lwjgl.glfw.GLFW;
+
 public class Main {
 	private static Keyboard keyboard;
 	private static Thread consolethread;
+
 	static void init() {
 		Global.running = true;
 
 		glfwInit();
 		glfwWindowHint(GLFW_SAMPLES, 4);
-		glfwWindowHint(GLFW_FLOATING,1);
-		Global.window = glfwCreateWindow(Global.WIDTH,
-				Global.HEIGHT, "placeholder", NULL, NULL);
+		glfwWindowHint(GLFW_FLOATING, 1);
+		Global.width = Global.fullscreen ? Toolkit.getDefaultToolkit().getScreenSize().width : Global.width;
+		Global.height = Global.fullscreen ? Toolkit.getDefaultToolkit().getScreenSize().height : Global.height;
+		Global.window = glfwCreateWindow(Global.width, Global.height, "placeholder",
+				Global.fullscreen ? GLFW.glfwGetPrimaryMonitor() : NULL, NULL);
 		glfwMakeContextCurrent(Global.window);
 		glfwSwapInterval(1);
 		glfwShowWindow(Global.window);
 
 		GL.createCapabilities();
-		
+
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
-		glOrtho(0, Global.WIDTH, 0, Global.HEIGHT, 1, -1);
+		glOrtho(0, Global.width, 0, Global.height, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
 
 		Time.init();
@@ -47,7 +54,7 @@ public class Main {
 
 	static void update() {
 		Graphics.clearBuffers();
-		
+
 		Time.update();
 		ModeHandler.update();
 		EventHandler.update();

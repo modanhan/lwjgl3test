@@ -2,7 +2,7 @@ package mode;
 
 import org.lwjgl.glfw.GLFW;
 
-import global.Global;
+import util.Global;
 import util.Keyboard;
 
 public class StartMode implements Mode {

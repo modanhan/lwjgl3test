@@ -1,6 +1,6 @@
 package game.object;
 
-import global.Global;
+import util.Global;
 import util.Time;
 
 public abstract class Bullet extends CircleGameObject{
@@ -13,8 +13,8 @@ public abstract class Bullet extends CircleGameObject{
 		py += d*dy;
 	}
 	protected void checkPosition(){
-		if (py > Global.HEIGHT + Global.MARGIN|| py < -Global.MARGIN
-				||px > Global.WIDTH + Global.MARGIN||px < - Global.MARGIN) {
+		if (py > Global.height + Global.margin|| py < -Global.margin
+				||px > Global.width + Global.margin||px < - Global.margin) {
 			kill();
 		}
 	}

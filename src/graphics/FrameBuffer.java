@@ -4,7 +4,7 @@ import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 import static org.lwjgl.opengl.GL14.*;
 
-import global.Global;
+import util.Global;
 
 import static org.lwjgl.opengl.EXTFramebufferObject.*;
 
@@ -54,9 +54,9 @@ public class FrameBuffer {
 		glBegin(GL_QUADS);
 		glColor3f(1, 1, 1);
 		glTexCoord2f(0, 0); glVertex2f(0, 0);
-		glTexCoord2f(0, 1);	glVertex2f(0, Global.HEIGHT);
-		glTexCoord2f(1, 1);	glVertex2f(Global.WIDTH, Global.HEIGHT);
-		glTexCoord2f(1, 0);	glVertex2f(Global.WIDTH, 0);
+		glTexCoord2f(0, 1);	glVertex2f(0, Global.height);
+		glTexCoord2f(1, 1);	glVertex2f(Global.width, Global.height);
+		glTexCoord2f(1, 0);	glVertex2f(Global.width, 0);
 		glEnd();			
 	}
 	public static void bind(FrameBuffer f){

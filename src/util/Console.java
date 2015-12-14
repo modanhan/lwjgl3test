@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+import game.Game;
 import game.Level;
-import global.Global;
 import mode.GameMode;
 
 public class Console implements Runnable{
@@ -36,30 +36,30 @@ public class Console implements Runnable{
 					System.out.println("Cheats "+Global.bulletstorm!=null?Global.bulletstorm?"on":"off":"off");
 					break;
 				case "/power": //changes powerup level (1-10)
-					if(GameMode.player!=null){
-						GameMode.player.power = Integer.parseInt(args[1]);
+					if(Game.player!=null){
+						Game.player.power = Integer.parseInt(args[1]);
 						System.out.println("power set to "+args[1]);
 					}else{
 						System.out.println("player is dead");
 					}
 					break;
 				case "/mode": //changes powerup type (0-1)
-					if(GameMode.player!=null){
-						GameMode.player.mode = Integer.parseInt(args[1]);
+					if(Game.player!=null){
+						Game.player.mode = Integer.parseInt(args[1]);
 						System.out.println("mode set to "+args[1]);
 					}else{
 						System.out.println("player is dead");
 					}
 					break;
-				case "/level": //changes current level (0-1)
+		/*		case "/level": //changes current level (0-1)
 					Level.level(Integer.parseInt(args[1]));
 					System.out.println("level set to "+args[1]);
 					break;
 				case "/respawn": //respawns the player
-					if(GameMode.player!=null)break;
-					GameMode.resetPlayer();
+					if(Game.player!=null)break;
+					Game.resetPlayer();
 					System.out.println("player respawned");
-					break;
+					break;*/
 				case "/exit":
 					return;
 				default:

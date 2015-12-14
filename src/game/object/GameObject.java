@@ -1,6 +1,6 @@
 package game.object;
 
-import global.Global;
+import util.Global;
 
 /**
  * 

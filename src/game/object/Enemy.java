@@ -7,9 +7,8 @@ import java.util.ListIterator;
 import events.Event;
 import game.Game;
 import game.object.Player.PlayerBullet;
-import global.Global;
 import graphics.Graphics;
-import mode.GameMode;
+import util.Global;
 import util.Time;
 
 public abstract class Enemy extends CircleGameObject{
@@ -23,12 +22,10 @@ public abstract class Enemy extends CircleGameObject{
 		this.ty = py;
 	}
 	public void spawn(){
-		Game.add(this);
-		GameMode.enemies.add(this);
+		Game.addEnemy(this);
 	}
 	public void death(){
 		super.death();
-		GameMode.enemies.remove(this);
 		hp=0;
 	}
 	@Override
@@ -58,9 +55,9 @@ public abstract class Enemy extends CircleGameObject{
 		move();
 		hit = false;
 		PlayerBullet b = null;
-		ListIterator<PlayerBullet> i = GameMode.playerbullets.listIterator();
+		ListIterator<GameObject> i = Game.playerbullets.listIterator();
 		while (i.hasNext()){
-			b = i.next();
+			b = (PlayerBullet) i.next();
 			if(CircleGameObject.checkCollision(this, b)){
 				b.remove();
 				i.remove();
@@ -68,10 +65,10 @@ public abstract class Enemy extends CircleGameObject{
 				hit=true;
 			}
 		}
-		if(GameMode.player!=null){
-			if(CircleGameObject.checkCollision(this, GameMode.player)){
+		if(Game.player!=null){
+			if(CircleGameObject.checkCollision(this, Game.player)){
 				if(!(Global.godmode&&Global.cheats)){
-					GameMode.player.kill();
+					Game.player.kill();
 				}
 				hp--;
 				hit=true;
@@ -93,30 +90,29 @@ public abstract class Enemy extends CircleGameObject{
 			if(hp<=0)return;
 			addBullet(new EnemyBullet(px, py));
 		}
-		void addBullet(EnemyBullet p){
-			Game.add(p);
-			GameMode.enemybullets.add(p);
+		public void addBullet(EnemyBullet p){
+			Game.enemybullets.add(p);
 		}
 	}
 
 	public class EnemyBullet extends Bullet {
 		{
 			size=4;
-			speed=0.1f;
+			speed=0.2f;
 		}
-		EnemyBullet(float px, float py) {
+		public EnemyBullet(float px, float py) {
 			this.px = px;
 			this.py = py;
 			this.dx=0;
 			this.dy=-speed;
 		}
-		EnemyBullet(float px, float py, float dir){
+		public EnemyBullet(float px, float py, float dir){
 			this.px = px;
 			this.py = py;
 			this.dx=(float) (Math.sin(Math.toRadians(dir))*speed);
 			this.dy=(float) (Math.cos(Math.toRadians(dir))*speed);
 		}
-		EnemyBullet(float px, float py, float dx, float dy) {
+		public EnemyBullet(float px, float py, float dx, float dy) {
 			this.px = px;
 			this.py = py;
 			this.dx=(float) (dx/Math.hypot(dx, dy)*speed);
@@ -125,10 +121,10 @@ public abstract class Enemy extends CircleGameObject{
 		@Override
 		public void update() {
 			super.update();
-			if(GameMode.player!=null){
-				if(checkCollision(this,GameMode.player)){
+			if(Game.player!=null){
+				if(checkCollision(this,Game.player)){
 					if(!(Global.godmode&&Global.cheats)){
-						GameMode.player.kill();
+						Game.player.kill();
 					}
 					this.kill();
 				}
@@ -147,9 +143,6 @@ public abstract class Enemy extends CircleGameObject{
 	}
 	public static class EnemySpawnEvent extends Event{
 		Enemy e;
-		public EnemySpawnEvent(long time) {
-			super(time);
-		}
 		public EnemySpawnEvent(long time,Enemy e) {
 			super(time);
 			this.e = e;

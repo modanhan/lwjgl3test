@@ -1,7 +1,8 @@
-package game.object;
+package game.lib;
 
 import events.EventHandler;
-import mode.GameMode;
+import game.Game;
+import game.object.Enemy;
 
 public class Enemies {
 	public static class BasicEnemy extends Enemy{
@@ -80,7 +81,7 @@ public class Enemies {
 			@Override
 			public void run() {
 				if(hp<=0)return;
-				if(GameMode.player!=null)addBullet(new EnemyBullet(px, py, GameMode.player.px-px, GameMode.player.py-py));
+				if(Game.player!=null)addBullet(new EnemyBullet(px, py, Game.player.px-px, Game.player.py-py));
 				EventHandler.add(new EnemyShooterBulletEvent(1000));
 			}
 		}

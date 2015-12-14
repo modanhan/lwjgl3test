@@ -6,9 +6,8 @@ import static org.lwjgl.opengl.GL11.*;
 import events.Event;
 import events.EventHandler;
 import game.Game;
-import global.Global;
 import graphics.Graphics;
-import mode.GameMode;
+import util.Global;
 import util.Keyboard;
 import util.Time;
 
@@ -19,8 +18,8 @@ public class Player extends CircleGameObject {
 	public int power=1;
 	public Player() {
 		size = 10;
-		px = Global.WIDTH / 2;
-		py = Global.HEIGHT / 2;
+		px = Global.width / 2;
+		py = Global.height / 2;
 		shoot();
 	}
 	public void shoot(){
@@ -55,8 +54,8 @@ public class Player extends CircleGameObject {
 		}
 		if(px<0)px=0;
 		if(py<0)py=0;
-		if(px>Global.WIDTH)px = Global.WIDTH;
-		if(py>Global.HEIGHT)py = Global.HEIGHT;
+		if(px>Global.width)px = Global.width;
+		if(py>Global.height)py = Global.height;
 	}
 
 	@Override
@@ -79,7 +78,6 @@ public class Player extends CircleGameObject {
 	}
 	public void death(){
 		super.death();
-		GameMode.player = null;
 	}
 	static float seekercount = 0;
 
@@ -90,7 +88,7 @@ public class Player extends CircleGameObject {
 
 		@Override
 		public void run() {
-			if(GameMode.player==null)return;
+			if(Game.player==null)return;
 			switch(mode){
 			case 0:
 				normalBullet(power);
@@ -193,7 +191,7 @@ public class Player extends CircleGameObject {
 		}
 		public void seekerBullet(int level){
 			final float angle = 18;
-			EventHandler.add(new PlayerBulletEvent((Global.cheats&&Global.bulletstorm)?10:100));
+			EventHandler.add(new PlayerBulletEvent((Global.cheats&&Global.bulletstorm)?10:50));
 			addBullet(new PlayerBullet(px,py));
 			if(seekercount>0){
 				seekercount--;
@@ -284,8 +282,7 @@ public class Player extends CircleGameObject {
 			}
 		}
 		void addBullet(PlayerBullet p){
-			Game.add(p);
-			GameMode.playerbullets.add(p);
+			Game.playerbullets.add(p);
 		}
 
 	}
@@ -294,7 +291,7 @@ public class Player extends CircleGameObject {
 		public int power=1;
 		{
 			size=4;
-			speed=0.4f;
+			speed=.8f;
 		}
 		PlayerBullet(float px, float py) {
 			this.px = px;
@@ -319,7 +316,6 @@ public class Player extends CircleGameObject {
 			super.update();
 		}
 		public void death(){
-			GameMode.playerbullets.remove(this);
 		}
 		@Override
 		public void render() {
@@ -334,13 +330,13 @@ public class Player extends CircleGameObject {
 	}
 	public class SeekerBullet extends PlayerBullet {
 		static final float ACCELERATION = 4.0f;
-		static final float MINSPEED = 0.4f;
-		static final float MAXSPEED = 0.4f;
+		static final float MINSPEED = 0.8f;
+		static final float MAXSPEED = 0.8f;
 		static final float TARGETTIME = 0.8f;
 		float t=0;
 		{
 			size=4;
-			speed=0.4f;
+			speed=0.8f;
 			power = 3;
 		}
 		SeekerBullet(float px, float py) {
@@ -359,10 +355,10 @@ public class Player extends CircleGameObject {
 			t+=d;
 			Enemy nearest = null;
 			float distance=Float.MAX_VALUE;
-			for(Enemy e:GameMode.enemies){
-				float cdist = CircleGameObject.getDistance(this, e);
+			for(GameObject e:Game.enemies){
+				float cdist = CircleGameObject.getDistance(this, (CircleGameObject) e);
 				if(cdist<distance){
-					nearest = e;
+					nearest = (Enemy) e;
 					distance = cdist;
 				}
 			}
