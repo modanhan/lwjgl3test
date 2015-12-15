@@ -1,6 +1,6 @@
 uniform sampler2D texture; // the texture with the scene you want to blur
  
-const float blurSize = 1.0/720.0*4.0; 
+const float blurSize = 1.0/1920.0*16.0; 
 
 void main(void)
 {

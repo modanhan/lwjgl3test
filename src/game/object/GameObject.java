@@ -18,8 +18,13 @@ public abstract class GameObject implements Comparable<GameObject> {
 
 	public abstract void update();
 
+	
+	
 	public abstract void render();
 	
+	public void renderGlow(){
+		
+	}
 	/**
 	 * Performs the action upon death WITHOUT removing
 	 * the object.

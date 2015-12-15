@@ -2,10 +2,12 @@ package graphics;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import util.Global;
+
 public class Graphics {
 	private static int initialframebuffer=0, initialtexture=0, initialshader=0;
 	public static void clearBuffers(){
-		glClearColor(0.15f, 0.15f, 0.15f, 0);
+		glClearColor(0, 0, 0, 0);
 		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 	}
 	public static void blendAdditive(){
@@ -41,6 +43,14 @@ public class Graphics {
 		glTexCoord2f(0,1); glVertex2f( - size,  + size);
 		glTexCoord2f(1,1); glVertex2f( + size,  + size);
 		glTexCoord2f(1,0); glVertex2f( + size,  - size);
+		glEnd();
+	}
+	public static void screenQuad(){
+		glBegin(GL_TRIANGLE_FAN);
+		glTexCoord2f(0,0); glVertex2f(0, 0);
+		glTexCoord2f(0,1); glVertex2f(0, Global.height);
+		glTexCoord2f(1,1); glVertex2f(Global.width, Global.height);
+		glTexCoord2f(1,0); glVertex2f(Global.width, 0);
 		glEnd();
 	}
 }

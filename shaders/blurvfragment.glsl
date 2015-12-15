@@ -1,6 +1,6 @@
 uniform sampler2D texture; // this should hold the texture rendered by the horizontal blur pass
  
-const float blurSize = 1.0/480.0*4.0;
+const float blurSize = 1.0/1080.0*16.0;
  
 void main(void)
 {

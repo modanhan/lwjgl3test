@@ -76,6 +76,9 @@ public class Player extends CircleGameObject {
 		}
 		glPopMatrix();
 	}
+	public void renderGlow(){
+		render();
+	}
 	public void death(){
 		super.death();
 	}
@@ -326,7 +329,9 @@ public class Player extends CircleGameObject {
 			Graphics.quad(size);
 			glPopMatrix();
 		}
-
+		public void renderGlow(){
+			render();
+		}
 	}
 	public class SeekerBullet extends PlayerBullet {
 		static final float ACCELERATION = 4.0f;

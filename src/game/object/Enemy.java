@@ -33,12 +33,15 @@ public abstract class Enemy extends CircleGameObject{
 		glPushMatrix();
 		glTranslatef(px, py, 0);
 		if(!hit){
-			glColor3f(.05f, .05f, .05f);
+			glColor3f(0, 0, 1);
 		}else{
 			glColor3f(1, 1, 1);
 		}
 		Graphics.quad(size);
 		glPopMatrix();
+	}
+	public void renderGlow(){
+		render();
 	}
 	protected void move(){
 		float d = Time.getDelta();
@@ -136,7 +139,15 @@ public abstract class Enemy extends CircleGameObject{
 			glPushMatrix();
 			glTranslatef(px, py, 0);
 			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
-			glColor3f(.05f, .05f, .05f);
+			glColor3f(0, 0, 1);
+			Graphics.quad(size);
+			glPopMatrix();
+		}
+		public void renderGlow(){
+			glPushMatrix();
+			glTranslatef(px, py, 0);
+			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
+			glColor3f(0.5f, 0.5f, 1);
 			Graphics.quad(size);
 			glPopMatrix();
 		}
