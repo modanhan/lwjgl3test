@@ -6,78 +6,83 @@ import java.util.ListIterator;
 
 import events.Event;
 import game.Game;
-import game.object.Player.PlayerBullet;
 import graphics.Graphics;
 import util.Global;
 import util.Time;
 
-public abstract class Enemy extends CircleGameObject{
+public abstract class Enemy extends CircleGameObject {
 	protected boolean hit = false;
-	public int hp=1;
-	protected float tx,ty,speed=0.1f;
-	public Enemy(float px,float py) {
+	public int hp = 1;
+	protected float tx, ty, speed = 0.1f;
+
+	public Enemy(float px, float py) {
 		this.px = px;
 		this.py = py;
 		this.tx = px;
 		this.ty = py;
 	}
-	public void spawn(){
+
+	public void spawn() {
 		Game.addEnemy(this);
 	}
-	public void death(){
-		super.death();
-		hp=0;
+
+	public void death() {
 	}
+
 	@Override
 	public void render() {
 		glPushMatrix();
 		glTranslatef(px, py, 0);
-		if(!hit){
+		if (!hit) {
 			glColor3f(0, 0, 1);
-		}else{
+		} else {
 			glColor3f(1, 1, 1);
 		}
 		Graphics.quad(size);
 		glPopMatrix();
 	}
-	public void renderGlow(){
+
+	public void renderGlow() {
 		render();
 	}
-	protected void move(){
+
+	protected void move() {
 		float d = Time.getDelta();
-		float dist = (float) Math.hypot(ty-py, tx-px);
-		if(dist>speed*d){
-			px += (tx-px)/dist*speed*d;
-			py += (ty-py)/dist*speed*d;
-		}else{
-			px=tx;
-			py=ty;
+		float dist = (float) Math.hypot(ty - py, tx - px);
+		if (dist > speed * d) {
+			px += (tx - px) / dist * speed * d;
+			py += (ty - py) / dist * speed * d;
+		} else {
+			px = tx;
+			py = ty;
 		}
 	}
+
 	public void update() {
 		move();
 		hit = false;
-		PlayerBullet b = null;
-		ListIterator<GameObject> i = Game.playerbullets.listIterator();
-		while (i.hasNext()){
-			b = (PlayerBullet) i.next();
-			if(CircleGameObject.checkCollision(this, b)){
-				b.remove();
-				i.remove();
-				hp-=b.power;
-				hit=true;
+		/*
+		 * PlayerBullet b = null; ListIterator<GameObject> i =
+		 * Game.playerbullets.listIterator(); while (i.hasNext()){ b =
+		 * (PlayerBullet) i.next(); if(CircleGameObject.checkCollision(this,
+		 * b)){ b.remove(); i.remove(); hp-=b.power; hit=true; } }
+		 */
+		for (GameObject g : Game.playerbullets) {
+			if (CircleGameObject.checkCollision(this, (CircleGameObject) g)) {
+				hp--;
+				hit = true;
 			}
 		}
-		if(Game.player!=null){
-			if(CircleGameObject.checkCollision(this, Game.player)){
-				if(!(Global.godmode&&Global.cheats)){
+		if (Game.player != null) {
+			if (CircleGameObject.checkCollision(this, Game.player)) {
+				if (!(Global.godmode && Global.cheats)) {
 					Game.player.kill();
 				}
 				hp--;
-				hit=true;
+				hit = true;
 			}
 		}
-		if(hp<=0){
+		if (hp <= 0) {
 			kill();
 		}
 	}
@@ -90,43 +95,26 @@ public abstract class Enemy extends CircleGameObject{
 
 		@Override
 		public void run() {
-			if(hp<=0)return;
-			addBullet(new EnemyBullet(px, py));
+			if (hp <= 0)
+				return;
+			Game.enemybullets.add(new EnemyBullet(px, py, 0, 1));
 		}
-		public void addBullet(EnemyBullet p){
-			Game.enemybullets.add(p);
-		}
+
 	}
 
-	public class EnemyBullet extends Bullet {
-		{
-			size=4;
-			speed=0.2f;
+	public class EnemyBullet extends LinearBullet {
+
+		public EnemyBullet(float px, float py, float dir, float speed) {
+			super(px, py, dir, speed);
+			size = Global.enemy_bullet_default_size;
 		}
-		public EnemyBullet(float px, float py) {
-			this.px = px;
-			this.py = py;
-			this.dx=0;
-			this.dy=-speed;
-		}
-		public EnemyBullet(float px, float py, float dir){
-			this.px = px;
-			this.py = py;
-			this.dx=(float) (Math.sin(Math.toRadians(dir))*speed);
-			this.dy=(float) (Math.cos(Math.toRadians(dir))*speed);
-		}
-		public EnemyBullet(float px, float py, float dx, float dy) {
-			this.px = px;
-			this.py = py;
-			this.dx=(float) (dx/Math.hypot(dx, dy)*speed);
-			this.dy=(float) (dy/Math.hypot(dx, dy)*speed);
-		}
+
 		@Override
 		public void update() {
 			super.update();
-			if(Game.player!=null){
-				if(checkCollision(this,Game.player)){
-					if(!(Global.godmode&&Global.cheats)){
+			if (Game.player != null) {
+				if (checkCollision(this, Game.player)) {
+					if (!(Global.godmode && Global.cheats)) {
 						Game.player.kill();
 					}
 					this.kill();
@@ -143,7 +131,8 @@ public abstract class Enemy extends CircleGameObject{
 			Graphics.quad(size);
 			glPopMatrix();
 		}
-		public void renderGlow(){
+
+		public void renderGlow() {
 			glPushMatrix();
 			glTranslatef(px, py, 0);
 			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
@@ -151,10 +140,17 @@ public abstract class Enemy extends CircleGameObject{
 			Graphics.quad(size);
 			glPopMatrix();
 		}
+
+		@Override
+		public void death() {
+
+		}
 	}
-	public static class EnemySpawnEvent extends Event{
+
+	public static class EnemySpawnEvent extends Event {
 		Enemy e;
-		public EnemySpawnEvent(long time,Enemy e) {
+
+		public EnemySpawnEvent(long time, Enemy e) {
 			super(time);
 			this.e = e;
 		}
@@ -163,42 +159,41 @@ public abstract class Enemy extends CircleGameObject{
 		public void run() {
 			e.spawn();
 		}
-		
+
 	}
-	public static class EnemyDespawnEvent extends Event{
+
+	public static class EnemyDespawnEvent extends Event {
 		Enemy e;
-		public EnemyDespawnEvent(long time) {
-			super(time);
-		}
-		public EnemyDespawnEvent(long time,Enemy e) {
+
+		public EnemyDespawnEvent(long time, Enemy e) {
 			super(time);
 			this.e = e;
 		}
 
 		@Override
 		public void run() {
-			e.kill();
+			e.remove();
 		}
-		
+
 	}
-	public static class EnemyMoveEvent extends Event{
+
+	public static class EnemyMoveEvent extends Event {
 		Enemy e;
-		float x,y;
-		public EnemyMoveEvent(long time) {
-			super(time);
-		}
-		public EnemyMoveEvent(long time,Enemy e,float x,float y) {
+		float x, y;
+
+		public EnemyMoveEvent(long time, Enemy e, float x, float y) {
 			super(time);
 			this.e = e;
 			this.x = x;
 			this.y = y;
 		}
+
 		@Override
 		public void run() {
-			e.tx=x;
-			e.ty=y;
+			e.tx = x;
+			e.ty = y;
 		}
-		
+
 	}
-	
+
 }

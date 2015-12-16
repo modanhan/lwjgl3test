@@ -52,7 +52,7 @@ public class Game {
 	 * this is just for testing.. remove this
 	 */
 	private static void spawnEnemies() {
-		EventHandler.add(new Enemy.EnemySpawnEvent(1000, new Enemies.BossEnemy(Global.width / 2, Global.length * 3 / 4)));
+		EventHandler.add(new Enemy.EnemySpawnEvent(1000, new Enemies.ShooterEnemy(Global.width / 2, Global.length * 3 / 4)));
 	}
 
 	private static void initGraphics() {
