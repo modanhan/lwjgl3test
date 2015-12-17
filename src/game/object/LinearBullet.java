@@ -9,7 +9,8 @@ import util.Time;
  *
  */
 public abstract class LinearBullet extends CircleGameObject {
-	public float dx, dy, speed, dir;
+	private float speed;
+	public float dx, dy, dir;
 
 	/**
 	 * 
@@ -33,6 +34,27 @@ public abstract class LinearBullet extends CircleGameObject {
 	}
 
 	/**
+	 * change the speed
+	 * @param speed the speed to set to
+	 */
+	public void setSpeed(float speed) {
+		this.speed = speed;
+		dx = (float) Math.cos(dir) * speed;
+		dy = (float) Math.sin(dir) * speed;
+	}
+
+	/**
+	 * Change the speed by a
+	 * 
+	 * @param a
+	 *            the amount to change the speed
+	 */
+	public void accelerate(float a) {
+		speed += a;
+		setSpeed(speed);
+	}
+
+	/**
 	 * 
 	 * @param px
 	 *            the starting position x
@@ -52,8 +74,8 @@ public abstract class LinearBullet extends CircleGameObject {
 	}
 
 	public void checkPosition() {
-		if (py > Global.height + Global.margin || py < -Global.margin || px > Global.width + Global.margin
-				|| px < -Global.margin) {
+		if (py > Global.height + Global.margin || py < -Global.margin
+				|| px > Global.width + Global.margin || px < -Global.margin) {
 			remove();
 		}
 	}

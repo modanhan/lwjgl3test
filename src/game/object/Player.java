@@ -97,8 +97,7 @@ public class Player extends CircleGameObject {
 	public class PlayerBullet extends LinearBullet {
 
 		public PlayerBullet(float px, float py, float dir) {
-			super(px, py, dir);
-			speed = Global.player_bullet_speed;
+			super(px, py, dir, Global.player_bullet_speed);
 			size = Global.player_bullet_size;
 		}
 		@Override
@@ -109,6 +108,10 @@ public class Player extends CircleGameObject {
 			Graphics.quad(size);
 			glPopMatrix();
 		}
+		
+		public void renderGlow() {
+			render();
+		};
 
 		@Override
 		public void death() {
