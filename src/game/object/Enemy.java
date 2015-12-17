@@ -79,7 +79,7 @@ public abstract class Enemy extends CircleGameObject {
 		 * (PlayerBullet) i.next(); if(CircleGameObject.checkCollision(this,
 		 * b)){ b.remove(); i.remove(); hp-=b.power; hit=true; } }
 		 */
-		for (GameObject g : Game.playerbullets) {
+	/*	for (GameObject g : Game.playerbullets) {
 			if (CircleGameObject.checkCollision(this, (CircleGameObject) g)) {
 				hp--;
 				hit = true;
@@ -94,10 +94,15 @@ public abstract class Enemy extends CircleGameObject {
 				hp--;
 				hit = true;
 			}
-		}
+		}*/
 		if (hp <= 0) {
 			kill();
 		}
+	}
+	
+	public void takeHit(){
+		hp--;
+		hit=true;
 	}
 
 	public class EnemyBulletEvent extends Event {
@@ -133,19 +138,6 @@ public abstract class Enemy extends CircleGameObject {
 		public EnemyBullet(float px, float py, float dir, float speed) {
 			super(px, py, dir, speed);
 			size = Global.enemy_bullet_default_size;
-		}
-
-		@Override
-		public void update() {
-			super.update();
-			if (Game.player != null) {
-				if (checkCollision(this, Game.player)) {
-					if (!(Global.godmode && Global.cheats)) {
-						Game.player.kill();
-					}
-					this.kill();
-				}
-			}
 		}
 
 		@Override

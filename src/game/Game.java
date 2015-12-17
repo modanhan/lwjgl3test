@@ -87,6 +87,7 @@ public class Game {
 		updateList(playerbullets.iterator());
 		updateList(enemies.iterator());
 		updateList(enemybullets.iterator());
+		Collision.update();
 		render();
 	}
 
