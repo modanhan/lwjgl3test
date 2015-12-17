@@ -4,10 +4,9 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="jar/lwjgl.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/home/ugd/mohan/Downloads/lwjgl/doc/javadoc/"/>
+			<attribute name="javadoc_location" value="http://javadoc.lwjgl.org/"/>
 			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="lwjgl3test/native"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
- 

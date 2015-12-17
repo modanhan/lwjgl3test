@@ -1,4 +1,5 @@
 import events.EventHandler;
+import game.ui.UI;
 import graphics.Graphics;
 import mode.ModeHandler;
 
@@ -7,6 +8,7 @@ import org.lwjgl.opengl.*;
 import util.Console;
 import util.Global;
 import util.Keyboard;
+import util.Mouse;
 import util.Time;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -17,7 +19,6 @@ import java.awt.Toolkit;
 import org.lwjgl.glfw.GLFW;
 
 public class Main {
-	private static Keyboard keyboard;
 	private static Thread consolethread;
 
 	static void init() {
@@ -49,8 +50,8 @@ public class Main {
 		ModeHandler.init();
 		consolethread = new Thread(new Console());
 		consolethread.start();
-		keyboard = new Keyboard();
-		glfwSetKeyCallback(Global.window, keyboard);
+		Mouse.init();
+		Keyboard.init();
 	}
 
 	static void update() {
@@ -58,8 +59,9 @@ public class Main {
 
 		Time.update();
 		ModeHandler.update();
+		UI.update();
 		EventHandler.update();
-
+		Mouse.update();
 		Keyboard.update();
 		glfwSwapBuffers(Global.window);
 		glfwPollEvents();

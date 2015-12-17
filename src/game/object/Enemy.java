@@ -13,7 +13,9 @@ import util.Time;
 
 public abstract class Enemy extends CircleGameObject{
 	protected boolean hit = false;
-	public int hp=1;
+	public boolean boss;
+	public int maxhp=1;
+	public int hp=maxhp;
 	protected float tx,ty,speed=0.1f;
 	public Enemy(float px,float py) {
 		this.px = px;

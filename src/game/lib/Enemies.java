@@ -3,6 +3,8 @@ package game.lib;
 import events.EventHandler;
 import game.Game;
 import game.object.Enemy;
+import game.ui.HealthBar;
+import game.ui.UI;
 
 public class Enemies {
 	public static class BasicEnemy extends Enemy{
@@ -87,23 +89,36 @@ public class Enemies {
 		}
 	}
 	public static class BossEnemy extends Enemy{
+		HealthBar hpbar;
+		boolean ready = false;
 		{
-			hp = 500;
+			maxhp = 500;
+			hp = maxhp;
 			size = 24;
 			speed = 0.1f;
 		}
 		public BossEnemy(float px, float py) {
 			super(px, py);
+			hpbar = new HealthBar(this);
 		}
 		public void spawn(){
 			super.spawn();
 			EventHandler.add(new EnemyBossBulletEvent1(4000));
+			UI.addElement(hpbar);
+		}
+		@Override
+		public void death() {
+			super.death();
+			UI.removeElement(hpbar);
 		}
 		@Override
 		public void update() {
 			super.update();
 		}
 		public void render(){
+			super.render();
+		}
+		public void renderGlow(){
 			super.render();
 		}
 		private static final float maxcount1 = 10;
@@ -140,11 +155,11 @@ public class Enemies {
 			@Override
 			public void run() {
 				if(hp<=0)return;
-					float dx = (float)Math.sin(Math.toRadians(360f*count2/maxcount2));
-					float dy = (float)Math.cos(Math.toRadians(360f*count2/maxcount2));
-					addBullet(new EnemyBullet(px, py,dx,dy));
-					addBullet(new EnemyBullet(px, py,-dx,-dy));
-					
+				float dx = (float)Math.sin(Math.toRadians(360f*count2/maxcount2));
+				float dy = (float)Math.cos(Math.toRadians(360f*count2/maxcount2));
+				addBullet(new EnemyBullet(px, py,dx,dy));
+				addBullet(new EnemyBullet(px, py,-dx,-dy));
+
 				if(count2>0){
 					EventHandler.add(new EnemyBossBulletEvent2(50));
 					count2-=0.5f;
@@ -155,6 +170,6 @@ public class Enemies {
 			}
 		}
 	}
-	
-	
+
+
 }

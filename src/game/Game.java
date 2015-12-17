@@ -128,10 +128,10 @@ public class Game {
 			g.renderGlow();
 
 		Graphics.blendAdditive();
-		Graphics.renderPass(hblur, hbuf, vbuf);
+	/*	Graphics.renderPass(hblur, hbuf, vbuf);
 		Graphics.renderPass(vblur, vbuf, hbuf);
 		Graphics.renderPass(hblur, hbuf, vbuf);
-		Graphics.renderPass(vblur, vbuf, hbuf);
+		Graphics.renderPass(vblur, vbuf, hbuf);*/
 		Graphics.renderPass(hblur, hbuf, vbuf);
 		Graphics.renderPass(vblur, vbuf);
 		Graphics.reset();

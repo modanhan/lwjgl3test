@@ -294,7 +294,7 @@ public class Player extends CircleGameObject {
 		public int power=1;
 		{
 			size=4;
-			speed=.8f;
+			speed=.6f;
 		}
 		PlayerBullet(float px, float py) {
 			this.px = px;
@@ -341,7 +341,7 @@ public class Player extends CircleGameObject {
 		float t=0;
 		{
 			size=4;
-			speed=0.8f;
+			speed=0.6f;
 			power = 3;
 		}
 		SeekerBullet(float px, float py) {
