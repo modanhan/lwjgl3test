@@ -14,7 +14,7 @@ public class Time {
 	}
 
 	public static void update() {
-		time = System.currentTimeMillis();
+		time = System.nanoTime() / 1000000;
 		updateDelta();
 		updateFPS();
 	}

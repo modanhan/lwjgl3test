@@ -57,6 +57,8 @@ public class Main {
 	static void update() {
 		Graphics.clearBuffers();
 
+		Global.update();
+		
 		Time.update();
 		ModeHandler.update();
 		UI.update();
