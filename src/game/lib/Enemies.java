@@ -103,7 +103,7 @@ public class Enemies {
 		}
 		private static final float maxcount1 = 10;
 		private static float count1 = maxcount1;
-		private static final float maxcount2 = 20;
+		private static final float maxcount2 = 80;
 		private static float count2 = maxcount2;
 		class EnemyBossBulletEvent1 extends EnemyBulletEvent {
 			static final int rings = 24;
@@ -114,7 +114,7 @@ public class Enemies {
 			public void run() {
 				if(hp<=0)return;
 				for(float i=0;i<360f;i+=360f/rings){
-					Game.addEnemyBullet(new EnemyBullet(px, py,(float) Math.toRadians(i+ count1*360f/rings/maxcount1),Global.enemy_bullet_default_speed));
+					Game.addEnemyBullet(new EnemyBullet(px, py,(float) Math.toRadians(i+ count1*360f/rings/maxcount1),Global.boss_enemy_bullet_speed));
 				}
 				if(count1>0){
 					EventHandler.add(new EnemyBossBulletEvent1(400));
@@ -126,20 +126,18 @@ public class Enemies {
 			}
 		}
 		class EnemyBossBulletEvent2 extends EnemyBulletEvent {
-			static final int rings = 24;
+			static final int rounds = 4;
 			public EnemyBossBulletEvent2(long time) {
 				super(time);
 			}
 			@Override
 			public void run() {
 				if(hp<=0)return;
-				float dx = (float)Math.sin(Math.toRadians(360f*count2/maxcount2));
-				float dy = (float)Math.cos(Math.toRadians(360f*count2/maxcount2));
-				Game.addEnemyBullet(new EnemyBullet(px, py,(float) Math.toRadians(360f*count2/maxcount2),Global.enemy_bullet_default_speed));
-				Game.addEnemyBullet(new EnemyBullet(px, py,(float) Math.toRadians(360f*count2/maxcount2),Global.enemy_bullet_default_speed));
+				Game.addEnemyBullet(new EnemyBullet(px, py,(float) Math.toRadians(361f*count2/maxcount2*4),Global.boss_enemy_bullet_speed));
+				Game.addEnemyBullet(new EnemyBullet(px, py,(float) Math.toRadians(361f*count2/maxcount2*4),Global.boss_enemy_bullet_speed));
 
 				if(count2>0){
-					EventHandler.add(new EnemyBossBulletEvent2(50));
+					EventHandler.add(new EnemyBossBulletEvent2(10));
 					count2-=0.5f;
 				}else{
 					count2 = maxcount2;

@@ -2,8 +2,6 @@ package game.object;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import java.util.ListIterator;
-
 import events.Event;
 import game.Game;
 import graphics.Graphics;
@@ -72,6 +70,7 @@ public abstract class Enemy extends CircleGameObject {
 			if (CircleGameObject.checkCollision(this, (CircleGameObject) g)) {
 				hp--;
 				hit = true;
+				g.kill();
 			}
 		}
 		if (Game.player != null) {
