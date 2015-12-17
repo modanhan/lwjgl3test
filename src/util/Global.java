@@ -28,16 +28,25 @@ public class Global {
 
 	public static int shooter_enemy_bullet_delay = 500;
 	public static float shooter_enemy_bullet_speed = 0.4f;
-	
+
 	public static float boss_enemy_bullet_speed = 0.2f;
-	
+
+	public static int return_boss_bullet_stream = 10;
+	public static int return_boss_bullet_count = 20;
+	public static int return_boss_bullet_delay = 250;
+	public static float return_boss_bullet_acc = -0.00025f;
+	public static float return_boss_bullet_speed = 0.55f;
+	public static float return_boss_bullet_rotate = (float) (Math.PI / 36);
+	public static int return_boss_bullet_wave_delay = 7500;
+
 	public static class Dir {
-		public static final float UP = (float) (Math.PI / 2), DOWN = (float) (3 * Math.PI / 2), LEFT = (float) Math.PI,
+		public static final float UP = (float) (Math.PI / 2),
+				DOWN = (float) (3 * Math.PI / 2), LEFT = (float) Math.PI,
 				RIGHT = 0;
 	}
-	
-	public static void update(){
-		if(Keyboard.isKeyPressed(GLFW.GLFW_KEY_1)){
+
+	public static void update() {
+		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_1)) {
 			System.out.println("BREAK POINT");
 		}
 	}
