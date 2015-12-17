@@ -8,13 +8,26 @@ import graphics.Graphics;
 import util.Global;
 import util.Time;
 
+/**
+ * 
+ * Basic circle shaped enemy.
+ *
+ */
 public abstract class Enemy extends CircleGameObject {
 	protected boolean hit = false;
 	public boolean boss;
-	public int maxhp=1;
-	public int hp=maxhp;
-	protected float tx,ty,speed=0.1f;
-	public Enemy(float px,float py) {
+	public int maxhp = 1;
+	public int hp = maxhp;
+	protected float tx, ty, speed = 0.1f;
+
+	/**
+	 * 
+	 * @param px
+	 *            position x
+	 * @param py
+	 *            position y
+	 */
+	public Enemy(float px, float py) {
 		this.px = px;
 		this.py = py;
 		this.tx = px;
@@ -102,8 +115,21 @@ public abstract class Enemy extends CircleGameObject {
 
 	}
 
+	/**
+	 * Basic enemy bullet, travels in a line.
+	 */
 	public class EnemyBullet extends LinearBullet {
-
+		/**
+		 * 
+		 * @param px
+		 *            the starting position x
+		 * @param py
+		 *            the starting position y
+		 * @param dir
+		 *            the direction in radians, e.g. 0 = right, Math.PI/2 = up
+		 * @param speed
+		 *            the speed the bullet travels
+		 */
 		public EnemyBullet(float px, float py, float dir, float speed) {
 			super(px, py, dir, speed);
 			size = Global.enemy_bullet_default_size;
@@ -147,9 +173,19 @@ public abstract class Enemy extends CircleGameObject {
 		}
 	}
 
+	/**
+	 * 
+	 * Event spawns an enemy.
+	 *
+	 */
 	public static class EnemySpawnEvent extends Event {
 		Enemy e;
 
+		/**
+		 * 
+		 * @param time amount of time to wait to spawn enemy e
+		 * @param e the enemy to spawn
+		 */
 		public EnemySpawnEvent(long time, Enemy e) {
 			super(time);
 			this.e = e;

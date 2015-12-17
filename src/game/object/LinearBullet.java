@@ -3,6 +3,11 @@ package game.object;
 import util.Global;
 import util.Time;
 
+/**
+ * 
+ * Bullet that travels in a line.
+ *
+ */
 public abstract class LinearBullet extends CircleGameObject {
 	public float dx, dy, speed, dir;
 

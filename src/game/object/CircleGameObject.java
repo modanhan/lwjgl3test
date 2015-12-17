@@ -1,5 +1,11 @@
 package game.object;
 
+/**
+ * 
+ * The super class of all game object shaped a circle.
+ * This will also be the super class of all objects we use in the small game.
+ * The 3 fields are px - position x, py - position y, and size - radius.
+ */
 public abstract class CircleGameObject extends GameObject {
 	public float px;
 	public float py;

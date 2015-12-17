@@ -109,29 +109,33 @@ public class Game {
 		Texture.bind(main);
 		if (player != null)
 			player.render();
-		for (GameObject g : enemies)
-			g.render();
 		for (GameObject g : playerbullets)
 			g.render();
 		for (GameObject g : enemybullets)
 			g.render();
+		for (GameObject g : enemies)
+			g.render();
+
+		
 		FrameBuffer.bind(hbuf);
 		Graphics.clearBuffers();
 		Texture.bind(main);
 		if (player != null)
 			player.renderGlow();
-		for (GameObject g : enemies)
-			g.renderGlow();
 		for (GameObject g : playerbullets)
 			g.renderGlow();
 		for (GameObject g : enemybullets)
 			g.renderGlow();
+		for (GameObject g : enemies)
+			g.renderGlow();
+		
+		
 
 		Graphics.blendAdditive();
-	/*	Graphics.renderPass(hblur, hbuf, vbuf);
+		Graphics.renderPass(hblur, hbuf, vbuf);
 		Graphics.renderPass(vblur, vbuf, hbuf);
 		Graphics.renderPass(hblur, hbuf, vbuf);
-		Graphics.renderPass(vblur, vbuf, hbuf);*/
+		Graphics.renderPass(vblur, vbuf, hbuf);
 		Graphics.renderPass(hblur, hbuf, vbuf);
 		Graphics.renderPass(vblur, vbuf);
 		Graphics.reset();
