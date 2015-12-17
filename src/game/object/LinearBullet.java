@@ -35,7 +35,9 @@ public abstract class LinearBullet extends CircleGameObject {
 
 	/**
 	 * change the speed
-	 * @param speed the speed to set to
+	 * 
+	 * @param speed
+	 *            the speed to set to
 	 */
 	public void setSpeed(float speed) {
 		this.speed = speed;
@@ -50,7 +52,7 @@ public abstract class LinearBullet extends CircleGameObject {
 	 *            the amount to change the speed
 	 */
 	public void accelerate(float a) {
-		speed += a;
+		speed += a * Time.getDelta();
 		setSpeed(speed);
 	}
 
