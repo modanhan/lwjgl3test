@@ -195,6 +195,7 @@ public class Enemies {
 
 			public ReturnBossBullet(float px, float py, float dir, float speed) {
 				super(px, py, dir, speed);
+				this.size = Global.return_boss_bullet_size;
 			}
 
 			public void update() {
