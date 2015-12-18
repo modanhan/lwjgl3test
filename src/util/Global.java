@@ -33,11 +33,11 @@ public class Global {
 
 	public static int return_boss_bullet_stream = 10;
 	public static int return_boss_bullet_count = 20;
-	public static int return_boss_bullet_delay = 250;
+	public static int return_boss_bullet_delay = 350;
 	public static float return_boss_bullet_acc = -0.00025f;
 	public static float return_boss_bullet_speed = 0.55f;
-	public static float return_boss_bullet_rotate = (float) (Math.PI / 36);
-	public static int return_boss_bullet_wave_delay = 7500;
+	public static float return_boss_bullet_rotate = (float) (Math.PI / 24);
+	public static int return_boss_bullet_wave_delay = 10000;
 
 	public static class Dir {
 		public static final float UP = (float) (Math.PI / 2),

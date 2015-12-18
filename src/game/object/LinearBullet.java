@@ -28,7 +28,7 @@ public abstract class LinearBullet extends CircleGameObject {
 		this.px = px;
 		this.py = py;
 		this.dir = dir;
-		this.speed = speed;
+		this.setSpeed(speed);
 		dx = (float) Math.cos(dir) * speed;
 		dy = (float) Math.sin(dir) * speed;
 	}
@@ -52,8 +52,8 @@ public abstract class LinearBullet extends CircleGameObject {
 	 *            the amount to change the speed
 	 */
 	public void accelerate(float a) {
-		speed += a * Time.getDelta();
-		setSpeed(speed);
+		setSpeed(getSpeed() + a * Time.getDelta());
+		setSpeed(getSpeed());
 	}
 
 	/**
@@ -85,6 +85,10 @@ public abstract class LinearBullet extends CircleGameObject {
 	public void update() {
 		move();
 		checkPosition();
+	}
+
+	public float getSpeed() {
+		return speed;
 	}
 
 }

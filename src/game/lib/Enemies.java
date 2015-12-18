@@ -3,6 +3,7 @@ package game.lib;
 import events.Event;
 import events.EventHandler;
 import game.Game;
+import game.object.CircleGameObject;
 import game.object.Enemy;
 import game.object.LinearBullet;
 import game.ui.HealthBar;
@@ -199,8 +200,12 @@ public class Enemies {
 			public void update() {
 				super.update();
 				accelerate(Global.return_boss_bullet_acc);
+				if (this.getSpeed() < 0
+						&& CircleGameObject.checkCollision(this,
+								ReturnBoss.this)) {
+					remove();
+				}
 			}
-
 		}
 
 		public class ReturnBossBulletEvent extends Event {
