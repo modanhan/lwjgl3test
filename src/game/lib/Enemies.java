@@ -221,6 +221,9 @@ public class Enemies {
 
 			@Override
 			public void run() {
+				if(ReturnBoss.this.remove){
+					return;
+				}
 				if (count < 0) {
 					EventHandler.add(new Event(
 							Global.return_boss_bullet_wave_delay) {
