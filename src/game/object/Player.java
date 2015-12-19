@@ -92,6 +92,7 @@ public class Player extends CircleGameObject {
 
 	public void death() {
 		alive = false;
+		Game.addVisuals(new ExplosionVisual(this.px, this.py, 0, 720, 2500));
 	}
 
 	public class PlayerBullet extends LinearBullet {
@@ -100,6 +101,7 @@ public class Player extends CircleGameObject {
 			super(px, py, dir, Global.player_bullet_speed);
 			size = Global.player_bullet_size;
 		}
+
 		@Override
 		public void render() {
 			glPushMatrix();
@@ -108,17 +110,18 @@ public class Player extends CircleGameObject {
 			Graphics.quad(size);
 			glPopMatrix();
 		}
-		
+
 		public void renderGlow() {
 			render();
 		};
 
 		@Override
 		public void death() {
-			
+			Game.addVisuals(new ExplosionVisual(this.px, this.py, 0, 100, 500,
+					.5f));
 		}
 	}
-	
+
 	public class PlayerBulletEvent extends Event {
 
 		public PlayerBulletEvent(long time) {
@@ -128,8 +131,10 @@ public class Player extends CircleGameObject {
 		@Override
 		public void run() {
 			if (Player.this.alive) {
-				Game.addPlayerBullet(new PlayerBullet(Player.this.px, Player.this.py, Global.player_bullet_dir));
-				EventHandler.add(new PlayerBulletEvent(Global.player_bullet_delay));
+				Game.addPlayerBullet(new PlayerBullet(Player.this.px,
+						Player.this.py, Global.player_bullet_dir));
+				EventHandler.add(new PlayerBulletEvent(
+						Global.player_bullet_delay));
 			}
 		}
 	}
