@@ -46,8 +46,8 @@ public class ExplosionVisual extends GameObject {
 
 	@Override
 	public void update() {
-		ir += (or - ir) / (8 + (duration / 500));
-		a /= 1 + 75 / (float) (duration);
+		ir += (or - ir) / (4 + (duration / 200));
+		a /= 1 + 125 / (float) (duration);
 	}
 
 	@Override

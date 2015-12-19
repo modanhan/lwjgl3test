@@ -177,8 +177,8 @@ public class Enemies {
 
 		public ReturnBoss(float px, float py) {
 			super(px, py);
-			hp = 500;
-			size = 24;
+			hp = 250;
+			size = Global.return_boss_size;
 		}
 
 		public void spawn() {

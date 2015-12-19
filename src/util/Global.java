@@ -16,6 +16,8 @@ public class Global {
 
 	public static Random random = new Random();
 
+	public static int player_size = 5;
+
 	public static float linear_bullet_default_speed = 0.5f;
 
 	public static float player_bullet_dir = (float) (Math.PI / 2);
@@ -31,10 +33,11 @@ public class Global {
 
 	public static float boss_enemy_bullet_speed = 0.2f;
 
+	public static int return_boss_size = 50;
 	public static int return_boss_bullet_stream = 10;
 	public static int return_boss_bullet_count = 20;
 	public static int return_boss_bullet_delay = 350;
-	public static int return_boss_bullet_size = 4;
+	public static int return_boss_bullet_size = 3;
 	public static float return_boss_bullet_acc = -0.00025f;
 	public static float return_boss_bullet_speed = 0.55f;
 	public static float return_boss_bullet_rotate = (float) (Math.PI / 18);

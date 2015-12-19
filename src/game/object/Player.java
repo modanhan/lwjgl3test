@@ -20,7 +20,7 @@ public class Player extends CircleGameObject {
 
 	public Player() {
 		alive = true;
-		size = 10;
+		size = Global.player_size;
 		px = Global.width / 2;
 		py = Global.height / 2;
 		shoot();
