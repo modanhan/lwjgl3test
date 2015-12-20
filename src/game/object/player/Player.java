@@ -48,7 +48,64 @@ public class Player extends CircleGameObject {
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, 5, 0));
 		}
-	} };
+	}, new PlayerAttack() {
+
+		@Override
+		public void init() {
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, -10, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, 10, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, -20, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, 20, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP - .2f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP + .2f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP - .21f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP + .21f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP - .22f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP + .22f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP - .5f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP + .5f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP - .51f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP + .51f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP - .52f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP + .52f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+		}
+	}
+	};
 
 	PlayerAttack attack = linearattacks[0];
 
@@ -63,6 +120,11 @@ public class Player extends CircleGameObject {
 		attack.start();
 	}
 
+	/**
+	 * Switches to a linear attack with specified powerlevel
+	 * 
+	 * @param powerlevel
+	 */
 	public void linearAttack(int powerlevel) {
 		attack.cancel();
 		attack = linearattacks[powerlevel];

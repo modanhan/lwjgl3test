@@ -22,11 +22,13 @@ public class Global {
 
 	public static float player_init_bullet_speed = 0.3f;
 	public static int player_init_bullet_delay = 350;
-	
+
 	public static float player_bullet_dir = (float) (Math.PI / 2);
 	public static float player_bullet_speed = 0.4f;
 	public static float player_bullet_size = 5;
 	public static int player_bullet_delay = 200;
+
+	public static int player_wtf_bullet_delay = 100;
 
 	public static float enemy_bullet_default_size = 5;
 	public static float enemy_bullet_default_speed = 0.4f;
