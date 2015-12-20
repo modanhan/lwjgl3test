@@ -138,8 +138,6 @@ public class Game {
 			g.renderGlow();
 		for (GameObject g : enemies)
 			g.renderGlow();
-		for (GameObject g : visuals)
-			g.render();
 
 		Graphics.blendAdditive();
 		Graphics.renderPass(hblur, hbuf, vbuf);
