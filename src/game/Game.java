@@ -16,7 +16,7 @@ import events.EventHandler;
 import game.lib.Enemies;
 import game.object.Enemy;
 import game.object.GameObject;
-import game.object.Player;
+import game.object.player.Player;
 import graphics.FrameBuffer;
 import graphics.Graphics;
 import graphics.Shader;

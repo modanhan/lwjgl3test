@@ -1,18 +1,20 @@
-package game.object;
+package game.object.player;
 
 import org.lwjgl.glfw.GLFW;
-import static org.lwjgl.opengl.GL11.*;
 
+import static org.lwjgl.opengl.GL11.*;
 import events.Event;
 import events.EventHandler;
 import game.Game;
+import game.object.CircleGameObject;
+import game.object.ExplosionVisual;
+import game.object.LinearBullet;
 import graphics.Graphics;
 import util.Global;
 import util.Keyboard;
 import util.Time;
 
 public class Player extends CircleGameObject {
-	private boolean alive;
 	private final float SPEED = .3f;
 	private final float SLOWSPEED = .1f;
 	public int mode = 1;
@@ -24,26 +26,33 @@ public class Player extends CircleGameObject {
 		@Override
 		public void init() {
 			EventHandler.add(new AttackEvent(Global.player_init_bullet_delay,
-					Global.Dir.UP, Global.player_init_bullet_speed));
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_init_bullet_speed), Player.this));
 		}
 	}, new PlayerAttack() {
 
 		@Override
 		public void init() {
 			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
-					Global.Dir.UP, Global.player_bullet_speed));
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this));
 		}
 	}, new PlayerAttack() {
 
 		@Override
 		public void init() {
 			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
-					Global.Dir.UP, Global.player_bullet_speed));
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, -5, 0));
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, 5, 0));
 		}
 	} };
 
+	PlayerAttack attack = linearattacks[0];
+
 	public Player() {
-		alive = true;
 		size = Global.player_size;
 		px = Global.width / 2;
 		py = Global.height / 2;
@@ -51,7 +60,14 @@ public class Player extends CircleGameObject {
 	}
 
 	public void shoot() {
-		linearattacks[0].start();
+		attack.start();
+	}
+
+	public void linearAttack(int powerlevel) {
+		attack.cancel();
+		attack = linearattacks[powerlevel];
+		attack.start();
+		this.powerlevel = powerlevel;
 	}
 
 	@Override
@@ -117,14 +133,7 @@ public class Player extends CircleGameObject {
 	}
 
 	public void death() {
-		alive = false;
 		Game.addVisuals(new ExplosionVisual(this.px, this.py, 0, 720, 2500));
-	}
-
-	public void linearAttack(int powerlevel) {
-		linearattacks[this.powerlevel].cancel();
-		this.powerlevel = powerlevel;
-		linearattacks[this.powerlevel].start();
 	}
 
 	/**
@@ -183,42 +192,19 @@ public class Player extends CircleGameObject {
 			Game.addVisuals(new ExplosionVisual(this.px, this.py, 0, 100, 500,
 					.5f));
 		}
-	}
 
-	private abstract class PlayerAttack {
-		private boolean active = false;
-
-		public void start() {
-			active = true;
-			init();
-		}
-
-		public abstract void init();
-
-		public void cancel() {
-			active = false;
-		}
-
-		public boolean isActive() {
-			return active;
-		}
-
-		public class AttackEvent extends Event {
-			float dir, speed;
-
-			public AttackEvent(int time, float dir, float speed) {
-				super(time);
-				this.dir = dir;
-				this.speed = speed;
-			}
-
-			@Override
-			public void run() {
-				if (Player.this.alive && PlayerAttack.this.isActive()) {
-					Game.addPlayerBullet(new PlayerLinearBullet(dir, speed));
-					EventHandler.add(new AttackEvent(getDelay(), dir, speed));
-				}
-			}
+		/**
+		 * 
+		 * @param px
+		 *            location x
+		 * @param py
+		 *            location y
+		 * @return a new player linear bullet with the same behavior at the
+		 *         specified location
+		 */
+		public PlayerLinearBullet clone(float px, float py) {
+			return new PlayerLinearBullet(px, py, dir, getSpeed());
 		}
 	}
+
 }

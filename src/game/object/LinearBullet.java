@@ -53,7 +53,6 @@ public abstract class LinearBullet extends CircleGameObject {
 	 */
 	public void accelerate(float a) {
 		setSpeed(getSpeed() + a * Time.getDelta());
-		setSpeed(getSpeed());
 	}
 
 	/**
