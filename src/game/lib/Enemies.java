@@ -57,7 +57,7 @@ public class Enemies {
 
 		class EnemyShooterBulletEvent extends EnemyBulletEvent {
 
-			public EnemyShooterBulletEvent(long time) {
+			public EnemyShooterBulletEvent(int time) {
 				super(time);
 			}
 
@@ -121,7 +121,7 @@ public class Enemies {
 		class EnemyBossBulletEvent1 extends EnemyBulletEvent {
 			static final int rings = 24;
 
-			public EnemyBossBulletEvent1(long time) {
+			public EnemyBossBulletEvent1(int time) {
 				super(time);
 			}
 
@@ -147,7 +147,7 @@ public class Enemies {
 		class EnemyBossBulletEvent2 extends EnemyBulletEvent {
 			static final int rounds = 4;
 
-			public EnemyBossBulletEvent2(long time) {
+			public EnemyBossBulletEvent2(int time) {
 				super(time);
 			}
 
@@ -213,7 +213,7 @@ public class Enemies {
 			int count;
 			float ddir;
 
-			public ReturnBossBulletEvent(long time, int count, float ddir) {
+			public ReturnBossBulletEvent(int time, int count, float ddir) {
 				super(time);
 				this.count = count;
 				this.ddir = ddir;

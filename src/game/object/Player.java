@@ -17,6 +17,30 @@ public class Player extends CircleGameObject {
 	private final float SLOWSPEED = .1f;
 	public int mode = 1;
 	public int power = 1;
+	int powerlevel = 0;
+
+	private final PlayerAttack[] linearattacks = { new PlayerAttack() {
+
+		@Override
+		public void init() {
+			EventHandler.add(new AttackEvent(Global.player_init_bullet_delay,
+					Global.Dir.UP, Global.player_init_bullet_speed));
+		}
+	}, new PlayerAttack() {
+
+		@Override
+		public void init() {
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					Global.Dir.UP, Global.player_bullet_speed));
+		}
+	}, new PlayerAttack() {
+
+		@Override
+		public void init() {
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					Global.Dir.UP, Global.player_bullet_speed));
+		}
+	} };
 
 	public Player() {
 		alive = true;
@@ -27,7 +51,7 @@ public class Player extends CircleGameObject {
 	}
 
 	public void shoot() {
-		EventHandler.add(new PlayerBulletEvent(0));
+		linearattacks[0].start();
 	}
 
 	@Override
@@ -52,9 +76,11 @@ public class Player extends CircleGameObject {
 		if (Global.cheats) {
 			if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_EQUAL)) {
 				power++; // increase powerup level
+				linearAttack(powerlevel + 1);
 			}
 			if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_MINUS)) {
 				power--; // decrease powerup level
+				linearAttack(powerlevel - 1);
 			}
 		}
 		if (px < 0)
@@ -95,10 +121,47 @@ public class Player extends CircleGameObject {
 		Game.addVisuals(new ExplosionVisual(this.px, this.py, 0, 720, 2500));
 	}
 
-	public class PlayerBullet extends LinearBullet {
+	public void linearAttack(int powerlevel) {
+		linearattacks[this.powerlevel].cancel();
+		this.powerlevel = powerlevel;
+		linearattacks[this.powerlevel].start();
+	}
 
-		public PlayerBullet(float px, float py, float dir) {
-			super(px, py, dir, Global.player_bullet_speed);
+	/**
+	 * A linear bullet spawned by the player.
+	 * 
+	 * @author Modan
+	 *
+	 */
+	public class PlayerLinearBullet extends LinearBullet {
+
+		/**
+		 * Spawns at the player's location.
+		 * 
+		 * @param dir
+		 *            direction
+		 * @param speed
+		 *            speed
+		 */
+		public PlayerLinearBullet(float dir, float speed) {
+			super(Player.this.px, Player.this.py, dir, speed);
+			size = Global.player_bullet_size;
+		}
+
+		/**
+		 * Spawns at specified location px, py
+		 * 
+		 * @param px
+		 *            x location
+		 * @param py
+		 *            y location
+		 * @param dir
+		 *            direction
+		 * @param speed
+		 *            speed
+		 */
+		public PlayerLinearBullet(float px, float py, float dir, float speed) {
+			super(px, py, dir, speed);
 			size = Global.player_bullet_size;
 		}
 
@@ -122,19 +185,39 @@ public class Player extends CircleGameObject {
 		}
 	}
 
-	public class PlayerBulletEvent extends Event {
+	private abstract class PlayerAttack {
+		private boolean active = false;
 
-		public PlayerBulletEvent(long time) {
-			super(time);
+		public void start() {
+			active = true;
+			init();
 		}
 
-		@Override
-		public void run() {
-			if (Player.this.alive) {
-				Game.addPlayerBullet(new PlayerBullet(Player.this.px,
-						Player.this.py, Global.player_bullet_dir));
-				EventHandler.add(new PlayerBulletEvent(
-						Global.player_bullet_delay));
+		public abstract void init();
+
+		public void cancel() {
+			active = false;
+		}
+
+		public boolean isActive() {
+			return active;
+		}
+
+		public class AttackEvent extends Event {
+			float dir, speed;
+
+			public AttackEvent(int time, float dir, float speed) {
+				super(time);
+				this.dir = dir;
+				this.speed = speed;
+			}
+
+			@Override
+			public void run() {
+				if (Player.this.alive && PlayerAttack.this.isActive()) {
+					Game.addPlayerBullet(new PlayerLinearBullet(dir, speed));
+					EventHandler.add(new AttackEvent(getDelay(), dir, speed));
+				}
 			}
 		}
 	}

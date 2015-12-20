@@ -107,7 +107,7 @@ public abstract class Enemy extends CircleGameObject {
 
 	public class EnemyBulletEvent extends Event {
 
-		public EnemyBulletEvent(long time) {
+		public EnemyBulletEvent(int time) {
 			super(time);
 		}
 
@@ -178,7 +178,7 @@ public abstract class Enemy extends CircleGameObject {
 		 * @param time amount of time to wait to spawn enemy e
 		 * @param e the enemy to spawn
 		 */
-		public EnemySpawnEvent(long time, Enemy e) {
+		public EnemySpawnEvent(int time, Enemy e) {
 			super(time);
 			this.e = e;
 		}
@@ -193,7 +193,7 @@ public abstract class Enemy extends CircleGameObject {
 	public static class EnemyDespawnEvent extends Event {
 		Enemy e;
 
-		public EnemyDespawnEvent(long time, Enemy e) {
+		public EnemyDespawnEvent(int time, Enemy e) {
 			super(time);
 			this.e = e;
 		}
@@ -209,7 +209,7 @@ public abstract class Enemy extends CircleGameObject {
 		Enemy e;
 		float x, y;
 
-		public EnemyMoveEvent(long time, Enemy e, float x, float y) {
+		public EnemyMoveEvent(int time, Enemy e, float x, float y) {
 			super(time);
 			this.e = e;
 			this.x = x;
