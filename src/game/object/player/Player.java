@@ -1,5 +1,7 @@
 package game.object.player;
 
+import java.util.ArrayList;
+
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -20,6 +22,7 @@ public class Player extends CircleGameObject {
 	public int mode = 1;
 	public int power = 1;
 	int powerlevel = 0;
+	ArrayList<SideShooter> sideshooters;
 
 	private final PlayerAttack[] linearattacks = { new PlayerAttack() {
 
@@ -60,12 +63,6 @@ public class Player extends CircleGameObject {
 							Global.player_bullet_speed), Player.this, 10, 0));
 			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
-							Global.player_bullet_speed), Player.this, -20, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
-					new PlayerLinearBullet(Global.Dir.UP,
-							Global.player_bullet_speed), Player.this, 20, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
-					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, 0, 0));
 			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP - .2f,
@@ -80,12 +77,6 @@ public class Player extends CircleGameObject {
 					new PlayerLinearBullet(Global.Dir.UP + .21f,
 							Global.player_bullet_speed), Player.this, 0, 0));
 			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
-					new PlayerLinearBullet(Global.Dir.UP - .22f,
-							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
-					new PlayerLinearBullet(Global.Dir.UP + .22f,
-							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP - .5f,
 							Global.player_bullet_speed), Player.this, 0, 0));
 			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
@@ -97,15 +88,37 @@ public class Player extends CircleGameObject {
 			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP + .51f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
-					new PlayerLinearBullet(Global.Dir.UP - .52f,
-							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
-					new PlayerLinearBullet(Global.Dir.UP + .52f,
-							Global.player_bullet_speed), Player.this, 0, 0));
+
 		}
-	}
-	};
+	},
+	/**
+	 * Power level 5, has 3 rotating side shooters
+	 */
+	new PlayerAttack() {
+
+		@Override
+		protected void init() {
+			int sideshooternum = 3;
+			for (int i = 0; i < sideshooternum; i++) {
+				sideshooters.add(new SideShooter(Player.this, 2.5f, 50,
+						Global.Dir.PI2 / sideshooternum * i, .001f));
+				EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+						new PlayerLinearBullet(Global.Dir.UP,
+								Global.player_bullet_speed), sideshooters
+								.get(i)));
+			}
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP - .2f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP + .2f,
+							Global.player_bullet_speed), Player.this, 0, 0));
+
+		}
+	} };
 
 	PlayerAttack attack = linearattacks[0];
 
@@ -114,6 +127,7 @@ public class Player extends CircleGameObject {
 		px = Global.width / 2;
 		py = Global.height / 2;
 		shoot();
+		sideshooters = new ArrayList<SideShooter>();
 	}
 
 	public void shoot() {
@@ -126,6 +140,7 @@ public class Player extends CircleGameObject {
 	 * @param powerlevel
 	 */
 	public void linearAttack(int powerlevel) {
+		sideshooters.clear();
 		attack.cancel();
 		attack = linearattacks[powerlevel];
 		attack.start();
@@ -169,12 +184,17 @@ public class Player extends CircleGameObject {
 			px = Global.width;
 		if (py > Global.height)
 			py = Global.height;
+
+		for (SideShooter ss : sideshooters)
+			ss.update();
 	}
 
 	@Override
 	public void render() {
+
 		glPushMatrix();
 		glTranslatef(px, py, 0);
+
 		glColor3f(1, 1, 1);
 		Graphics.quad(size);
 		if (power >= 8) {
@@ -188,10 +208,21 @@ public class Player extends CircleGameObject {
 			glPopMatrix();
 		}
 		glPopMatrix();
+
+		for (SideShooter ss : sideshooters)
+			ss.render();
 	}
 
 	public void renderGlow() {
 		render();
+	}
+
+	@Override
+	public void remove() {
+		super.remove();
+		for (SideShooter ss : sideshooters) {
+			ss.remove();
+		}
 	}
 
 	public void death() {
