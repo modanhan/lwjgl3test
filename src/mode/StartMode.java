@@ -24,8 +24,8 @@ public class StartMode implements Mode {
 	@Override
 	public void update() {
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_ENTER)) {
-			ModeHandler.setMode(new GameMode());
 			UI.clear();
+			ModeHandler.setMode(new GameMode());
 		}
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_ESCAPE)) {
 			Global.running = false;

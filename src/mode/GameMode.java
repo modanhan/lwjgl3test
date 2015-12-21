@@ -4,6 +4,7 @@ import org.lwjgl.glfw.GLFW;
 
 import events.EventHandler;
 import game.Game;
+import game.ui.UI;
 import util.Global;
 import util.Keyboard;
 
@@ -17,6 +18,7 @@ public class GameMode implements Mode {
 	@Override
 	public void update() {
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_ESCAPE)) {
+			UI.clear();
 			ModeHandler.setMode(new StartMode());
 			EventHandler.clear();
 		}

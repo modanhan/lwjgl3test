@@ -19,6 +19,7 @@ public class Global {
 	public static int player_size = 5;
 
 	public static float linear_bullet_default_speed = 0.5f;
+	public static float seeker_bullet_default_speed = 0.5f;
 
 	public static float player_init_bullet_speed = 0.3f;
 	public static int player_init_bullet_delay = 350;

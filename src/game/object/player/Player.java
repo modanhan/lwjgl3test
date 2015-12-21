@@ -9,6 +9,8 @@ import game.Game;
 import game.object.CircleGameObject;
 import game.object.ExplosionVisual;
 import game.object.LinearBullet;
+import game.object.SeekerBullet;
+import game.object.player.PlayerAttack.AttackEvent;
 import graphics.Graphics;
 import util.Global;
 import util.Keyboard;
@@ -20,14 +22,28 @@ public class Player extends CircleGameObject {
 	public int mode = 1;
 	public int power = 1;
 	int powerlevel = 0;
+	
+	public class TestAttack extends Event{
+		public TestAttack(int i) {
+			super(i);
+		}
 
+		public void run(){
+			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.UP,1f));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.DOWN,1f));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.LEFT,1f));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.RIGHT,1f));
+
+			EventHandler.add(new TestAttack(100));
+		}
+	}
+	
 	private final PlayerAttack[] linearattacks = { new PlayerAttack() {
-
+		
 		@Override
 		public void init() {
-			EventHandler.add(new AttackEvent(Global.player_init_bullet_delay,
-					new PlayerLinearBullet(Global.Dir.UP,
-							Global.player_init_bullet_speed), Player.this));
+			EventHandler.add(new TestAttack(100));
+
 		}
 	}, new PlayerAttack() {
 
@@ -268,5 +284,68 @@ public class Player extends CircleGameObject {
 			return new PlayerLinearBullet(px, py, dir, getSpeed());
 		}
 	}
+	public class PlayerSeekerBullet extends SeekerBullet {
 
+		/**
+		 * Spawns at the player's location.s
+		 * 
+		 * @param dir
+		 *            direction
+		 * @param speed
+		 *            speed
+		 */
+		public PlayerSeekerBullet(float dir, float speed) {
+			super(Player.this.px, Player.this.py, dir, speed, Game.enemies);
+			size = Global.player_bullet_size;
+		}
+
+		/**
+		 * Spawns at specified location px, py
+		 * 
+		 * @param px
+		 *            x location
+		 * @param py
+		 *            y location
+		 * @param dir
+		 *            direction
+		 * @param speed
+		 *            speed
+		 */
+		public PlayerSeekerBullet(float px, float py, float dir, float speed) {
+			super(px, py, dir, speed, Game.enemies);
+			size = Global.player_bullet_size;
+		}
+
+		@Override
+		public void render() {
+			glPushMatrix();
+			glTranslatef(px, py, 0);
+			glColor3f(1, 1, 1);
+			Graphics.quad(size);
+			glPopMatrix();
+		}
+
+		public void renderGlow() {
+			render();
+		};
+
+		@Override
+		public void death() {
+			Game.addVisuals(new ExplosionVisual(this.px, this.py, 0, 100, 500,
+					.5f));
+		}
+
+		/**
+		 * 
+		 * @param px
+		 *            location x
+		 * @param py
+		 *            location y
+		 * @return a new player linear bullet with the same behavior at the
+		 *         specified location
+		 */
+		public PlayerSeekerBullet clone(float px, float py) {
+			return new PlayerSeekerBullet(px, py, dir, getSpeed());
+		}
+	}
 }
