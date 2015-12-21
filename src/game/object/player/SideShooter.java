@@ -43,4 +43,10 @@ public class SideShooter extends CircleGameObject {
 
 	}
 
+	@Override
+	public CircleGameObject clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -23,25 +23,29 @@ public class Player extends CircleGameObject {
 	public int mode = 1;
 	public int power = 1;
 	int powerlevel = 0;
-		ArrayList<SideShooter> sideshooters;
-	
-	public class TestAttack extends Event{
+	ArrayList<SideShooter> sideshooters;
+
+	public class TestAttack extends Event {
 		public TestAttack(int i) {
 			super(i);
 		}
 
-		public void run(){
-			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.UP,Global.seeker_bullet_default_speed));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.DOWN,Global.seeker_bullet_default_speed));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.LEFT,Global.seeker_bullet_default_speed));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.RIGHT,Global.seeker_bullet_default_speed));
+		public void run() {
+			Game.addPlayerBullet(new PlayerSeekerBullet(px, py, Global.Dir.UP,
+					Global.seeker_bullet_default_speed));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px, py,
+					Global.Dir.DOWN, Global.seeker_bullet_default_speed));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px, py,
+					Global.Dir.LEFT, Global.seeker_bullet_default_speed));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px, py,
+					Global.Dir.RIGHT, Global.seeker_bullet_default_speed));
 
-			EventHandler.add(new TestAttack(100));
+			EventHandler.add(new TestAttack(1000));
 		}
 	}
-	
+
 	private final PlayerAttack[] linearattacks = { new PlayerAttack() {
-		
+
 		@Override
 		public void init() {
 			EventHandler.add(new TestAttack(100));
@@ -141,8 +145,8 @@ public class Player extends CircleGameObject {
 		size = Global.player_size;
 		px = Global.width / 2;
 		py = Global.height / 2;
-		shoot();
 		sideshooters = new ArrayList<SideShooter>();
+		shoot();
 	}
 
 	public void shoot() {
@@ -244,6 +248,12 @@ public class Player extends CircleGameObject {
 		Game.addVisuals(new ExplosionVisual(this.px, this.py, 0, 720, 2500));
 	}
 
+	@Override
+	public Player clone() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/**
 	 * A linear bullet spawned by the player.
 	 * 
@@ -313,7 +323,13 @@ public class Player extends CircleGameObject {
 		public PlayerLinearBullet clone(float px, float py) {
 			return new PlayerLinearBullet(px, py, dir, getSpeed());
 		}
+
+		@Override
+		public PlayerLinearBullet clone() {
+			return new PlayerLinearBullet(px, py, dir, getSpeed());
+		}
 	}
+
 	public class PlayerSeekerBullet extends SeekerBullet {
 
 		/**
@@ -377,5 +393,11 @@ public class Player extends CircleGameObject {
 		public PlayerSeekerBullet clone(float px, float py) {
 			return new PlayerSeekerBullet(px, py, dir, getSpeed());
 		}
+
+		@Override
+		public PlayerSeekerBullet clone() {
+			return new PlayerSeekerBullet(px, py, dir, getSpeed());
+		}
 	}
+
 }

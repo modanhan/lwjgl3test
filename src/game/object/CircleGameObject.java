@@ -41,4 +41,6 @@ public abstract class CircleGameObject extends GameObject {
 		Graphics.quad(size);
 		glPopMatrix();
 	}
+	
+	public abstract CircleGameObject clone();
 }

@@ -1,7 +1,6 @@
 package game.object;
 
 import static org.lwjgl.opengl.GL11.*;
-
 import events.Event;
 import game.Game;
 import graphics.Graphics;
@@ -163,6 +162,12 @@ public abstract class Enemy extends CircleGameObject {
 		public void death() {
 
 		}
+
+		@Override
+		public CircleGameObject clone() {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
 
 	/**
@@ -222,6 +227,12 @@ public abstract class Enemy extends CircleGameObject {
 			e.ty = y;
 		}
 
+	}
+	
+	@Override
+	public CircleGameObject clone() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

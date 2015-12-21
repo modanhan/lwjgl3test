@@ -22,19 +22,24 @@ abstract class PlayerAttack {
 	}
 
 	public class AttackEvent extends Event {
-		private PlayerLinearBullet bullet;
+		private CircleGameObject bullet;
 		private CircleGameObject spawner;
 		private float dx, dy;
 
 		/**
 		 * 
-		 * @param delay The amount of time to wait until the event triggers.
-		 * @param bullet The type of bullet fired.
-		 * @param spawner The object that does the attack.
-		 * @param dx Displacement x from the spawner.
-		 * @param dy Displacement y from the spawner.
+		 * @param delay
+		 *            The amount of time to wait until the event triggers.
+		 * @param bullet
+		 *            The type of bullet fired.
+		 * @param spawner
+		 *            The object that does the attack.
+		 * @param dx
+		 *            Displacement x from the spawner.
+		 * @param dy
+		 *            Displacement y from the spawner.
 		 */
-		public AttackEvent(int delay, PlayerLinearBullet bullet,
+		public AttackEvent(int delay, CircleGameObject bullet,
 				CircleGameObject spawner, float dx, float dy) {
 			super(delay);
 			this.bullet = bullet;
@@ -45,9 +50,12 @@ abstract class PlayerAttack {
 
 		/**
 		 * 
-		 * @param delay The amount of time to wait until the event triggers.
-		 * @param bullet The type of bullet fired.
-		 * @param spawner The object that does the attack.
+		 * @param delay
+		 *            The amount of time to wait until the event triggers.
+		 * @param bullet
+		 *            The type of bullet fired.
+		 * @param spawner
+		 *            The object that does the attack.
 		 */
 		public AttackEvent(int delay, PlayerLinearBullet bullet,
 				CircleGameObject spawner) {
@@ -57,8 +65,10 @@ abstract class PlayerAttack {
 		@Override
 		public void run() {
 			if (!spawner.remove && active) {
-				Game.addPlayerBullet(bullet.clone(spawner.px + dx, spawner.py
-						+ dy));
+				CircleGameObject cgo = bullet.clone();
+				cgo.px = spawner.px + dx;
+				cgo.py = spawner.py + dy;
+				Game.addPlayerBullet(cgo);
 				EventHandler.add(new AttackEvent(getDelay(), bullet, spawner,
 						dx, dy));
 			}
