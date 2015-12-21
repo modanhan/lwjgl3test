@@ -12,7 +12,6 @@ import game.object.CircleGameObject;
 import game.object.ExplosionVisual;
 import game.object.LinearBullet;
 import game.object.SeekerBullet;
-import game.object.player.PlayerAttack.AttackEvent;
 import graphics.Graphics;
 import util.Global;
 import util.Keyboard;
@@ -32,10 +31,10 @@ public class Player extends CircleGameObject {
 		}
 
 		public void run(){
-			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.UP,1f));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.DOWN,1f));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.LEFT,1f));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.RIGHT,1f));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.UP,Global.seeker_bullet_default_speed));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.DOWN,Global.seeker_bullet_default_speed));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.LEFT,Global.seeker_bullet_default_speed));
+			Game.addPlayerBullet(new PlayerSeekerBullet(px,py,Global.Dir.RIGHT,Global.seeker_bullet_default_speed));
 
 			EventHandler.add(new TestAttack(100));
 		}

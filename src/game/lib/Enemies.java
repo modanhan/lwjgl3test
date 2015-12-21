@@ -5,7 +5,6 @@ import events.EventHandler;
 import game.Game;
 import game.object.CircleGameObject;
 import game.object.Enemy;
-import game.object.LinearBullet;
 import game.ui.HealthBar;
 import game.ui.UI;
 import util.Global;

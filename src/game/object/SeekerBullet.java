@@ -8,10 +8,7 @@ import util.Time;
 
 public abstract class SeekerBullet extends LinearBullet {
 	public List<GameObject> targets;
-	static final float ACCELERATION = 4.0f;
-	static final float MINSPEED = 0.8f;
-	static final float MAXSPEED = 0.8f;
-	static final float TARGETTIME = 0.2f;
+	
 	private float time;
 	/**
 	 * 
@@ -44,20 +41,20 @@ public abstract class SeekerBullet extends LinearBullet {
 				target = g;
 			}
 		}
-		if(target!=null&&time<TARGETTIME){
+		if(target!=null&&time<Global.seeker_bullet_targetting_time){
 			float tx = target.px;
 			float ty = target.py;
-			dx = dx*(TARGETTIME-time)/TARGETTIME+(tx-px)/distance*time/TARGETTIME*d;
-			dy = dy*(TARGETTIME-time)/TARGETTIME+(ty-py)/distance*time/TARGETTIME*d;
-			dir = (float) Math.atan2(dy,dx);
+			dx = dx*(Global.seeker_bullet_targetting_time-time)/Global.seeker_bullet_targetting_time
+					+(tx-px)/distance*time/Global.seeker_bullet_targetting_time*Global.seeker_bullet_acceleration*d;
+			dy = dy*(Global.seeker_bullet_targetting_time-time)/Global.seeker_bullet_targetting_time
+					+(ty-py)/distance*time/Global.seeker_bullet_targetting_time*Global.seeker_bullet_acceleration*d;
 			float speed = (float) Math.hypot(dx, dy);
-			accelerate(ACCELERATION);
-			if(speed>MAXSPEED){
-				setSpeed(MAXSPEED);
-			}else if(speed<MINSPEED){
-				setSpeed(MINSPEED);
-			}else{
-				setSpeed(speed);
+			if(speed>Global.seeker_bullet_maximum_speed){
+				dx = dx*Global.seeker_bullet_maximum_speed/speed;
+				dy = dy*Global.seeker_bullet_maximum_speed/speed;
+			}else if(speed<Global.seeker_bullet_minimum_speed){
+				dx = dx*Global.seeker_bullet_minimum_speed/speed;
+				dy = dy*Global.seeker_bullet_minimum_speed/speed;			
 			}
 		}
 	}
