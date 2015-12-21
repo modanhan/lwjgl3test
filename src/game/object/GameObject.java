@@ -44,7 +44,7 @@ public abstract class GameObject implements Comparable<GameObject> {
 	/**
 	 * Removes the object without triggering death.
 	 */
-	public final void remove() {
+	public void remove() {
 		remove = true;
 	}
 

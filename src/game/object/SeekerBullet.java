@@ -9,9 +9,9 @@ import util.Time;
 public abstract class SeekerBullet extends LinearBullet {
 	public List<GameObject> targets;
 	static final float ACCELERATION = 4.0f;
-	static final float MINSPEED = 0.4f;
-	static final float MAXSPEED = 0.4f;
-	static final float TARGETTIME = 0.8f;
+	static final float MINSPEED = 0.8f;
+	static final float MAXSPEED = 0.8f;
+	static final float TARGETTIME = 0.2f;
 	private float time;
 	/**
 	 * 

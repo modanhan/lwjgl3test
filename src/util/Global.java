@@ -52,7 +52,7 @@ public class Global {
 	public static class Dir {
 		public static final float UP = (float) (Math.PI / 2),
 				DOWN = (float) (3 * Math.PI / 2), LEFT = (float) Math.PI,
-				RIGHT = 0;
+				RIGHT = 0, PI2 = (float) (Math.PI * 2);
 	}
 
 	public static void update() {
