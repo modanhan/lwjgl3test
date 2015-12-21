@@ -24,31 +24,26 @@ public class Player extends CircleGameObject {
 	public int power = 1;
 	int powerlevel = 0;
 	ArrayList<SideShooter> sideshooters;
-
-	public class TestAttack extends Event {
-		public TestAttack(int i) {
-			super(i);
-		}
-
-		public void run() {
-			Game.addPlayerBullet(new PlayerSeekerBullet(px, py, Global.Dir.UP,
-					Global.seeker_bullet_default_speed));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px, py,
-					Global.Dir.DOWN, Global.seeker_bullet_default_speed));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px, py,
-					Global.Dir.LEFT, Global.seeker_bullet_default_speed));
-			Game.addPlayerBullet(new PlayerSeekerBullet(px, py,
-					Global.Dir.RIGHT, Global.seeker_bullet_default_speed));
-
-			EventHandler.add(new TestAttack(1000));
-		}
-	}
+	/*
+	 * public class TestAttack extends Event { public TestAttack(int i) {
+	 * super(i); }
+	 * 
+	 * public void run() { Game.addPlayerBullet(); Game.addPlayerBullet(new
+	 * PlayerSeekerBullet(px, py, Global.Dir.DOWN,
+	 * Global.seeker_bullet_default_speed)); Game.addPlayerBullet(new
+	 * PlayerSeekerBullet(px, py, Global.Dir.LEFT,
+	 * Global.seeker_bullet_default_speed)); Game.addPlayerBullet(new
+	 * PlayerSeekerBullet(px, py, Global.Dir.RIGHT,
+	 * Global.seeker_bullet_default_speed));
+	 * 
+	 * EventHandler.add(new TestAttack(1000)); } }
+	 */
 
 	private final PlayerAttack[] linearattacks = { new PlayerAttack() {
 
 		@Override
 		public void init() {
-			EventHandler.add(new TestAttack(100));
+			// EventHandler.add(new TestAttack(100));
 
 		}
 	}, new PlayerAttack() {
@@ -137,6 +132,43 @@ public class Player extends CircleGameObject {
 							Global.player_bullet_speed), Player.this, 0, 0));
 
 		}
+	},
+	/**
+	 * power level 6, has side shooters, testing seekers
+	 */
+	new PlayerAttack() {
+
+		@Override
+		protected void init() {
+			int sideshooternum = 5;
+			for (int i = 0; i < sideshooternum; i++) {
+				sideshooters.add(new SideShooter(Player.this, 2.5f, 50,
+						Global.Dir.PI2 / sideshooternum * i, .001f));
+				EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+						new PlayerLinearBullet(Global.Dir.UP,
+								Global.player_bullet_speed), sideshooters
+								.get(i)));
+			}
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerLinearBullet(Global.Dir.UP,
+							Global.player_bullet_speed), Player.this, 0, 0));
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerSeekerBullet(px, py, Global.Dir.UP,
+							Global.seeker_bullet_default_speed), Player.this,
+					0, 0));
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerSeekerBullet(px, py, Global.Dir.LEFT,
+							Global.seeker_bullet_default_speed), Player.this,
+					0, 0));
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerSeekerBullet(px, py, Global.Dir.RIGHT,
+							Global.seeker_bullet_default_speed), Player.this,
+					0, 0));
+			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+					new PlayerSeekerBullet(px, py, Global.Dir.DOWN,
+							Global.seeker_bullet_default_speed), Player.this,
+					0, 0));
+		}
 	} };
 
 	PlayerAttack attack = linearattacks[0];
@@ -159,6 +191,8 @@ public class Player extends CircleGameObject {
 	 * @param powerlevel
 	 */
 	public void linearAttack(int powerlevel) {
+		powerlevel += linearattacks.length;
+		powerlevel %= linearattacks.length;
 		sideshooters.clear();
 		attack.cancel();
 		attack = linearattacks[powerlevel];
