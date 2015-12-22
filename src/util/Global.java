@@ -18,13 +18,14 @@ public class Global {
 
 	public static int player_size = 5;
 
-	public static float linear_bullet_default_speed = 0.5f;
-	public static float seeker_bullet_default_speed = 0.8f;
+	public static float linear_bullet_default_speed = 0.3f;
+	
+	public static float seeker_bullet_default_speed = 0.5f;
 
-	public static float seeker_bullet_acceleration = 4.0f;
-	public static float seeker_bullet_minimum_speed = 0.8f;
-	public static float seeker_bullet_maximum_speed = 0.8f;
-	public static float seeker_bullet_targetting_time = 0.8f;
+	public static float seeker_bullet_acceleration = 3.0f;
+	public static float seeker_bullet_minimum_speed = 0.45f;
+	public static float seeker_bullet_maximum_speed = 0.55f;
+	public static float seeker_bullet_targetting_time = 1.2f;
 	
 	public static float player_init_bullet_speed = 0.3f;
 	public static int player_init_bullet_delay = 350;
@@ -32,7 +33,7 @@ public class Global {
 	public static float player_bullet_dir = (float) (Math.PI / 2);
 	public static float player_bullet_speed = 0.4f;
 	public static float player_bullet_size = 5;
-	public static int player_bullet_delay = 200;
+	public static int player_bullet_delay = 250;
 
 	public static int player_wtf_bullet_delay = 100;
 
