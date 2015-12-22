@@ -4,6 +4,7 @@ import events.Event;
 import events.EventHandler;
 import game.Game;
 import game.object.CircleGameObject;
+import game.object.TrailVisual;
 import game.object.player.Player.PlayerLinearBullet;
 
 abstract class PlayerAttack {
@@ -69,6 +70,7 @@ abstract class PlayerAttack {
 				cgo.px = spawner.px + dx;
 				cgo.py = spawner.py + dy;
 				Game.addPlayerBullet(cgo);
+				Game.addVisuals(new TrailVisual(cgo,1,1,1,0.5f,cgo.size/2f, 1000));
 				EventHandler.add(new AttackEvent(getDelay(), bullet, spawner,
 						dx, dy));
 			}

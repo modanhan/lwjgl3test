@@ -37,7 +37,7 @@ public class Console implements Runnable{
 					break;
 				case "/power": //changes powerup level (1-10)
 					if(Game.player!=null){
-						Game.player.power = Integer.parseInt(args[1]);
+						Game.player.powerlevel = Integer.parseInt(args[1]);
 						System.out.println("power set to "+args[1]);
 					}else{
 						System.out.println("player is dead");

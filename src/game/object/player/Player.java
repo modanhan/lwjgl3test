@@ -21,8 +21,7 @@ public class Player extends CircleGameObject {
 	private final float SPEED = .3f;
 	private final float SLOWSPEED = .1f;
 	public int mode = 1;
-	public int power = 1;
-	int powerlevel = 0;
+	public int powerlevel = 0;
 	ArrayList<SideShooter> sideshooters;
 	/*
 	 * public class TestAttack extends Event { public TestAttack(int i) {
@@ -221,11 +220,9 @@ public class Player extends CircleGameObject {
 		}
 		if (Global.cheats) {
 			if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_EQUAL)) {
-				power++; // increase powerup level
 				linearAttack(powerlevel + 1);
 			}
 			if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_MINUS)) {
-				power--; // decrease powerup level
 				linearAttack(powerlevel - 1);
 			}
 		}
@@ -247,19 +244,8 @@ public class Player extends CircleGameObject {
 
 		glPushMatrix();
 		glTranslatef(px, py, 0);
-
 		glColor3f(1, 1, 1);
 		Graphics.quad(size);
-		if (power >= 8) {
-			glPushMatrix();
-			glTranslatef(size * 3f, 0, 0);
-			Graphics.quad(size / 2);
-			glPopMatrix();
-			glPushMatrix();
-			glTranslatef(-size * 3f, 0, 0);
-			Graphics.quad(size / 2);
-			glPopMatrix();
-		}
 		glPopMatrix();
 
 		for (SideShooter ss : sideshooters)

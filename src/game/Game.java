@@ -138,12 +138,13 @@ public class Game {
 			g.renderGlow();
 		for (GameObject g : enemies)
 			g.renderGlow();
-
+		for (GameObject g : visuals)
+			g.renderGlow();
 		Graphics.blendAdditive();
-		Graphics.renderPass(hblur, hbuf, vbuf);
-		Graphics.renderPass(vblur, vbuf, hbuf);
-		Graphics.renderPass(hblur, hbuf, vbuf);
-		Graphics.renderPass(vblur, vbuf, hbuf);
+	//	Graphics.renderPass(hblur, hbuf, vbuf);
+	//	Graphics.renderPass(vblur, vbuf, hbuf);
+	//	Graphics.renderPass(hblur, hbuf, vbuf);
+	//	Graphics.renderPass(vblur, vbuf, hbuf);
 		Graphics.renderPass(hblur, hbuf, vbuf);
 		Graphics.renderPass(vblur, vbuf);
 		Graphics.reset();

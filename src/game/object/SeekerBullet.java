@@ -3,6 +3,7 @@ package game.object;
 import java.util.List;
 import java.util.ListIterator;
 
+import game.Game;
 import util.Global;
 import util.Time;
 
@@ -68,5 +69,9 @@ public abstract class SeekerBullet extends LinearBullet {
 				|| px > Global.width + Global.margin || px < -Global.margin) {
 			remove();
 		}
+	}
+	public void render(){
+		super.render();
+		
 	}
 }
