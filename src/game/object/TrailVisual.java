@@ -62,7 +62,7 @@ public class TrailVisual extends GameObject {
 		while(iter.hasNext()){
 			TrailSection t = iter.next();
 			if(fade){
-				glColor4f(r,g,b,a*t.time/(float)(duration));
+				glColor4f(r,g,b,a*(iter.nextIndex()-1)/trail.size());
 			}else{
 				glColor4f(r,g,b,a);
 			}
@@ -70,8 +70,8 @@ public class TrailVisual extends GameObject {
 				float dx = size;
 				float dy = size;
 				if(shrink){
-					dx = dx*t.time/(float)(duration);
-					dy = dy*t.time/(float)(duration);
+					dx = dx*(iter.nextIndex()-1)/trail.size();
+					dy = dy*(iter.nextIndex()-1)/trail.size();
 				}
 				glTexCoord2f(0,0);glVertex2f(-dx+t.x,-dy+t.y);
 				glTexCoord2f(0,1);glVertex2f(+dx+t.x,-dy+t.y);
@@ -84,8 +84,8 @@ public class TrailVisual extends GameObject {
 				float nx = (tn.x-t.x)*size;
 				float ny = (tn.y-t.y)*size;
 				if(shrink){
-					nx = nx*t.time/(float)(duration);
-					ny = ny*t.time/(float)(duration);
+					nx = nx*(iter.nextIndex()-1)/trail.size();
+					ny = ny*(iter.nextIndex()-1)/trail.size();
 				}
 				iter.previous();
 				glTexCoord2f(0,0);glVertex2f((-nx-ny)/ndist+t.x,(-ny+nx)/ndist+t.y);
@@ -102,8 +102,8 @@ public class TrailVisual extends GameObject {
 				iter.next();
 				iter.next();
 				if(shrink){
-					px = px*t.time/(float)(duration);
-					py = py*t.time/(float)(duration);
+					px = px*(iter.nextIndex()-1)/trail.size();
+					py = py*(iter.nextIndex()-1)/trail.size();
 				}
 				glTexCoord2f(0.5f,1);glVertex2f((+py)/pdist+t.x,(+px)/pdist+t.y);
 				glTexCoord2f(0.5f,0);glVertex2f((-py)/pdist+t.x,(-px)/pdist+t.y);
@@ -120,8 +120,8 @@ public class TrailVisual extends GameObject {
 				float fx = dx/ddist*size;
 				float fy = dy/ddist*size;
 				if(shrink){
-					fx = fx*t.time/(float)(duration);
-					fy = fy*t.time/(float)(duration);
+					fx = fx*(iter.nextIndex()-1)/trail.size();
+					fy = fy*(iter.nextIndex()-1)/trail.size();
 				}
 				glTexCoord2f(0.5f,0);glVertex2f((-fy+t.x),(-fx+t.y));
 				glTexCoord2f(0.5f,1);glVertex2f((fy+t.x),(fx+t.y));
@@ -138,12 +138,12 @@ public class TrailVisual extends GameObject {
 			glTranslatef(t.x,t.y,0);
 			glBegin(GL_QUADS);
 			if(fade){
-				glColor4f(r,g,b,a*t.time/(float)(duration));
+				glColor4f(r,g,b,a*(iter.nextIndex()-1)/trail.size());
 			}else{
 				glColor4f(r,g,b,a);
 			}
 			if(shrink){
-				Graphics.quad(size*t.time/(float)(duration));
+				Graphics.quad(size*(iter.nextIndex()-1)/trail.size());
 			}else{
 				Graphics.quad(size);
 			}
