@@ -10,11 +10,11 @@ import util.Time;
 public class Laser extends GameObject {
 	protected int damage = 1; //TODO global default var
 	protected boolean damagetick = true;
-	protected int delay = 100;//TODO global default var
+	protected int delay = 500;//TODO global default var
 	protected int time = 0;
 	CircleGameObject parent;
 	float dir;
-	float size = 2;//TODO Global default var
+	float size = 4;//TODO Global default var
 	public Laser(CircleGameObject parent,float dir) {
 		this.parent = parent;
 		this.dir = dir;
@@ -43,11 +43,20 @@ public class Laser extends GameObject {
 		glTranslatef(x,y,0);
 		glRotatef((float)Math.toDegrees(dir),0,0,1);
 		glBegin(GL_QUADS);
-		glColor3f(1,1,1);
-		glTexCoord2f(0,0);glVertex2f(0,size);
-		glTexCoord2f(0,1);glVertex2f(0,-size);
-		glTexCoord2f(1,1);glVertex2f(Global.height+Global.width,size);
-		glTexCoord2f(1,0);glVertex2f(Global.height+Global.width,-size);
+		final float fade = 0.4f;
+		if(time/(float)delay<fade){
+			glColor3f(1,1,1);
+			glTexCoord2f(0,0);glVertex2f(0,size*(1-time/(float)delay/fade));
+			glTexCoord2f(0,1);glVertex2f(0,-size*(1-time/(float)delay/fade));
+			glTexCoord2f(1,1);glVertex2f(Global.height+Global.width,size*(1-time/(float)delay/fade));
+			glTexCoord2f(1,0);glVertex2f(Global.height+Global.width,-size*(1-time/(float)delay/fade));
+		}else{
+			glColor4f(1,1,1,0.2f);
+			glTexCoord2f(0,0);glVertex2f(0,0.5f);
+			glTexCoord2f(0,1);glVertex2f(0,-0.5f);
+			glTexCoord2f(1,1);glVertex2f(Global.height+Global.width,0.5f);
+			glTexCoord2f(1,0);glVertex2f(Global.height+Global.width,-0.5f);
+		}
 		glEnd();
 		glPopMatrix();
 		Graphics.reset();
@@ -60,10 +69,17 @@ public class Laser extends GameObject {
 		glRotatef((float)Math.toDegrees(dir),0,0,1);
 		glBegin(GL_QUADS);
 		glColor3f(1,1,1);
-		glTexCoord2f(0,0);glVertex2f(0,size);
-		glTexCoord2f(0,1);glVertex2f(0,-size);
-		glTexCoord2f(1,1);glVertex2f(Global.height+Global.width,size);
-		glTexCoord2f(1,0);glVertex2f(Global.height+Global.width,-size);
+		if(damagetick){
+			glTexCoord2f(0,0);glVertex2f(0,size);
+			glTexCoord2f(0,1);glVertex2f(0,-size);
+			glTexCoord2f(1,1);glVertex2f(Global.height+Global.width,size);
+			glTexCoord2f(1,0);glVertex2f(Global.height+Global.width,-size);
+		}else{
+			glTexCoord2f(0,0);glVertex2f(0,0.5f);
+			glTexCoord2f(0,1);glVertex2f(0,-0.5f);
+			glTexCoord2f(1,1);glVertex2f(Global.height+Global.width,0.5f);
+			glTexCoord2f(1,0);glVertex2f(Global.height+Global.width,-0.5f);
+		}
 		glEnd();
 		glPopMatrix();
 	}
