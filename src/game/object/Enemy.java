@@ -103,7 +103,12 @@ public abstract class Enemy extends CircleGameObject {
 		hp--;
 		hit=true;
 	}
-
+	public void takeHit(int damage){
+		if(damage != 0){
+			hp-=damage;
+			hit=true;
+		}
+	}
 	public class EnemyBulletEvent extends Event {
 
 		public EnemyBulletEvent(int time) {

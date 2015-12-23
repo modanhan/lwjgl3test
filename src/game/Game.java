@@ -32,8 +32,7 @@ import util.Global;
 public class Game {
 	public static Player player;
 
-	public static LinkedList<GameObject> enemies, playerbullets, enemybullets,
-			visuals;
+	public static LinkedList<GameObject> enemies, playerbullets, playerlasers, enemybullets, enemylasers, visuals;
 	private static FrameBuffer hbuf, vbuf;
 	private static Shader hblur, vblur;
 	private static Texture main;
@@ -42,7 +41,9 @@ public class Game {
 		player = new Player();
 		enemies = new LinkedList<GameObject>();
 		playerbullets = new LinkedList<GameObject>();
+		playerlasers = new LinkedList<GameObject>();
 		enemybullets = new LinkedList<GameObject>();
+		enemylasers = new LinkedList<GameObject>();
 		visuals = new LinkedList<GameObject>();
 		initGraphics();
 
@@ -55,8 +56,7 @@ public class Game {
 	 */
 	private static void spawnEnemies() {
 		EventHandler
-				.add(new Enemy.EnemySpawnEvent(1000, new Enemies.ReturnBoss(
-						Global.width / 2, Global.length * 3 / 4)));
+				.add(new Enemy.EnemySpawnEvent(1000, new Enemies.ReturnBoss(Global.width / 2, Global.length * 3 / 4)));
 	}
 
 	private static void initGraphics() {
@@ -65,13 +65,11 @@ public class Game {
 		if (vbuf == null)
 			vbuf = new FrameBuffer(Global.width, Global.height);
 		if (hblur == null)
-			hblur = new Shader(new File("shaders/mainvertex.glsl"), new File(
-					"shaders/blurhfragment2.glsl"));
+			hblur = new Shader(new File("shaders/mainvertex.glsl"), new File("shaders/blurhfragment2.glsl"));
 		Shader.use(hblur);
 		hblur.setUniformi("texture", 0);
 		if (vblur == null)
-			vblur = new Shader(new File("shaders/mainvertex.glsl"), new File(
-					"shaders/blurvfragment2.glsl"));
+			vblur = new Shader(new File("shaders/mainvertex.glsl"), new File("shaders/blurvfragment2.glsl"));
 		Shader.use(vblur);
 		vblur.setUniformi("texture", 0);
 		Shader.use(0);
@@ -91,8 +89,10 @@ public class Game {
 				player.update();
 		}
 		updateList(playerbullets.iterator());
+		updateList(playerlasers.iterator());
 		updateList(enemies.iterator());
 		updateList(enemybullets.iterator());
+		updateList(enemylasers.iterator());
 		updateList(visuals.iterator());
 		Collision.update();
 		render();
@@ -121,6 +121,10 @@ public class Game {
 			g.render();
 		for (GameObject g : enemybullets)
 			g.render();
+		for (GameObject g : playerlasers)
+			g.render();
+		for (GameObject g : enemylasers)
+			g.render();
 		for (GameObject g : enemies)
 			g.render();
 		for (GameObject g : visuals) {
@@ -136,15 +140,19 @@ public class Game {
 			g.renderGlow();
 		for (GameObject g : enemybullets)
 			g.renderGlow();
+		for (GameObject g : playerlasers)
+			g.renderGlow();
+		for (GameObject g : enemylasers)
+			g.renderGlow();
 		for (GameObject g : enemies)
 			g.renderGlow();
 		for (GameObject g : visuals)
 			g.renderGlow();
 		Graphics.blendAdditive();
-	//	Graphics.renderPass(hblur, hbuf, vbuf);
-	//	Graphics.renderPass(vblur, vbuf, hbuf);
-	//	Graphics.renderPass(hblur, hbuf, vbuf);
-	//	Graphics.renderPass(vblur, vbuf, hbuf);
+		// Graphics.renderPass(hblur, hbuf, vbuf);
+		// Graphics.renderPass(vblur, vbuf, hbuf);
+		// Graphics.renderPass(hblur, hbuf, vbuf);
+		// Graphics.renderPass(vblur, vbuf, hbuf);
 		Graphics.renderPass(hblur, hbuf, vbuf);
 		Graphics.renderPass(vblur, vbuf);
 		Graphics.reset();
@@ -162,7 +170,15 @@ public class Game {
 	public static void addPlayerBullet(GameObject g) {
 		playerbullets.add(g);
 	}
+	
+	public static void addEnemyLaser(GameObject g) {
+		enemylasers.add(g);
+	}
 
+	public static void addPlayerLaser(GameObject g) {
+		playerlasers.add(g);
+	}
+	
 	public static void addVisuals(GameObject g) {
 		visuals.add(g);
 	}

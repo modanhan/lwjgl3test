@@ -10,6 +10,7 @@ import events.EventHandler;
 import game.Game;
 import game.object.CircleGameObject;
 import game.object.ExplosionVisual;
+import game.object.Laser;
 import game.object.LinearBullet;
 import game.object.SeekerBullet;
 import graphics.Graphics;
@@ -39,28 +40,34 @@ public class Player extends CircleGameObject {
 	 */
 
 	private final PlayerAttack[] linearattacks = { new PlayerAttack() {
-
+		Laser l;
 		@Override
 		public void init() {
-			// EventHandler.add(new TestAttack(100));
-
+			l = new Laser(Player.this,Global.Dir.UP);
+			EventHandler.add(new LaserAttackEvent(0, l, Player.this));
+			
+		}
+		public void cancel(){
+			super.cancel();
+			l.kill();
 		}
 	}, new PlayerAttack() {
 
 		@Override
 		public void init() {
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this));
+
 		}
 	}, new PlayerAttack() {
 
 		@Override
 		public void init() {
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, -5, 0));
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, 5, 0));
 		}
@@ -68,37 +75,37 @@ public class Player extends CircleGameObject {
 
 		@Override
 		public void init() {
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, -10, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, 10, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP - .2f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP + .2f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP - .21f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP + .21f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP - .5f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP + .5f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP - .51f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_wtf_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_wtf_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP + .51f,
 							Global.player_bullet_speed), Player.this, 0, 0));
 
@@ -115,18 +122,18 @@ public class Player extends CircleGameObject {
 			for (int i = 0; i < sideshooternum; i++) {
 				sideshooters.add(new SideShooter(Player.this, 2.5f, 50,
 						Global.Dir.PI2 / sideshooternum * i, .001f));
-				EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+				EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 						new PlayerLinearBullet(Global.Dir.UP,
 								Global.player_bullet_speed), sideshooters
 								.get(i)));
 			}
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP - .2f,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP + .2f,
 							Global.player_bullet_speed), Player.this, 0, 0));
 
@@ -143,27 +150,27 @@ public class Player extends CircleGameObject {
 			for (int i = 0; i < sideshooternum; i++) {
 				sideshooters.add(new SideShooter(Player.this, 2.5f, 50,
 						Global.Dir.PI2 / sideshooternum * i, .001f));
-				EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+				EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 						new PlayerLinearBullet(Global.Dir.UP,
 								Global.player_bullet_speed), sideshooters
 								.get(i)));
 			}
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerLinearBullet(Global.Dir.UP,
 							Global.player_bullet_speed), Player.this, 0, 0));
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerSeekerBullet(px, py, Global.Dir.UP,
 							Global.seeker_bullet_default_speed), Player.this,
 					0, 0));
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerSeekerBullet(px, py, Global.Dir.LEFT,
 							Global.seeker_bullet_default_speed), Player.this,
 					0, 0));
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerSeekerBullet(px, py, Global.Dir.RIGHT,
 							Global.seeker_bullet_default_speed), Player.this,
 					0, 0));
-			EventHandler.add(new AttackEvent(Global.player_bullet_delay,
+			EventHandler.add(new BulletAttackEvent(Global.player_bullet_delay,
 					new PlayerSeekerBullet(px, py, Global.Dir.DOWN,
 							Global.seeker_bullet_default_speed), Player.this,
 					0, 0));
@@ -420,4 +427,12 @@ public class Player extends CircleGameObject {
 		}
 	}
 
+	public class PlayerLaser extends Laser{
+
+		public PlayerLaser(CircleGameObject parent, float dir) {
+			super(parent, dir);
+		}
+		
+	}
+	
 }

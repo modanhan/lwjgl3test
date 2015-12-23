@@ -4,6 +4,7 @@ import events.Event;
 import events.EventHandler;
 import game.Game;
 import game.object.CircleGameObject;
+import game.object.Laser;
 import game.object.TrailVisual;
 import game.object.player.Player.PlayerLinearBullet;
 
@@ -22,7 +23,7 @@ abstract class PlayerAttack {
 		active = false;
 	}
 
-	public class AttackEvent extends Event {
+	public class BulletAttackEvent extends Event {
 		private CircleGameObject bullet;
 		private CircleGameObject spawner;
 		private float dx, dy;
@@ -40,7 +41,7 @@ abstract class PlayerAttack {
 		 * @param dy
 		 *            Displacement y from the spawner.
 		 */
-		public AttackEvent(int delay, CircleGameObject bullet,
+		public BulletAttackEvent(int delay, CircleGameObject bullet,
 				CircleGameObject spawner, float dx, float dy) {
 			super(delay);
 			this.bullet = bullet;
@@ -58,7 +59,7 @@ abstract class PlayerAttack {
 		 * @param spawner
 		 *            The object that does the attack.
 		 */
-		public AttackEvent(int delay, PlayerLinearBullet bullet,
+		public BulletAttackEvent(int delay, PlayerLinearBullet bullet,
 				CircleGameObject spawner) {
 			this(delay, bullet, spawner, 0, 0);
 		}
@@ -71,8 +72,25 @@ abstract class PlayerAttack {
 				cgo.py = spawner.py + dy;
 				Game.addPlayerBullet(cgo);
 				Game.addVisuals(new TrailVisual(cgo,1,1,1,0.5f,cgo.size/2f, 1000));
-				EventHandler.add(new AttackEvent(getDelay(), bullet, spawner,
+				EventHandler.add(new BulletAttackEvent(getDelay(), bullet, spawner,
 						dx, dy));
+			}
+		}
+	}
+	public class LaserAttackEvent extends Event{
+		private Laser laser;
+		private CircleGameObject spawner;
+
+		public LaserAttackEvent(int delay, Laser laser, CircleGameObject spawner) {
+			super(delay);
+			this.laser = laser;
+			this.spawner = spawner;
+		}
+
+		@Override
+		public void run() {
+			if (!spawner.remove && active) {
+				Game.addPlayerLaser(laser);
 			}
 		}
 	}
