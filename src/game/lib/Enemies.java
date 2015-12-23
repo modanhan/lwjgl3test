@@ -104,14 +104,6 @@ public class Enemies {
 			super.update();
 		}
 
-		public void render() {
-			super.render();
-		}
-
-		public void renderGlow() {
-			super.render();
-		}
-
 		private static final float maxcount1 = 10;
 		private static float count1 = maxcount1;
 		private static final float maxcount2 = 80;

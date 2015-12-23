@@ -123,11 +123,11 @@ public class Game {
 			g.render();
 		for (GameObject g : enemybullets)
 			g.render();
-		for (GameObject g : playerlasers)
-			g.render();
 		for (GameObject g : enemylasers)
 			g.render();
 		for (GameObject g : enemies)
+			g.render();
+		for (GameObject g : playerlasers)
 			g.render();
 		for (GameObject g : visuals) {
 			g.render();
@@ -142,11 +142,11 @@ public class Game {
 			g.renderGlow();
 		for (GameObject g : enemybullets)
 			g.renderGlow();
-		for (GameObject g : playerlasers)
-			g.renderGlow();
 		for (GameObject g : enemylasers)
 			g.renderGlow();
 		for (GameObject g : enemies)
+			g.renderGlow();
+		for (GameObject g : playerlasers)
 			g.renderGlow();
 		for (GameObject g : visuals)
 			g.renderGlow();

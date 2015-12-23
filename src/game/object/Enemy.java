@@ -17,6 +17,7 @@ public abstract class Enemy extends CircleGameObject {
 	public boolean boss;
 	public int maxhp = 1;
 	public int hp = maxhp;
+	float r, g, b, a, dr, dg, db, da;
 	protected float tx, ty, speed = 0.1f;
 
 	/**
@@ -31,6 +32,10 @@ public abstract class Enemy extends CircleGameObject {
 		this.py = py;
 		this.tx = px;
 		this.ty = py;
+		r = dr = 1f;
+		g = dg = 0f;
+		b = db = .5f;
+		a = da = 1f;
 	}
 
 	public void spawn() {
@@ -44,17 +49,13 @@ public abstract class Enemy extends CircleGameObject {
 	public void render() {
 		glPushMatrix();
 		glTranslatef(px, py, 0);
-		if (!hit) {
-			glColor3f(1, 0, 1);
-		} else {
-			glColor3f(1, 1, 1);
-		}
+		glColor4f(r, g, b, a);
 		Graphics.quad(size);
 		glPopMatrix();
 	}
 
 	public void renderGlow() {
-	//	render();
+		render();
 	}
 
 	protected void move() {
@@ -71,44 +72,48 @@ public abstract class Enemy extends CircleGameObject {
 
 	public void update() {
 		move();
-		hit = false;
+		r += (dr - r) / 15f;
+		g += (dg - g) / 15f;
+		b += (db - b) / 15f;
+		a += (da - a) / 15f;
+
+		if (hit) {
+			r = g = b = 1;
+		}
+
 		/*
 		 * PlayerBullet b = null; ListIterator<GameObject> i =
 		 * Game.playerbullets.listIterator(); while (i.hasNext()){ b =
 		 * (PlayerBullet) i.next(); if(CircleGameObject.checkCollision(this,
 		 * b)){ b.remove(); i.remove(); hp-=b.power; hit=true; } }
 		 */
-	/*	for (GameObject g : Game.playerbullets) {
-			if (CircleGameObject.checkCollision(this, (CircleGameObject) g)) {
-				hp--;
-				hit = true;
-				g.kill();
-			}
-		}
-		if (Game.player != null) {
-			if (CircleGameObject.checkCollision(this, Game.player)) {
-				if (!(Global.godmode && Global.cheats)) {
-					Game.player.kill();
-				}
-				hp--;
-				hit = true;
-			}
-		}*/
+		/*
+		 * for (GameObject g : Game.playerbullets) { if
+		 * (CircleGameObject.checkCollision(this, (CircleGameObject) g)) { hp--;
+		 * hit = true; g.kill(); } } if (Game.player != null) { if
+		 * (CircleGameObject.checkCollision(this, Game.player)) { if
+		 * (!(Global.godmode && Global.cheats)) { Game.player.kill(); } hp--;
+		 * hit = true; } }
+		 */
+
 		if (hp <= 0) {
 			kill();
 		}
+		hit = false;
 	}
-	
-	public void takeHit(){
+
+	public void takeHit() {
 		hp--;
-		hit=true;
+		hit = true;
 	}
-	public void takeHit(int damage){
-		if(damage != 0){
-			hp-=damage;
-			hit=true;
+
+	public void takeHit(int damage) {
+		if (damage != 0) {
+			hp -= damage;
+			hit = true;
 		}
 	}
+
 	public class EnemyBulletEvent extends Event {
 
 		public EnemyBulletEvent(int time) {
@@ -155,12 +160,11 @@ public abstract class Enemy extends CircleGameObject {
 		}
 
 		public void renderGlow() {
-/*			glPushMatrix();
-			glTranslatef(px, py, 0);
-			glRotatef((float) Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1);
-			glColor3f(1f, 0.5f, 1);
-			Graphics.quad(size);
-			glPopMatrix();*/
+			/*
+			 * glPushMatrix(); glTranslatef(px, py, 0); glRotatef((float)
+			 * Math.toDegrees(Math.atan2(dy, dx)), 0, 0, 1); glColor3f(1f, 0.5f,
+			 * 1); Graphics.quad(size); glPopMatrix();
+			 */
 		}
 
 		@Override
@@ -185,8 +189,10 @@ public abstract class Enemy extends CircleGameObject {
 
 		/**
 		 * 
-		 * @param time amount of time to wait to spawn enemy e
-		 * @param e the enemy to spawn
+		 * @param time
+		 *            amount of time to wait to spawn enemy e
+		 * @param e
+		 *            the enemy to spawn
 		 */
 		public EnemySpawnEvent(int time, Enemy e) {
 			super(time);
@@ -233,7 +239,7 @@ public abstract class Enemy extends CircleGameObject {
 		}
 
 	}
-	
+
 	@Override
 	public CircleGameObject clone() {
 		// TODO Auto-generated method stub
