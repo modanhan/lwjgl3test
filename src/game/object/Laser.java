@@ -8,7 +8,7 @@ import util.Global;
 import util.Time;
 
 public class Laser extends GameObject {
-	protected int damage = 1; // TODO global default var
+	protected int damage = 10; // TODO global default var
 	protected boolean damagetick = true;
 	protected int delay = 1000;// TODO global default var
 	protected int time = 0;
@@ -23,7 +23,7 @@ public class Laser extends GameObject {
 		this.parent = parent;
 		this.dir = dir;
 		dr = dg = db = 1f;
-		da = .35f;
+		da = .1f;
 	}
 
 	@Override
