@@ -71,9 +71,7 @@ abstract class PlayerAttack {
 				cgo.px = spawner.px + dx;
 				cgo.py = spawner.py + dy;
 				Game.addPlayerBullet(cgo);
-				Game.addVisuals(new TrailVisual(cgo,1,1,1,0.5f,cgo.size/2f, 1000));
-				EventHandler.add(new BulletAttackEvent(getDelay(), bullet, spawner,
-						dx, dy));
+				EventHandler.add(new BulletAttackEvent(getDelay(), bullet, spawner,dx, dy));
 			}
 		}
 	}

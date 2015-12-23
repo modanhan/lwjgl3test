@@ -78,7 +78,6 @@ public class TrailVisual extends GameObject {
 				glTexCoord2f(1,0);glVertex2f(-dx+t.x,+dy+t.y);
 				glTexCoord2f(1,1);glVertex2f(+dx+t.x,+dy+t.y);
 			}else if(iter.previousIndex()==0){
-				System.out.println(iter.previousIndex());
 				TrailSection tn = iter.next();
 				float ndist = (float) Math.hypot(tn.x-t.x, tn.y-t.y);
 				float nx = (tn.x-t.x)*size;

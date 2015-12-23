@@ -56,7 +56,9 @@ public class Game {
 	 */
 	private static void spawnEnemies() {
 		EventHandler
-				.add(new Enemy.EnemySpawnEvent(1000, new Enemies.ReturnBoss(Global.width / 2, Global.length * 3 / 4)));
+				
+				.add(new Enemy.EnemySpawnEvent(1000, new Enemies.BossEnemy(
+						Global.width / 2, Global.length * 3 / 4)));
 	}
 
 	private static void initGraphics() {
