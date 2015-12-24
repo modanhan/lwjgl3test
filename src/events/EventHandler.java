@@ -20,7 +20,7 @@ public class EventHandler {
 	public static void update() {
 		long time = Time.getTime();
 		while (!pq.isEmpty() && pq.peek().getTime() <= time) {
-			pq.poll().run();
+			pq.poll().conditionalRun();
 		}
 	}
 

@@ -5,6 +5,7 @@ import util.Time;
 public abstract class Event implements Comparable<Event> {
 	private long time;
 	private int delay;
+	private boolean active;
 
 	/**
 	 * Add this to EventHandler to trigger the event at time current time (the
@@ -18,6 +19,7 @@ public abstract class Event implements Comparable<Event> {
 	public Event(int delay) {
 		this.time = Time.getTime() + delay;
 		this.delay = delay;
+		active = true;
 	}
 
 	public final int compareTo(Event e) {
@@ -44,5 +46,21 @@ public abstract class Event implements Comparable<Event> {
 	 */
 	public final int getDelay() {
 		return delay;
+	}
+
+	/**
+	 * Cancel the event
+	 */
+	public final void cancel() {
+		active = false;
+	}
+
+	public final boolean isActive() {
+		return active;
+	}
+
+	public final void conditionalRun() {
+		if (active)
+			run();
 	}
 }
