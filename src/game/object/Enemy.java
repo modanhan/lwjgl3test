@@ -173,9 +173,8 @@ public abstract class Enemy extends CircleGameObject {
 		}
 
 		@Override
-		public CircleGameObject clone() {
-			// TODO Auto-generated method stub
-			return null;
+		public EnemyBullet clone() {
+			return new EnemyBullet(px, py, dir, speed);
 		}
 	}
 

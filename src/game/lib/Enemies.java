@@ -2,6 +2,7 @@ package game.lib;
 
 import events.Event;
 import events.EventHandler;
+import game.Attack;
 import game.Game;
 import game.object.CircleGameObject;
 import game.object.Enemy;
@@ -212,7 +213,7 @@ public class Enemies {
 
 			@Override
 			public void run() {
-				if(ReturnBoss.this.remove){
+				if (ReturnBoss.this.remove) {
 					return;
 				}
 				if (count < 0) {
@@ -235,6 +236,29 @@ public class Enemies {
 									+ Global.return_boss_bullet_rotate));
 				}
 			}
+		}
+
+	}
+
+	public static class Shooter extends Enemy {
+		Attack attack;
+
+		public Shooter(final float px, final float py) {
+			super(px, py);
+			attack = new Attack(Shooter.this) {
+				@Override
+				public void init() {
+					add(new EnemyBullet(px, py, Global.Dir.DOWN,
+							Global.enemy_bullet_default_speed), 1000);
+				}
+			};
+		}
+
+		@Override
+		public void update() {
+			super.update();
+			attack.update();
+			tx-=1;
 		}
 
 	}
