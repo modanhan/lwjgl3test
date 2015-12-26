@@ -15,7 +15,7 @@ public class Console implements Runnable{
 	}
 	@Override
 	public void run() {
-		do{
+	/*	do{
 			try {
 				while(!in.ready()&&Global.running==true){
 					Thread.sleep(200);
@@ -51,7 +51,7 @@ public class Console implements Runnable{
 						System.out.println("player is dead");
 					}
 					break;
-		/*		case "/level": //changes current level (0-1)
+				case "/level": //changes current level (0-1)
 					Level.level(Integer.parseInt(args[1]));
 					System.out.println("level set to "+args[1]);
 					break;
@@ -59,7 +59,7 @@ public class Console implements Runnable{
 					if(Game.player!=null)break;
 					Game.resetPlayer();
 					System.out.println("player respawned");
-					break;*/
+					break;
 				case "/exit":
 					return;
 				default:
@@ -69,6 +69,6 @@ public class Console implements Runnable{
 			} catch (IOException | InterruptedException e) {
 				return;
 			}
-		}while(true);
+		}while(true);*/
 	}
 }

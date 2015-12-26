@@ -5,17 +5,14 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 import static org.lwjgl.opengl.GL11.glEnable;
 
 import java.io.File;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.function.Consumer;
 
 import org.lwjgl.opengl.GL13;
 
-import events.EventHandler;
-import game.lib.Enemies;
-import game.object.Enemy;
+import game.object.Bullet;
 import game.object.GameObject;
+import game.object.enemy.Enemy;
 import game.object.player.Player;
 import graphics.FrameBuffer;
 import graphics.Graphics;
@@ -32,32 +29,29 @@ import util.Global;
 public class Game {
 	public static Player player;
 
-	public static LinkedList<GameObject> enemies, playerbullets, playerlasers,
-			enemybullets, enemylasers, visuals;
+	public static LinkedList<Bullet> playerbullets,
+			enemybullets;
+	public static LinkedList<Enemy> enemies;
+	public static LinkedList<GameObject> visuals;
 	private static FrameBuffer hbuf, vbuf;
 	private static Shader hblur, vblur;
 	private static Texture main;
 
 	public static void init() {
 		player = new Player();
-		enemies = new LinkedList<GameObject>();
-		playerbullets = new LinkedList<GameObject>();
-		playerlasers = new LinkedList<GameObject>();
-		enemybullets = new LinkedList<GameObject>();
-		enemylasers = new LinkedList<GameObject>();
+		enemies = new LinkedList<Enemy>();
+		playerbullets = new LinkedList<Bullet>();
+		enemybullets = new LinkedList<Bullet>();
 		visuals = new LinkedList<GameObject>();
 		initGraphics();
-
-		spawnEnemies();
-
+		spawnenemies();
 	}
-
+	
 	/**
-	 * this is just for testing.. remove this
+	 * TODO remove this
 	 */
-	private static void spawnEnemies() {
-		EventHandler.add(new Enemy.EnemySpawnEvent(1000, new Enemies.Shooter(
-				Global.width / 2, Global.length * 3 / 4)));
+	private static void spawnenemies(){
+		enemies.add(new Enemy(300,300));
 	}
 
 	private static void initGraphics() {
@@ -92,18 +86,16 @@ public class Game {
 				player.update();
 		}
 		updateList(playerbullets.iterator());
-		updateList(playerlasers.iterator());
 		updateList(enemies.iterator());
 		updateList(enemybullets.iterator());
-		updateList(enemylasers.iterator());
 		updateList(visuals.iterator());
 		Collision.update();
 		render();
 	}
 
-	private static void updateList(Iterator<GameObject> it) {
+	private static void updateList(Iterator<?> it) {
 		while (it.hasNext()) {
-			GameObject go = it.next();
+			GameObject go = (GameObject) it.next();
 			if (go.remove) {
 				it.remove();
 			} else {
@@ -124,11 +116,7 @@ public class Game {
 			g.render();
 		for (GameObject g : enemybullets)
 			g.render();
-		for (GameObject g : enemylasers)
-			g.render();
 		for (GameObject g : enemies)
-			g.render();
-		for (GameObject g : playerlasers)
 			g.render();
 		for (GameObject g : visuals) {
 			g.render();
@@ -143,55 +131,30 @@ public class Game {
 			g.renderGlow();
 		for (GameObject g : enemybullets)
 			g.renderGlow();
-		for (GameObject g : enemylasers)
-			g.renderGlow();
 		for (GameObject g : enemies)
-			g.renderGlow();
-		for (GameObject g : playerlasers)
 			g.renderGlow();
 		for (GameObject g : visuals)
 			g.renderGlow();
 		Graphics.blendAdditive();
-		// Graphics.renderPass(hblur, hbuf, vbuf);
-		// Graphics.renderPass(vblur, vbuf, hbuf);
-		// Graphics.renderPass(hblur, hbuf, vbuf);
-		// Graphics.renderPass(vblur, vbuf, hbuf);
 		Graphics.renderPass(hblur, hbuf, vbuf);
 		Graphics.renderPass(vblur, vbuf);
 		Graphics.reset();
 
 	}
 
-	public static void addEnemy(GameObject g) {
+	public static void addEnemy(Enemy g) {
 		enemies.add(g);
 	}
 
-	public static void addEnemyBullet(GameObject g) {
+	public static void addEnemyBullet(Bullet g) {
 		enemybullets.add(g);
 	}
 
-	public static void addPlayerBullet(GameObject g) {
+	public static void addPlayerBullet(Bullet g) {
 		playerbullets.add(g);
-	}
-
-	public static void addEnemyLaser(GameObject g) {
-		enemylasers.add(g);
-	}
-
-	public static void addPlayerLaser(GameObject g) {
-		playerlasers.add(g);
 	}
 
 	public static void addVisuals(GameObject g) {
 		visuals.add(g);
-	}
-
-	public static void removeAll(Collection<? extends GameObject> e) {
-		e.forEach(new Consumer<GameObject>() {
-			@Override
-			public void accept(GameObject t) {
-				t.remove();
-			}
-		});
 	}
 }

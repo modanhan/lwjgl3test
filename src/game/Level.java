@@ -2,7 +2,7 @@ package game;
 
 import events.EventHandler;
 import game.lib.Enemies;
-import game.object.Enemy;
+import game.object.enemy.Enemy;
 import mode.GameMode;
 import util.Global;
 

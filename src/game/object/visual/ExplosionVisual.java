@@ -1,12 +1,14 @@
-package game.object;
+package game.object.visual;
 
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import org.lwjgl.opengl.GL11;
+
 import events.Event;
 import events.EventHandler;
+import game.object.GameObject;
 import graphics.Graphics;
 
 public class ExplosionVisual extends GameObject {
