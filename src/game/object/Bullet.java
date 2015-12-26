@@ -1,5 +1,6 @@
 package game.object;
 
+import util.Global;
 import util.Time;
 
 /**
@@ -41,13 +42,24 @@ public abstract class Bullet extends CollidingGameObject {
 	}
 
 	/**
-	 * Updates location.
+	 * Updates location and removes this object if out of bounds.
 	 */
-	@Override
-	public void update() {
+	public void updateLocation() {
 		int delta = Time.getDelta();
 		x += dx * delta;
 		y += dy * delta;
+		if (y > Global.height + Global.margin || y < -Global.margin
+				|| x > Global.width + Global.margin || x < -Global.margin) {
+			remove();
+		}
+	}
+
+	public float getSpeed() {
+		return speed;
+	}
+
+	public float getDir() {
+		return dir;
 	}
 
 	public abstract Bullet clone();

@@ -37,4 +37,9 @@ public class PlayerLinearBullet extends Bullet {
 		Game.addVisuals(new ExplosionVisual(x, y, radius, radius * 5, 1000));
 	}
 
+	@Override
+	public void update() {
+		updateLocation();
+	}
+
 }

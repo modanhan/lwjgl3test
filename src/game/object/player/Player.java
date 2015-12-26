@@ -26,6 +26,7 @@ public class Player extends CollidingGameObject {
 			@Override
 			public void init() {
 				addBullet(new PlayerLinearBullet(), Global.player_bullet_delay);
+				addBullet(new PlayerSeekerBullet(Global.Dir.DOWN), Global.player_bullet_delay,500);
 			}
 		};
 	}
