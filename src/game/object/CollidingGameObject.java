@@ -9,7 +9,7 @@ package game.object;
 public abstract class CollidingGameObject extends GameObject {
 	public final static int LINE = 0, CIRCLE = 1;
 	private int shape;
-	public float radius, dir;
+	public float radius, theta;
 
 	public CollidingGameObject(int shape) {
 		super();

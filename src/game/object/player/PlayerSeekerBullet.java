@@ -12,6 +12,8 @@ import game.Game;
 import game.object.Bullet;
 import game.object.GameObject;
 import game.object.enemy.Enemy;
+import game.object.visual.ExplosionVisual;
+import game.object.visual.TrailVisual;
 import graphics.Graphics;
 import util.Global;
 import util.Time;
@@ -40,10 +42,11 @@ public class PlayerSeekerBullet extends Bullet {
 	 */
 
 	public PlayerSeekerBullet(float dir) {
-		super(CIRCLE, 1, dir);
+		super(CIRCLE, .5f, dir);
 		targets = Game.enemies;
 		time = 0;
 		radius = 5;
+		Game.addVisuals(new TrailVisual(this, 3, 1000));
 	}
 
 	public void track() {
@@ -97,8 +100,7 @@ public class PlayerSeekerBullet extends Bullet {
 
 	@Override
 	public void death() {
-		// TODO Auto-generated method stub
-
+		Game.addVisuals(new ExplosionVisual(x, y, radius, radius * 5, 1000));
 	}
 
 	@Override

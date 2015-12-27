@@ -81,10 +81,10 @@ public class Collision {
 			CollidingGameObject b) {
 		float bdir = (float) Math.atan2(b.y - a.y, b.x - a.x);
 		float dist = (float) Math.hypot(b.y - a.y, b.x - a.x);
-		if (Math.abs(Math.sin(a.dir - bdir)) * dist < b.radius) {
-			if (Math.cos(a.dir - bdir) > 0) {
+		if (Math.abs(Math.sin(a.theta - bdir)) * dist < b.radius) {
+			if(Math.cos(a.theta - bdir)>0){
 				return true;
-			} else {
+			}else{
 				return false;
 			}
 		} else {

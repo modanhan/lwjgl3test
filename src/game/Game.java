@@ -38,11 +38,14 @@ public class Game {
 	private static Texture main;
 
 	public static void init() {
-		player = new Player();
+		
 		enemies = new LinkedList<Enemy>();
 		playerbullets = new LinkedList<Bullet>();
 		enemybullets = new LinkedList<Bullet>();
 		visuals = new LinkedList<GameObject>();
+		
+		player = new Player();
+		
 		initGraphics();
 		spawnenemies();
 	}
