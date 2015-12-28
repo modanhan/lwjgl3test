@@ -1,5 +1,7 @@
 package game.object.player;
 
+import java.util.ArrayList;
+
 import org.lwjgl.glfw.GLFW;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -15,22 +17,21 @@ import util.Time;
 public class Player extends CollidingGameObject {
 
 	Attack attack;
+	int powertype = 0, powerlevel = 0;
+	ArrayList<SideShooter> sideshooters;
 
 	public Player() {
 		super(CIRCLE);
 		radius = Global.player_size;
 		x = Global.width / 2;
 		y = Global.height / 2;
-		attack = new Attack(this, true) {
+		sideshooters = new ArrayList<SideShooter>();
+	}
 
-			@Override
-			public void init() {
-				addBullet(new PlayerLinearBullet(), Global.player_bullet_delay);
-				addBullet(new PlayerSeekerBullet(Global.Dir.DOWN), 2500, 500);
-				addBullet(new PlayerLaser(Global.Dir.LEFT), 1000);
-				addBullet(new PlayerLaser(Global.Dir.RIGHT), 1000, 500);
-			}
-		};
+	public void switchAttack(int type, int level) {
+		attack = PlayerAttacks.acquire(type, level);
+		attack.activate();
+		SideShooterAttacks.acquire(type, level);
 	}
 
 	/**
@@ -58,6 +59,22 @@ public class Player extends CollidingGameObject {
 		if (Keyboard.isKeyDown(GLFW.GLFW_KEY_RIGHT)) {
 			x += (d * speed);
 		}
+		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_EQUAL)) {
+			powerlevel = (powerlevel + 1) % 15;
+			switchAttack(powertype, powerlevel);
+		}
+		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_MINUS)) {
+			powerlevel = (powerlevel + 14) % 15;
+			switchAttack(powertype, powerlevel);
+		}
+		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_RIGHT_BRACKET)) {
+			powertype = (powertype + 1) % 3;
+			switchAttack(powertype, powerlevel);
+		}
+		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_LEFT_BRACKET)) {
+			powertype = (powertype + 2) % 3;
+			switchAttack(powertype, powerlevel);
+		}
 
 		if (x < 0)
 			x = 0;
@@ -67,6 +84,10 @@ public class Player extends CollidingGameObject {
 			x = Global.width;
 		if (y > Global.height)
 			y = Global.height;
+
+		for (SideShooter s : sideshooters) {
+			s.update();
+		}
 
 		attack.update();
 	}
@@ -78,6 +99,9 @@ public class Player extends CollidingGameObject {
 		glColor3f(1, 1, 1);
 		Graphics.quad(radius);
 		glPopMatrix();
+		for (SideShooter s : sideshooters) {
+			s.render();
+		}
 	}
 
 	public void renderGlow() {

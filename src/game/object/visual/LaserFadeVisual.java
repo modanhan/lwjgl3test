@@ -43,8 +43,8 @@ public class LaserFadeVisual extends GameObject {
 
 	@Override
 	public void update() {
-		width *= .9f;
-		a *= .9f;
+		width *= .95f;
+		a *= .95f;
 	}
 
 	@Override
@@ -62,9 +62,9 @@ public class LaserFadeVisual extends GameObject {
 		glTexCoord2f(0, 1);
 		glVertex2f(0, -width);
 		glTexCoord2f(1, 1);
-		glVertex2f(Global.height + Global.width, -width);
+		glVertex2f(Global.height + Global.width, -0);
 		glTexCoord2f(1, 0);
-		glVertex2f(Global.height + Global.width, width);
+		glVertex2f(Global.height + Global.width, 0);
 
 		glEnd();
 		glPopMatrix();

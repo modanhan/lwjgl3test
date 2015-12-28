@@ -14,6 +14,8 @@ import game.object.Bullet;
 import game.object.GameObject;
 import game.object.enemy.Enemy;
 import game.object.player.Player;
+import game.object.player.PlayerAttacks;
+import game.object.player.SideShooterAttacks;
 import graphics.FrameBuffer;
 import graphics.Graphics;
 import graphics.Shader;
@@ -29,8 +31,7 @@ import util.Global;
 public class Game {
 	public static Player player;
 
-	public static LinkedList<Bullet> playerbullets,
-			enemybullets;
+	public static LinkedList<Bullet> playerbullets, enemybullets;
 	public static LinkedList<Enemy> enemies;
 	public static LinkedList<GameObject> visuals;
 	private static FrameBuffer hbuf, vbuf;
@@ -38,23 +39,26 @@ public class Game {
 	private static Texture main;
 
 	public static void init() {
-		
+		player = new Player();
+
 		enemies = new LinkedList<Enemy>();
 		playerbullets = new LinkedList<Bullet>();
 		enemybullets = new LinkedList<Bullet>();
 		visuals = new LinkedList<GameObject>();
 		
-		player = new Player();
+		PlayerAttacks.init();
+		SideShooterAttacks.init();
+		player.switchAttack(PlayerAttacks.LINEAR, 0);
 		
 		initGraphics();
 		spawnenemies();
 	}
-	
+
 	/**
 	 * TODO remove this
 	 */
-	private static void spawnenemies(){
-		enemies.add(new Enemy(300,300));
+	private static void spawnenemies() {
+		enemies.add(new Enemy(300, 300));
 	}
 
 	private static void initGraphics() {

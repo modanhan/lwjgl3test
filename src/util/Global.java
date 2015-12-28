@@ -30,11 +30,18 @@ public class Global {
 	public static float player_speed = .3f, player_slow_speed = .125f;
 
 	public static float player_init_bullet_speed = 0.3f;
-	public static int player_init_bullet_delay = 350;
+	public static int player_init_bullet_delay = 500;
 
 	public static float player_bullet_speed = 0.4f;
 	public static float player_bullet_size = 5;
-	public static int player_bullet_delay = 250;
+	public static int player_bullet_delay = 375;
+	public static int player_bullet_short_delay = 300;
+
+	public static int player_laser_delay = 750;
+
+	public static float player_bullet_cone_angle0 = .02f;
+	public static float player_bullet_cone_angle1 = .3f;
+	public static float player_bullet_cone_angle2 = .55f;
 
 	public static int player_wtf_bullet_delay = 100;
 

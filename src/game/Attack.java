@@ -8,9 +8,12 @@ import util.Time;
 
 /**
  * 
- * Defines an attack, has ability to fire bullets
- * from a game object at a fixed rate
- * and a initial wait time.
+ * Defines an attack, has ability to fire bullets from a game object at a fixed
+ * rate and a initial wait time.
+ * 
+ * For the attack to work, activate() must be called.
+ * 
+ * This class is updated per frame.
  *
  */
 public abstract class Attack {
@@ -23,13 +26,13 @@ public abstract class Attack {
 	/**
 	 * Defines a attack, bullets will spawn at spawner. Bullets fired by players
 	 * are friendly.
+	 * 
 	 * @param spawner
 	 * @param friendly
 	 */
 	public Attack(GameObject spawner, boolean friendly) {
 		this.spawner = spawner;
 		this.friendly = friendly;
-		activate();
 	}
 
 	/**
@@ -42,9 +45,7 @@ public abstract class Attack {
 			long t = Time.getTime();
 			for (int i = 0; i < bullets.size(); i++) {
 				if (lastfiretime.get(i) + delay.get(i) <= t) {
-					Bullet lb = bullets.get(i).clone();
-					lb.x = spawner.x;
-					lb.y = spawner.y;
+					Bullet lb = bullets.get(i).clone(spawner.x,spawner.y);
 					if (friendly)
 						Game.addPlayerBullet(lb);
 					else
@@ -56,14 +57,20 @@ public abstract class Attack {
 		}
 	}
 
+	/**
+	 * Activates the attack, must be called for it to update.
+	 */
 	public void activate() {
-		active = true;
 		bullets = new ArrayList<Bullet>();
 		lastfiretime = new ArrayList<Long>();
 		delay = new ArrayList<Integer>();
 		init();
+		active = true;
 	}
 
+	/**
+	 * Cancels the attack, the opposite of activate.
+	 */
 	public void cancel() {
 		active = false;
 	}

@@ -13,14 +13,22 @@ import graphics.Graphics;
 public class PlayerLinearBullet extends Bullet {
 
 	public PlayerLinearBullet() {
+		this(Global.player_bullet_speed, Global.Dir.UP);
+	}
+
+	public PlayerLinearBullet(float dir) {
+		this(Global.player_bullet_speed, dir);
+	}
+
+	public PlayerLinearBullet(float speed, float dir) {
 		super(CIRCLE);
-		setSpeedDir(Global.player_bullet_speed, Global.Dir.UP);
+		setSpeedDir(speed, dir);
 		radius = Global.player_bullet_size;
 	}
 
 	@Override
 	public Bullet clone() {
-		return new PlayerLinearBullet();
+		return new PlayerLinearBullet(getSpeed(), getDir());
 	}
 
 	@Override
@@ -34,12 +42,20 @@ public class PlayerLinearBullet extends Bullet {
 
 	@Override
 	public void death() {
-		Game.addVisuals(new ExplosionVisual(x, y, radius, radius * 5, 1000));
+		Game.addVisuals(new ExplosionVisual(x, y, radius, radius * 10, 1000));
 	}
 
 	@Override
 	public void update() {
 		updateLocation();
+	}
+
+	@Override
+	public Bullet clone(float x, float y) {
+		Bullet b = clone();
+		b.x = x;
+		b.y = y;
+		return b;
 	}
 
 }

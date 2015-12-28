@@ -63,4 +63,6 @@ public abstract class Bullet extends CollidingGameObject {
 	}
 
 	public abstract Bullet clone();
+
+	public abstract Bullet clone(float x, float y);
 }

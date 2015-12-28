@@ -100,12 +100,20 @@ public class PlayerSeekerBullet extends Bullet {
 
 	@Override
 	public void death() {
-		Game.addVisuals(new ExplosionVisual(x, y, radius, radius * 5, 1000));
+		Game.addVisuals(new ExplosionVisual(x, y, radius, radius * 10, 1000));
 	}
 
 	@Override
 	public void update() {
 		track();
 		updateLocation();
+	}
+
+	@Override
+	public Bullet clone(float x, float y) {
+		Bullet b = clone();
+		b.x = x;
+		b.y = y;
+		return b;
 	}
 }

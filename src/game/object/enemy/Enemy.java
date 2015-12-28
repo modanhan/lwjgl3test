@@ -37,7 +37,7 @@ public class Enemy extends CollidingGameObject {
 		b = db = .5f;
 		a = da = 1f;
 		radius = 50;
-		hp=100;
+		hp=10000;
 	}
 
 	public void spawn() {
