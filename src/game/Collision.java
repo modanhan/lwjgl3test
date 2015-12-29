@@ -2,12 +2,14 @@ package game;
 
 import game.object.CollidingGameObject;
 import game.object.enemy.Enemy;
+import game.object.powerup.Powerup;
 
 public class Collision {
 	public static void update() {
 		player_enemybullet();
 		player_enemy();
 		enemy_playerbullet();
+		player_powerup();
 	}
 
 	private static void player_enemybullet() {
@@ -39,6 +41,17 @@ public class Collision {
 		for (CollidingGameObject g : Game.enemies) {
 			if (collide(Game.player, g)) {
 				Game.player.kill();
+			}
+		}
+	}
+	
+	private static void player_powerup(){
+		if(Game.player==null)
+			return;
+		for(CollidingGameObject g:Game.powerups){
+			if(collide(Game.player, g)){
+				Game.player.receivePowerup(((Powerup) g).getType());
+				g.kill();
 			}
 		}
 	}

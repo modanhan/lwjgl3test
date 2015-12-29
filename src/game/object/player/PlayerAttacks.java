@@ -321,21 +321,22 @@ public class PlayerAttacks {
 			@Override
 			public void init() {
 				float angle = Global.Dir.PI2 / 4;
-				addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5),
+				addBullet(new PlayerSeekerBullet(angle),
 						Global.player_bullet_short_delay, 0);
 				addBullet(
-						new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 2),
+						new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 1),
 						Global.player_bullet_short_delay,
 						Global.player_bullet_short_delay / 5);
 				addBullet(
-						new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 3),
+						new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 2),
 						Global.player_bullet_short_delay,
 						Global.player_bullet_short_delay / 5 * 2);
 				addBullet(
-						new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 4),
+						new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 3),
 						Global.player_bullet_short_delay,
 						Global.player_bullet_short_delay / 5 * 3);
-				addBullet(new PlayerSeekerBullet(angle),
+				addBullet(
+						new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 4),
 						Global.player_bullet_short_delay,
 						Global.player_bullet_short_delay / 5 * 4);
 			}
@@ -484,7 +485,8 @@ public class PlayerAttacks {
 
 			@Override
 			public void init() {
-				addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay);
+				addBullet(new PlayerLaser(Global.Dir.UP),
+						Global.player_laser_delay);
 			}
 		},
 		/**

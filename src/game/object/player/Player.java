@@ -28,6 +28,12 @@ public class Player extends CollidingGameObject {
 		sideshooters = new ArrayList<SideShooter>();
 	}
 
+	public void receivePowerup(int type) {
+		switchAttack(type, type == powertype ? (powerlevel += 1)
+				: (powerlevel = 1));
+		powertype = type;
+	}
+
 	public void switchAttack(int type, int level) {
 		attack = PlayerAttacks.acquire(type, level);
 		attack.activate();

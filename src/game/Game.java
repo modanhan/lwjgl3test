@@ -10,12 +10,15 @@ import java.util.LinkedList;
 
 import org.lwjgl.opengl.GL13;
 
+import events.Event;
+import events.EventHandler;
 import game.object.Bullet;
 import game.object.GameObject;
 import game.object.enemy.Enemy;
 import game.object.player.Player;
 import game.object.player.PlayerAttacks;
 import game.object.player.SideShooterAttacks;
+import game.object.powerup.Powerup;
 import graphics.FrameBuffer;
 import graphics.Graphics;
 import graphics.Shader;
@@ -34,6 +37,7 @@ public class Game {
 	public static LinkedList<Bullet> playerbullets, enemybullets;
 	public static LinkedList<Enemy> enemies;
 	public static LinkedList<GameObject> visuals;
+	public static LinkedList<Powerup> powerups;
 	private static FrameBuffer hbuf, vbuf;
 	private static Shader hblur, vblur;
 	private static Texture main;
@@ -45,20 +49,32 @@ public class Game {
 		playerbullets = new LinkedList<Bullet>();
 		enemybullets = new LinkedList<Bullet>();
 		visuals = new LinkedList<GameObject>();
-		
+		powerups = new LinkedList<Powerup>();
+
 		PlayerAttacks.init();
 		SideShooterAttacks.init();
 		player.switchAttack(PlayerAttacks.LINEAR, 0);
-		
+
 		initGraphics();
-		spawnenemies();
+		spawn();
 	}
 
 	/**
 	 * TODO remove this
 	 */
-	private static void spawnenemies() {
-		enemies.add(new Enemy(300, 300));
+	private static void spawn() {
+		addEnemy(new Enemy(300, 300));
+		for(int i=0;i<100;i++){
+			EventHandler.add(new Event(i*2500){
+
+				@Override
+				public void run() {
+					addPowerup(new Powerup(Global.width/2, Global.height));
+					
+				}
+				
+			});
+		}
 	}
 
 	private static void initGraphics() {
@@ -95,6 +111,7 @@ public class Game {
 		updateList(playerbullets.iterator());
 		updateList(enemies.iterator());
 		updateList(enemybullets.iterator());
+		updateList(powerups.iterator());
 		updateList(visuals.iterator());
 		Collision.update();
 		render();
@@ -125,6 +142,8 @@ public class Game {
 			g.render();
 		for (GameObject g : enemies)
 			g.render();
+		for (GameObject g : powerups)
+			g.render();
 		for (GameObject g : visuals) {
 			g.render();
 		}
@@ -139,6 +158,8 @@ public class Game {
 		for (GameObject g : enemybullets)
 			g.renderGlow();
 		for (GameObject g : enemies)
+			g.renderGlow();
+		for (GameObject g : powerups)
 			g.renderGlow();
 		for (GameObject g : visuals)
 			g.renderGlow();
@@ -163,5 +184,9 @@ public class Game {
 
 	public static void addVisuals(GameObject g) {
 		visuals.add(g);
+	}
+
+	public static void addPowerup(Powerup g) {
+		powerups.add(g);
 	}
 }

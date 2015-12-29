@@ -16,6 +16,12 @@ public class Global {
 
 	public static Random random = new Random();
 
+	public static float powerup_radius=7.5f;
+	public static int powerup_switch_time = 2500;
+	public static float powerup_h_speed=.002f;
+	public static int powerup_h_dist=75;
+	public static float powerup_v_speed=.05f;
+
 	public static int player_size = 5;
 
 	public static float linear_bullet_default_speed = 0.3f;
