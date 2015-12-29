@@ -24,6 +24,7 @@ import graphics.Graphics;
 import graphics.Shader;
 import graphics.Texture;
 import util.Global;
+import util.Konami;
 
 /**
  * 
@@ -57,6 +58,8 @@ public class Game {
 
 		initGraphics();
 		spawn();
+		
+		Konami.init();
 	}
 
 	/**
@@ -115,6 +118,8 @@ public class Game {
 		updateList(visuals.iterator());
 		Collision.update();
 		render();
+		
+		Konami.update();
 	}
 
 	private static void updateList(Iterator<?> it) {

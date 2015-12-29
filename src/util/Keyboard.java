@@ -35,4 +35,8 @@ public class Keyboard extends GLFWKeyCallback {
 	public static boolean isKeyReleased(int keycode) {
 		return (!down[keycode]) && lastdown[keycode];
 	}
+	
+	public static int size(){
+		return 349;
+	}
 }
