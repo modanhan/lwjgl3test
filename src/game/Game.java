@@ -10,8 +10,7 @@ import java.util.LinkedList;
 
 import org.lwjgl.opengl.GL13;
 
-import events.Event;
-import events.EventHandler;
+import game.level.Level;
 import game.object.Bullet;
 import game.object.GameObject;
 import game.object.enemy.Enemy;
@@ -35,6 +34,8 @@ import util.Konami;
 public class Game {
 	public static Player player;
 
+	private static int level = 0;
+
 	public static LinkedList<Bullet> playerbullets, enemybullets;
 	public static LinkedList<Enemy> enemies;
 	public static LinkedList<GameObject> visuals;
@@ -57,27 +58,14 @@ public class Game {
 		player.switchAttack(PlayerAttacks.LINEAR, 0);
 
 		initGraphics();
-		spawn();
-		
+
 		Konami.init();
+
+		Level.init(level);
 	}
 
-	/**
-	 * TODO remove this
-	 */
-	private static void spawn() {
-		addEnemy(new Enemy(300, 300));
-		for(int i=0;i<100;i++){
-			EventHandler.add(new Event(i*2500){
-
-				@Override
-				public void run() {
-					addPowerup(new Powerup(Global.width/2, Global.height));
-					
-				}
-				
-			});
-		}
+	public static void setLevel(int i) {
+		level = i;
 	}
 
 	private static void initGraphics() {
@@ -118,7 +106,7 @@ public class Game {
 		updateList(visuals.iterator());
 		Collision.update();
 		render();
-		
+
 		Konami.update();
 	}
 

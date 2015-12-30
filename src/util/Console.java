@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 import game.Game;
-import game.Level;
+import game.level.Level;
 import mode.GameMode;
 
 public class Console implements Runnable{

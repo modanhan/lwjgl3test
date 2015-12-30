@@ -76,7 +76,7 @@ public class Global {
 	}
 
 	public static void update() {
-		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_1)) {
+		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_F1)) {
 			System.out.println("BREAK POINT");
 		}
 	}
