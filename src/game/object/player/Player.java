@@ -30,7 +30,7 @@ public class Player extends CollidingGameObject {
 
 	public void receivePowerup(int type) {
 		switchAttack(type, type == powertype ? (powerlevel += 1)
-				: (powerlevel = 1));
+				: (powerlevel));
 		powertype = type;
 	}
 
