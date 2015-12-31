@@ -10,6 +10,7 @@ import game.Game;
 import game.object.CollidingGameObject;
 import game.object.visual.ExplosionVisual;
 import graphics.Graphics;
+import graphics.Texture;
 import util.Global;
 import util.Keyboard;
 import util.Time;
@@ -100,6 +101,7 @@ public class Player extends CollidingGameObject {
 
 	@Override
 	public void render() {
+		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glTranslatef(x, y, 0);
 		glColor3f(1, 1, 1);

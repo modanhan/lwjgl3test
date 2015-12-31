@@ -21,7 +21,6 @@ import game.object.powerup.Powerup;
 import graphics.FrameBuffer;
 import graphics.Graphics;
 import graphics.Shader;
-import graphics.Texture;
 import util.Global;
 import util.Konami;
 
@@ -42,7 +41,6 @@ public class Game {
 	public static LinkedList<Powerup> powerups;
 	private static FrameBuffer hbuf, vbuf;
 	private static Shader hblur, vblur;
-	private static Texture main;
 
 	public static void init() {
 		player = new Player();
@@ -87,8 +85,7 @@ public class Game {
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		glEnable(GL_TEXTURE_2D);
 		glEnable(GL_BLEND);
-		if (main == null)
-			main = new Texture(new File("res/circle.png"));
+		Global.Textures.load();
 		Graphics.reset();
 	}
 
@@ -126,7 +123,6 @@ public class Game {
 		Graphics.blendOverlay();
 		Graphics.set();
 
-		Texture.bind(main);
 		if (player != null)
 			player.render();
 		for (GameObject g : playerbullets)
@@ -143,7 +139,6 @@ public class Game {
 
 		FrameBuffer.bind(hbuf);
 		Graphics.clearBuffers();
-		Texture.bind(main);
 		if (player != null)
 			player.renderGlow();
 		for (GameObject g : playerbullets)

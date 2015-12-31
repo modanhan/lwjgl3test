@@ -4,6 +4,8 @@ import static org.lwjgl.opengl.GL11.*;
 import game.Game;
 import game.object.CollidingGameObject;
 import graphics.Graphics;
+import graphics.Texture;
+import util.Global;
 import util.Time;
 
 /**
@@ -49,7 +51,7 @@ public class Enemy extends CollidingGameObject {
 
 	@Override
 	public void render() {
-
+		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glTranslatef(x, y, 0);
 		glColor4f(r, g, b, a);

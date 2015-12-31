@@ -10,6 +10,8 @@ import events.Event;
 import events.EventHandler;
 import game.object.GameObject;
 import graphics.Graphics;
+import graphics.Texture;
+import util.Global;
 
 public class ExplosionVisual extends GameObject {
 
@@ -54,6 +56,7 @@ public class ExplosionVisual extends GameObject {
 
 	@Override
 	public void render() {
+		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glTranslatef(px, py, 0);
 		GL11.glColor4f(r, g, b, a);

@@ -15,6 +15,7 @@ import game.object.enemy.Enemy;
 import game.object.visual.ExplosionVisual;
 import game.object.visual.TrailVisual;
 import graphics.Graphics;
+import graphics.Texture;
 import util.Global;
 import util.Time;
 
@@ -86,6 +87,7 @@ public class PlayerSeekerBullet extends Bullet {
 	}
 
 	public void render() {
+		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glTranslatef(x, y, 0);
 		glColor3f(1, 1, 1);

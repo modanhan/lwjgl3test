@@ -1,6 +1,10 @@
 package util;
 
+import java.io.File;
+
 import org.lwjgl.glfw.GLFW;
+
+import graphics.Texture;
 
 public class Konami {
 	private static int[] seq = { GLFW.GLFW_KEY_UP, GLFW.GLFW_KEY_UP,
@@ -31,6 +35,6 @@ public class Konami {
 	}
 
 	private static void konami() {
-
+		Global.Textures.circle = new Texture(new File("res/face_circle.png"));
 	}
 }

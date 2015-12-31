@@ -4,7 +4,6 @@ import util.Global;
 import game.Game;
 import game.object.Bullet;
 import game.object.visual.LaserFadeVisual;
-import graphics.Graphics;
 import graphics.Texture;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -27,7 +26,6 @@ public class PlayerLaser extends Bullet {
 
 	@Override
 	public void render() {
-		Graphics.set();
 		Texture.bind(0);
 		glPushMatrix();
 		glTranslatef(x, y, 0);
@@ -46,7 +44,6 @@ public class PlayerLaser extends Bullet {
 
 		glEnd();
 		glPopMatrix();
-		Graphics.reset();
 	}
 
 	@Override

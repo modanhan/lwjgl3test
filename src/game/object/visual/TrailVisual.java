@@ -8,6 +8,8 @@ import events.Event;
 import events.EventHandler;
 import game.object.GameObject;
 import graphics.Graphics;
+import graphics.Texture;
+import util.Global;
 import util.Time;
 import static org.lwjgl.opengl.GL11.*;
 
@@ -67,6 +69,7 @@ public class TrailVisual extends GameObject {
 
 	public void render() {
 		ListIterator<TrailSection> iter = trail.listIterator();
+		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glBegin(GL_QUAD_STRIP);
 		while (iter.hasNext()) {

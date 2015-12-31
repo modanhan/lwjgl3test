@@ -8,6 +8,7 @@ import util.Global;
 import util.Time;
 import game.object.CollidingGameObject;
 import graphics.Graphics;
+import graphics.Texture;
 
 /**
  * 
@@ -49,6 +50,7 @@ public class Powerup extends CollidingGameObject {
 
 	@Override
 	public void render() {
+		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glTranslatef(x, y, 0);
 		glColor4f(r[type], g[type], b[type], a[type]);

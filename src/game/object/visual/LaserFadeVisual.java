@@ -49,7 +49,6 @@ public class LaserFadeVisual extends GameObject {
 
 	@Override
 	public void render() {
-		Graphics.set();
 		Texture.bind(0);
 		glPushMatrix();
 		glTranslatef(x, y, 0);
@@ -68,7 +67,6 @@ public class LaserFadeVisual extends GameObject {
 
 		glEnd();
 		glPopMatrix();
-		Graphics.reset();
 	}
 
 	@Override

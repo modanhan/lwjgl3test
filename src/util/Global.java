@@ -1,8 +1,11 @@
 package util;
 
+import java.io.File;
 import java.util.Random;
 
 import org.lwjgl.glfw.GLFW;
+
+import graphics.Texture;
 
 public class Global {
 	public static int width = 1280, height = 720, margin = 500, length;
@@ -74,7 +77,15 @@ public class Global {
 				DOWN = (float) (3 * Math.PI / 2), LEFT = (float) Math.PI,
 				RIGHT = 0, PI2 = (float) (Math.PI * 2);
 	}
+	
+	public static class Textures {
+		public static Texture circle;
 
+		public static void load(){
+			circle = new Texture(new File("res/circle.png"));
+		}
+	}
+	
 	public static void update() {
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_F1)) {
 			System.out.println("BREAK POINT");

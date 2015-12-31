@@ -9,6 +9,7 @@ import game.Game;
 import game.object.Bullet;
 import game.object.visual.ExplosionVisual;
 import graphics.Graphics;
+import graphics.Texture;
 
 public class PlayerLinearBullet extends Bullet {
 
@@ -33,6 +34,7 @@ public class PlayerLinearBullet extends Bullet {
 
 	@Override
 	public void render() {
+		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glTranslatef(x, y, 0);
 		glColor3f(1, 1, 1);
