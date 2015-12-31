@@ -42,12 +42,10 @@ public class PlayerAttacks {
 
 			@Override
 			public void init() {
-				addBullet(new PlayerLinearBullet(Global.Dir.UP
-						- Global.player_bullet_cone_angle0),
-						Global.player_bullet_delay);
-				addBullet(new PlayerLinearBullet(Global.Dir.UP
-						+ Global.player_bullet_cone_angle0),
-						Global.player_bullet_delay);
+				addBullet(new PlayerLinearBullet(Global.Dir.UP),
+						Global.player_bullet_delay, 5, 0);
+				addBullet(new PlayerLinearBullet(Global.Dir.UP),
+						Global.player_bullet_delay, -5, 0);
 
 			}
 		},

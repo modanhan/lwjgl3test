@@ -22,6 +22,7 @@ public abstract class Attack {
 	private ArrayList<Bullet> bullets;
 	private ArrayList<Integer> delay;
 	private ArrayList<Long> lastfiretime;
+	private ArrayList<Float> offsetx, offsety;
 
 	/**
 	 * Defines a attack, bullets will spawn at spawner. Bullets fired by players
@@ -45,7 +46,9 @@ public abstract class Attack {
 			long t = Time.getTime();
 			for (int i = 0; i < bullets.size(); i++) {
 				if (lastfiretime.get(i) + delay.get(i) <= t) {
-					Bullet lb = bullets.get(i).clone(spawner.x,spawner.y);
+					Bullet lb = bullets.get(i).clone(
+							spawner.x + offsetx.get(i),
+							spawner.y + offsety.get(i));
 					if (friendly)
 						Game.addPlayerBullet(lb);
 					else
@@ -64,6 +67,8 @@ public abstract class Attack {
 		bullets = new ArrayList<Bullet>();
 		lastfiretime = new ArrayList<Long>();
 		delay = new ArrayList<Integer>();
+		offsetx = new ArrayList<Float>();
+		offsety = new ArrayList<Float>();
 		init();
 		active = true;
 	}
@@ -82,9 +87,7 @@ public abstract class Attack {
 	 * @param cooldown
 	 */
 	public void addBullet(Bullet bullet, int cooldown) {
-		bullets.add(bullet);
-		delay.add(cooldown);
-		lastfiretime.add(Time.getTime());
+		addBullet(bullet, cooldown, 0, 0, 0);
 	}
 
 	/**
@@ -95,8 +98,19 @@ public abstract class Attack {
 	 * @param wait
 	 */
 	public void addBullet(Bullet bullet, int cooldown, int wait) {
+		addBullet(bullet, cooldown, wait, 0, 0);
+	}
+
+	public void addBullet(Bullet bullet, int cooldown, float x, float y) {
+		addBullet(bullet, cooldown, 0, x, y);
+	}
+
+	public void addBullet(Bullet bullet, int cooldown, int wait, float x,
+			float y) {
 		bullets.add(bullet);
 		delay.add(cooldown);
 		lastfiretime.add(Time.getTime() + wait);
+		offsetx.add(x);
+		offsety.add(y);
 	}
 }
