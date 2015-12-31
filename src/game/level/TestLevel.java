@@ -22,7 +22,7 @@ public class TestLevel extends Level {
 
 				@Override
 				public void run() {
-					Game.addPowerup(new Powerup(Global.width / 2, Global.height));
+					Game.addPowerup(new Powerup(Global.gamewidth / 2, Global.gameheight));
 
 				}
 

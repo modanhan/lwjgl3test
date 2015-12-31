@@ -1,8 +1,6 @@
 package game;
 
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
-import static org.lwjgl.opengl.GL11.glEnable;
+import static org.lwjgl.opengl.GL11.*;
 
 import java.io.File;
 import java.util.Iterator;
@@ -119,10 +117,14 @@ public class Game {
 	}
 
 	private static void render() {
+		glPushMatrix();
+		glTranslatef((Global.width)/2f,(Global.height)/2f,0);
+		glScalef(Global.height/(float)Global.gameheight,Global.height/(float)Global.gameheight,0);
+		glTranslatef(-Global.gamewidth/2f,-Global.gameheight/2f,0);
 
 		Graphics.blendOverlay();
 		Graphics.set();
-
+		
 		if (player != null)
 			player.render();
 		for (GameObject g : playerbullets)
@@ -151,6 +153,7 @@ public class Game {
 			g.renderGlow();
 		for (GameObject g : visuals)
 			g.renderGlow();
+		glPopMatrix();
 		Graphics.blendAdditive();
 		Graphics.renderPass(hblur, hbuf, vbuf);
 		Graphics.renderPass(vblur, vbuf);

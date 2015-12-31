@@ -8,7 +8,8 @@ import org.lwjgl.glfw.GLFW;
 import graphics.Texture;
 
 public class Global {
-	public static int width = 1280, height = 720, margin = 500, length;
+	public static int width = 1000, height = 500, margin = 500, length;
+	public static int gamewidth = 1080, gameheight = 1080;
 	public static boolean fullscreen = false;
 	public static long window;
 	public static boolean running;

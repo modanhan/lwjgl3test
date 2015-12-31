@@ -87,10 +87,10 @@ public class Player extends CollidingGameObject {
 			x = 0;
 		if (y < 0)
 			y = 0;
-		if (x > Global.width)
-			x = Global.width;
-		if (y > Global.height)
-			y = Global.height;
+		if (x > Global.gamewidth)
+			x = Global.gamewidth;
+		if (y > Global.gameheight)
+			y = Global.gameheight;
 
 		for (SideShooter s : sideshooters) {
 			s.update();
@@ -113,6 +113,7 @@ public class Player extends CollidingGameObject {
 	}
 
 	public void renderGlow() {
+		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glTranslatef(x, y, 0);
 		glColor4f(1, 1, 1, .95f);

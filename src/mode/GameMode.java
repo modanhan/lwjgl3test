@@ -4,6 +4,7 @@ import org.lwjgl.glfw.GLFW;
 
 import events.EventHandler;
 import game.Game;
+import game.ui.Sidebar;
 import game.ui.UI;
 import util.Global;
 import util.Keyboard;
@@ -13,6 +14,8 @@ public class GameMode implements Mode {
 	public GameMode() {
 		GLFW.glfwSetWindowTitle(Global.window, "press esc to quit game");
 		Game.init();
+		UI.addElement(new Sidebar(false));
+		UI.addElement(new Sidebar(true));
 	}
 
 	@Override

@@ -48,8 +48,8 @@ public abstract class Bullet extends CollidingGameObject {
 		int delta = Time.getDelta();
 		x += dx * delta;
 		y += dy * delta;
-		if (y > Global.height + Global.margin || y < -Global.margin
-				|| x > Global.width + Global.margin || x < -Global.margin) {
+		if (y > Global.gameheight + Global.margin || y < -Global.margin
+				|| x > Global.gamewidth + Global.margin || x < -Global.margin) {
 			remove();
 		}
 	}

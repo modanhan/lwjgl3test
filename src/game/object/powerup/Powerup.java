@@ -46,6 +46,10 @@ public class Powerup extends CollidingGameObject {
 		dir += delta * Global.powerup_h_speed;
 		x = (float) Math.cos(dir) * Global.powerup_h_dist + ox;
 		y -= delta * Global.powerup_v_speed;
+		if (y > Global.gameheight + Global.margin || y < -Global.margin
+				|| x > Global.gamewidth + Global.margin || x < -Global.margin) {
+			remove();
+		}
 	}
 
 	@Override

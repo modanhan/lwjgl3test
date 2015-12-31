@@ -14,7 +14,6 @@ import util.Global;
 import events.Event;
 import events.EventHandler;
 import game.object.GameObject;
-import graphics.Graphics;
 import graphics.Texture;
 
 public class LaserFadeVisual extends GameObject {
