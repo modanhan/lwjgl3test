@@ -72,6 +72,7 @@ public class TrailVisual extends GameObject {
 		Texture.bind(Global.Textures.circle);
 		glPushMatrix();
 		glBegin(GL_QUAD_STRIP);
+		TrailSection prevT = null;
 		while (iter.hasNext()) {
 			TrailSection t = iter.next();
 			if (fade) {
@@ -79,79 +80,24 @@ public class TrailVisual extends GameObject {
 			} else {
 				glColor4f(r, g, b, a);
 			}
-			if (trail.size() == 1) {
-				float dx = size;
-				float dy = size;
-				if (shrink) {
-					dx = dx * (iter.nextIndex() - 1) / trail.size();
-					dy = dy * (iter.nextIndex() - 1) / trail.size();
-				}
-				glTexCoord2f(0, 0);
-				glVertex2f(-dx + t.x, -dy + t.y);
-				glTexCoord2f(0, 1);
-				glVertex2f(+dx + t.x, -dy + t.y);
-				glTexCoord2f(1, 0);
-				glVertex2f(-dx + t.x, +dy + t.y);
-				glTexCoord2f(1, 1);
-				glVertex2f(+dx + t.x, +dy + t.y);
-			} else if (iter.previousIndex() == 0) {
-				TrailSection tn = iter.next();
-				float ndist = (float) Math.hypot(tn.x - t.x, tn.y - t.y);
-				float nx = (tn.x - t.x) * size;
-				float ny = (tn.y - t.y) * size;
-				if (shrink) {
-					nx = nx * (iter.nextIndex() - 1) / trail.size();
-					ny = ny * (iter.nextIndex() - 1) / trail.size();
-				}
-				iter.previous();
-				glTexCoord2f(0, 0);
-				glVertex2f((-nx - ny) / ndist + t.x, (-ny + nx) / ndist + t.y);
-				glTexCoord2f(0, 1);
-				glVertex2f((-nx + ny) / ndist + t.x, (-ny - nx) / ndist + t.y);
-				glTexCoord2f(0.5f, 0);
-				glVertex2f((-ny) / ndist + t.x, (-nx) / ndist + t.y);
-				glTexCoord2f(0.5f, 1);
-				glVertex2f((+ny) / ndist + t.x, (+nx) / ndist + t.y);
-
-			} else if (!iter.hasNext()) {
-				iter.previous();
-				TrailSection tp = iter.previous();
-				float pdist = (float) Math.hypot(tp.x - t.x, tp.y - t.y);
-				float px = (tp.x - t.x) * size;
-				float py = (tp.y - t.y) * size;
-				iter.next();
-				iter.next();
-				if (shrink) {
-					px = px * (iter.nextIndex() - 1) / trail.size();
-					py = py * (iter.nextIndex() - 1) / trail.size();
-				}
-				glTexCoord2f(0.5f, 1);
-				glVertex2f((+py) / pdist + t.x, (+px) / pdist + t.y);
-				glTexCoord2f(0.5f, 0);
-				glVertex2f((-py) / pdist + t.x, (-px) / pdist + t.y);
-				glTexCoord2f(0, 1);
-				glVertex2f((-px + py) / pdist + t.x, (-py - px) / pdist + t.y);
-				glTexCoord2f(0, 0);
-				glVertex2f((-px - py) / pdist + t.x, (-py + px) / pdist + t.y);
-			} else {
-				TrailSection tn = iter.next();
-				iter.previous();
-				TrailSection tp = iter.previous();
-				iter.next();
-				float dx = (tn.x + tp.x - 2 * t.x) / 2f;
-				float dy = (tn.y + tp.y - 2 * t.y) / 2f;
-				float ddist = (float) Math.hypot(dx, dy);
-				float fx = dx / ddist * size;
-				float fy = dy / ddist * size;
-				if (shrink) {
-					fx = fx * (iter.nextIndex() - 1) / trail.size();
-					fy = fy * (iter.nextIndex() - 1) / trail.size();
-				}
-				glTexCoord2f(0.5f, 0);
-				glVertex2f((-fy + t.x), (-fx + t.y));
-				glTexCoord2f(0.5f, 1);
-				glVertex2f((fy + t.x), (fx + t.y));
+			float r = size; // radius the trail should be
+			if (shrink) {
+				// scale the radius so it gets smaller
+				r *= (float)(iter.nextIndex() - 1) / trail.size();
 			}
+			if (prevT != null) {
+				// get distance to previous point on trail
+				float rx = prevT.x-t.x, ry = prevT.y-t.y;
+				// scale the distance to correct radius
+				float rd = (float) Math.hypot(rx, ry);
+				rx *= r/rd;
+				ry *= r/rd;
+				glTexCoord2f(0.5f, 0);
+				glVertex2f(ry + t.x, -rx + t.y);
+				glTexCoord2f(0.5f, 1);
+				glVertex2f(-ry + t.x, rx + t.y);
+			}
+			prevT = t;
 		}
 		glEnd();
 		glPopMatrix();
