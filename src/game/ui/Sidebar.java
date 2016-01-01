@@ -12,12 +12,12 @@ public class Sidebar extends Element {
 
 	public Sidebar(boolean left) {
 		if(left){
-			x = (Global.width-Global.gamewidth/Global.gameheight*height)/8;
+			x = (Global.width-Global.gamewidth/Global.gameheight*Global.height)/4;
 		}else{
-			x = Global.width-(Global.width-Global.gamewidth/Global.gameheight*height)/8;
+			x = Global.width-(Global.width-Global.gamewidth/Global.gameheight*Global.height)/4;
 		}
 		y = Global.height/2;
-		width = (Global.width-Global.gamewidth/Global.gameheight*height)/8;
+		width = (Global.width-Global.gamewidth/Global.gameheight*Global.height)/4;
 		height = Global.height;
 	}
 
