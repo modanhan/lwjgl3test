@@ -38,8 +38,9 @@ public class Global {
 	public static float seeker_bullet_maximum_speed = 0.55f;
 	public static float seeker_bullet_targetting_time = 1.2f;
 
-	public static float player_sideshooter_distance = 50f;
-	
+	public static float player_bullet_sideshooter_distance = 50f;
+	public static float player_laser_sideshooter_distance = 150f;
+
 	public static float player_speed = .3f, player_slow_speed = .125f;
 	public static float player_sideshooter_speed = 0.001f;
 
@@ -49,10 +50,17 @@ public class Global {
 	public static float player_bullet_speed = 0.4f;
 	public static float player_bullet_size = 5;
 	public static int player_bullet_delay = 375;
-	public static int player_bullet_short_delay = 300;
-	public static int player_bullet_offset = 5;
+	public static int player_bullet_short_delay = 300;//player_bullet_delay/1.25
+	public static int player_bullet_burst_delay = 30;
+	public static int player_bullet_burst_cooldown = 500;//player_bullet_delay/1.5*2
 
-	public static int player_laser_delay = 750;
+	public static int player_bullet_offset = 5;
+	
+	public static int player_laser_init_delay = 750;
+	public static int player_laser_delay = 500;
+	public static int player_laser_size = 5;
+	public static int player_wide_laser_size = 10;
+	
 	public static int player_laser_offset = 5;
 
 	public static float player_bullet_cone_angle1 = .3f;

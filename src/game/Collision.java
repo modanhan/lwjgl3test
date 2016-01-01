@@ -1,5 +1,6 @@
 package game;
 
+import game.object.Bullet;
 import game.object.CollidingGameObject;
 import game.object.enemy.Enemy;
 import game.object.powerup.Powerup;
@@ -25,10 +26,10 @@ public class Collision {
 	}
 
 	private static void enemy_playerbullet() {
-		for (CollidingGameObject g : Game.playerbullets) {
+		for (Bullet g : Game.playerbullets) {
 			for (Enemy h : Game.enemies) {
 				if (collide(g, h)) {
-					((Enemy) h).takeHit();
+					((Enemy) h).takeHit(g.getDamage());
 					g.kill();
 				}
 			}
@@ -94,7 +95,7 @@ public class Collision {
 			CollidingGameObject b) {
 		float bdir = (float) Math.atan2(b.y - a.y, b.x - a.x);
 		float dist = (float) Math.hypot(b.y - a.y, b.x - a.x);
-		if (Math.abs(Math.sin(a.theta - bdir)) * dist < b.radius) {
+		if (Math.abs(Math.sin(a.theta - bdir)) * dist < a.radius + b.radius) {
 			if(Math.cos(a.theta - bdir)>0){
 				return true;
 			}else{

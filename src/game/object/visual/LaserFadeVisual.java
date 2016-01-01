@@ -60,9 +60,9 @@ public class LaserFadeVisual extends GameObject {
 		glTexCoord2f(0, 1);
 		glVertex2f(0, -width);
 		glTexCoord2f(1, 1);
-		glVertex2f(Global.height + Global.width, -0);
+		glVertex2f(Global.height + Global.width, -width);
 		glTexCoord2f(1, 0);
-		glVertex2f(Global.height + Global.width, 0);
+		glVertex2f(Global.height + Global.width, width);
 
 		glEnd();
 		glPopMatrix();

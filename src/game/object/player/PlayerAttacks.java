@@ -127,8 +127,10 @@ public class PlayerAttacks {
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, +Global.player_bullet_offset, 0);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, -Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								+Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								-Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
@@ -147,8 +149,10 @@ public class PlayerAttacks {
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, +Global.player_bullet_offset, 0);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, -Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								+Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								-Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
@@ -163,15 +167,21 @@ public class PlayerAttacks {
 					@Override
 					public void init() {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x, -Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
+								-Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x, +Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
+								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x, +Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
+								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x, -Global.player_bullet_cone_offset1_y);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, +Global.player_bullet_offset, 0);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, -Global.player_bullet_offset, 0);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
+								-Global.player_bullet_cone_offset1_y);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								+Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								-Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
@@ -187,24 +197,34 @@ public class PlayerAttacks {
 					@Override
 					public void init() {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x, -Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
+								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x, +Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
+								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x, +Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
+								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x, -Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
+								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x, -Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
+								-Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x, +Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
+								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x, +Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
+								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x, -Global.player_bullet_cone_offset1_y);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, +Global.player_bullet_offset, 0);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, -Global.player_bullet_offset, 0);
-						
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
+								-Global.player_bullet_cone_offset1_y);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								+Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								-Global.player_bullet_offset, 0);
+
 					}
 				},
 				/**
@@ -215,24 +235,34 @@ public class PlayerAttacks {
 					@Override
 					public void init() {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x, -Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
+								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x, +Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
+								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x, +Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
+								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x, -Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
+								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x, -Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
+								-Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x, +Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
+								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x, +Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
+								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x, -Global.player_bullet_cone_offset1_y);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, +Global.player_bullet_offset, 0);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, -Global.player_bullet_offset, 0);
-						
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
+								-Global.player_bullet_cone_offset1_y);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								+Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								-Global.player_bullet_offset, 0);
+
 					}
 				},
 				/**
@@ -243,24 +273,34 @@ public class PlayerAttacks {
 					@Override
 					public void init() {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x, -Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
+								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x, +Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
+								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x, +Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
+								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x, -Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
+								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x, -Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
+								-Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x, +Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
+								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x, +Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
+								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x, -Global.player_bullet_cone_offset1_y);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, +2*Global.player_bullet_offset, 0);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
+								-Global.player_bullet_cone_offset1_y);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								+2 * Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, -2*Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								-2 * Global.player_bullet_offset, 0);
 
 					}
 				},
@@ -272,28 +312,38 @@ public class PlayerAttacks {
 					@Override
 					public void init() {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x, -Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
+								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x, +Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
+								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x, +Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
+								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x, -Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
+								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +2*Global.player_bullet_cone_offset1_x, -2*Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset1_x,
+								-2 * Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -2*Global.player_bullet_cone_offset1_x, +2*Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset1_x,
+								+2 * Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +2*Global.player_bullet_cone_offset1_x, +2*Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset1_x,
+								+2 * Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -2*Global.player_bullet_cone_offset1_x, -2*Global.player_bullet_cone_offset1_y);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, +2*Global.player_bullet_offset, 0);
+								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset1_x,
+								-2 * Global.player_bullet_cone_offset1_y);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								+2 * Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, -2*Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								-2 * Global.player_bullet_offset, 0);
 
 					}
 				},
@@ -305,32 +355,42 @@ public class PlayerAttacks {
 					@Override
 					public void init() {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +2*Global.player_bullet_cone_offset2_x, -2*Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset2_x,
+								-2 * Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -2*Global.player_bullet_cone_offset2_x, +2*Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset2_x,
+								+2 * Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +2*Global.player_bullet_cone_offset2_x, +2*Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset2_x,
+								+2 * Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -2*Global.player_bullet_cone_offset2_x, -2*Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset2_x,
+								-2 * Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +2*Global.player_bullet_cone_offset1_x, -2*Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset1_x,
+								-2 * Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -2*Global.player_bullet_cone_offset1_x, +2*Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset1_x,
+								+2 * Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +2*Global.player_bullet_cone_offset1_x, +2*Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset1_x,
+								+2 * Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -2*Global.player_bullet_cone_offset1_x, -2*Global.player_bullet_cone_offset1_y);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, +2*Global.player_bullet_offset, 0);
+								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset1_x,
+								-2 * Global.player_bullet_cone_offset1_y);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								+2 * Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay, -2*Global.player_bullet_offset, 0);
+						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
+								-2 * Global.player_bullet_offset, 0);
 
 					}
 				} },
@@ -353,6 +413,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
+								addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
 								addBullet(new PlayerSeekerBullet(Global.Dir.UP), Global.player_bullet_delay);
 							}
 						},
@@ -363,6 +424,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
+								addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
 								addBullet(new PlayerSeekerBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 										Global.player_bullet_delay);
 								addBullet(new PlayerSeekerBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
@@ -394,7 +456,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								float angle = Global.Dir.PI2 / 4;
+								float angle = Global.Dir.UP;
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5),
 										Global.player_bullet_delay);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 2),
@@ -414,7 +476,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								float angle = Global.Dir.PI2 / 4;
+								float angle = Global.Dir.UP;
 								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_short_delay, 0);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 1),
 										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 5);
@@ -433,8 +495,18 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								float angle = Global.Dir.UP;
+								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_short_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 1),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 2),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6 * 2);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 3),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6 * 3);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 4),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6 * 4);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 5),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6 * 5);
 							}
 						},
 						/**
@@ -444,8 +516,21 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								float angle = Global.Dir.UP;
+								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_short_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 1),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 2),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 2);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 3),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 3);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 4),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 4);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 5),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 5);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 6),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 6);
+							
 							}
 						},
 						/**
@@ -455,7 +540,20 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
+								float angle = Global.Dir.UP;
+								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_short_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 1),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 2),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 2);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 3),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 3);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 4),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 4);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 5),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 5);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 6),
+										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 6);
 
 							}
 						},
@@ -466,8 +564,31 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								float angle = Global.Dir.UP;
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 0),
+										Global.player_bullet_burst_cooldown, 0*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 1),
+										Global.player_bullet_burst_cooldown, 1*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 2),
+										Global.player_bullet_burst_cooldown, 2*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 3),
+										Global.player_bullet_burst_cooldown, 3*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 4),
+										Global.player_bullet_burst_cooldown, 0*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 5),
+										Global.player_bullet_burst_cooldown, 1*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 6),
+										Global.player_bullet_burst_cooldown, 2*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 7),
+										Global.player_bullet_burst_cooldown, 3*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 8),
+										Global.player_bullet_burst_cooldown, 0*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 9),
+										Global.player_bullet_burst_cooldown, 1*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 10),
+										Global.player_bullet_burst_cooldown, 2*Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 11),
+										Global.player_bullet_burst_cooldown, 3*Global.player_bullet_burst_delay);
 							}
 						},
 						/**
@@ -544,7 +665,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay);
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_init_delay);
 							}
 						},
 						/**
@@ -554,10 +675,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								addBullet(new PlayerLaser(Global.Dir.UP),
-										Global.player_laser_delay, +Global.player_laser_offset, 0);
-								addBullet(new PlayerLaser(Global.Dir.UP),
-										Global.player_laser_delay, -Global.player_laser_offset, 0);
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay);
 							}
 						},
 						/**
@@ -567,7 +685,10 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay);
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
+										+Global.player_laser_offset, 0);
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
+										-Global.player_laser_offset, 0);							
 							}
 						},
 						/**
@@ -577,8 +698,10 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
+										+Global.player_laser_offset, 0);
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
+										-Global.player_laser_offset, 0);	
 							}
 						},
 						/**
@@ -588,8 +711,10 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
+										+Global.player_laser_offset, 0);
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
+										-Global.player_laser_offset, 0);	
 							}
 						},
 						/**
@@ -599,8 +724,10 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
+										+Global.player_laser_offset, 0);
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
+										-Global.player_laser_offset, 0);	
 							}
 						},
 						/**
@@ -610,8 +737,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
 							}
 						},
 						/**
@@ -621,8 +747,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
 							}
 						},
 						/**
@@ -632,8 +757,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
 							}
 						},
 						/**
@@ -643,8 +767,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
 							}
 						},
 						/**
@@ -654,8 +777,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
 							}
 						},
 						/**
@@ -665,8 +787,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
 							}
 						},
 						/**
@@ -676,8 +797,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
 							}
 						},
 						/**
@@ -687,8 +807,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
 							}
 						} } };
 		pa = a;

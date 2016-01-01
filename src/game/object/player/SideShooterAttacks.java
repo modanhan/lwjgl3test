@@ -85,7 +85,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 2;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, 0);
 					s.setAttack(new Attack(s, true) {
 
@@ -109,7 +109,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 3;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, Global.player_sideshooter_speed);
 					s.setAttack(new Attack(s, true) {
 
@@ -134,7 +134,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 5;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, Global.player_sideshooter_speed);
 					s.setAttack(new Attack(s, true) {
 
@@ -158,7 +158,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 5;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, Global.player_sideshooter_speed);
 					s.setAttack(new Attack(s, true) {
 
@@ -182,7 +182,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 5;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, Global.player_sideshooter_speed);
 					s.setAttack(new Attack(s, true) {
 
@@ -206,7 +206,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 4;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, Global.player_sideshooter_speed);
 					s.setAttack(new Attack(s, true) {
 
@@ -232,7 +232,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 6;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, Global.player_sideshooter_speed);
 					s.setAttack(new Attack(s, true) {
 
@@ -258,7 +258,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 6;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, Global.player_sideshooter_speed);
 					s.setAttack(new Attack(s, true) {
 
@@ -284,7 +284,7 @@ public abstract class SideShooterAttacks {
 			public void activate() {
 				int sideshooternum = 6;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_sideshooter_distance, Global.Dir.PI2
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_bullet_sideshooter_distance, Global.Dir.PI2
 							/ sideshooternum * i, Global.player_sideshooter_speed);
 					s.setAttack(new Attack(s, true) {
 
@@ -532,10 +532,10 @@ public abstract class SideShooterAttacks {
 
 			@Override
 			public void activate() {
-				int sideshooternum = 3;
+				int sideshooternum = 2;
 				for (int i = 0; i < sideshooternum; i++) {
-					SideShooter s = new SideShooter(2.5f, 150, Global.Dir.PI2
-							/ sideshooternum * i, .001f);
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_laser_sideshooter_distance, Global.Dir.PI2
+							/ sideshooternum * i, 0);
 					s.setAttack(new Attack(s, true) {
 
 						@Override
@@ -551,6 +551,102 @@ public abstract class SideShooterAttacks {
 		},
 		/**
 		 * laser, 5
+		 */
+		new SideShooterAttacks() {
+
+			@Override
+			public void activate() {
+				int sideshooternum = 3;
+				for (int i = 0; i < sideshooternum; i++) {
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_laser_sideshooter_distance, Global.Dir.PI2
+							/ sideshooternum * i, Global.player_sideshooter_speed);
+					s.setAttack(new Attack(s, true) {
+
+						@Override
+						public void init() {
+							addBullet(new PlayerLaser(Global.Dir.UP),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
+			}
+		},
+		/**
+		 * laser, 6
+		 */
+		new SideShooterAttacks() {
+
+			@Override
+			public void activate() {
+				int sideshooternum = 3;
+				for (int i = 0; i < sideshooternum; i++) {
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_laser_sideshooter_distance, Global.Dir.PI2
+							/ sideshooternum * i, Global.player_sideshooter_speed);
+					s.setAttack(new Attack(s, true) {
+
+						@Override
+						public void init() {
+							addBullet(new PlayerLaser(Global.Dir.UP),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
+			}
+		},
+		/**
+		 * laser, 7
+		 */
+		new SideShooterAttacks() {
+
+			@Override
+			public void activate() {
+				int sideshooternum = 3;
+				for (int i = 0; i < sideshooternum; i++) {
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_laser_sideshooter_distance, Global.Dir.PI2
+							/ sideshooternum * i, Global.player_sideshooter_speed);
+					s.setAttack(new Attack(s, true) {
+
+						@Override
+						public void init() {
+							addBullet(new PlayerLaser(Global.Dir.UP),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
+			}
+		},
+		/**
+		 * laser, 8
+		 */
+		new SideShooterAttacks() {
+
+			@Override
+			public void activate() {
+				int sideshooternum = 3;
+				for (int i = 0; i < sideshooternum; i++) {
+					SideShooter s = new SideShooter(Global.player_sideshooter_size, Global.player_laser_sideshooter_distance, Global.Dir.PI2
+							/ sideshooternum * i, Global.player_sideshooter_speed);
+					s.setAttack(new Attack(s, true) {
+
+						@Override
+						public void init() {
+							addBullet(new PlayerLaser(Global.Dir.UP),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
+			}
+		},
+		/**
+		 * laser, 9
 		 */
 		new SideShooterAttacks() {
 
@@ -574,58 +670,27 @@ public abstract class SideShooterAttacks {
 			}
 		},
 		/**
-		 * laser, 6
-		 */
-		new SideShooterAttacks() {
-
-			@Override
-			public void activate() {
-				// TODO Auto-generated method stub
-
-			}
-		},
-		/**
-		 * laser, 7
-		 */
-		new SideShooterAttacks() {
-
-			@Override
-			public void activate() {
-				// TODO Auto-generated method stub
-
-			}
-		},
-		/**
-		 * laser, 8
-		 */
-		new SideShooterAttacks() {
-
-			@Override
-			public void activate() {
-				// TODO Auto-generated method stub
-
-			}
-		},
-		/**
-		 * laser, 9
-		 */
-		new SideShooterAttacks() {
-
-			@Override
-			public void activate() {
-				// TODO Auto-generated method stub
-
-			}
-		},
-		/**
 		 * laser, 10
 		 */
 		new SideShooterAttacks() {
 
 			@Override
 			public void activate() {
-				// TODO Auto-generated method stub
+				int sideshooternum = 5;
+				for (int i = 0; i < sideshooternum; i++) {
+					final SideShooter s = new SideShooter(2.5f, 150, Global.Dir.PI2
+							/ sideshooternum * i, .001f);
+					s.setAttack(new Attack(s, true) {
 
+						@Override
+						public void init() {
+							addBullet(new TargetingPlayerLaser(s.x, s.y),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
 			}
 		},
 		/**
@@ -635,8 +700,21 @@ public abstract class SideShooterAttacks {
 
 			@Override
 			public void activate() {
-				// TODO Auto-generated method stub
+				int sideshooternum = 5;
+				for (int i = 0; i < sideshooternum; i++) {
+					final SideShooter s = new SideShooter(2.5f, 150, Global.Dir.PI2
+							/ sideshooternum * i, .001f);
+					s.setAttack(new Attack(s, true) {
 
+						@Override
+						public void init() {
+							addBullet(new TargetingPlayerLaser(s.x, s.y),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
 			}
 		},
 		/**
@@ -646,8 +724,21 @@ public abstract class SideShooterAttacks {
 
 			@Override
 			public void activate() {
-				// TODO Auto-generated method stub
+				int sideshooternum = 5;
+				for (int i = 0; i < sideshooternum; i++) {
+					final SideShooter s = new SideShooter(2.5f, 150, Global.Dir.PI2
+							/ sideshooternum * i, .001f);
+					s.setAttack(new Attack(s, true) {
 
+						@Override
+						public void init() {
+							addBullet(new TargetingPlayerLaser(s.x, s.y),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
 			}
 		},
 		/**
@@ -657,8 +748,21 @@ public abstract class SideShooterAttacks {
 
 			@Override
 			public void activate() {
-				// TODO Auto-generated method stub
+				int sideshooternum = 5;
+				for (int i = 0; i < sideshooternum; i++) {
+					final SideShooter s = new SideShooter(2.5f, 150, Global.Dir.PI2
+							/ sideshooternum * i, .001f);
+					s.setAttack(new Attack(s, true) {
 
+						@Override
+						public void init() {
+							addBullet(new TargetingPlayerLaser(s.x, s.y),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
 			}
 		},
 		/**
@@ -668,8 +772,21 @@ public abstract class SideShooterAttacks {
 
 			@Override
 			public void activate() {
-				// TODO Auto-generated method stub
+				int sideshooternum = 5;
+				for (int i = 0; i < sideshooternum; i++) {
+					final SideShooter s = new SideShooter(2.5f, 150, Global.Dir.PI2
+							/ sideshooternum * i, .001f);
+					s.setAttack(new Attack(s, true) {
 
+						@Override
+						public void init() {
+							addBullet(new TargetingPlayerLaser(s.x, s.y),
+									Global.player_laser_delay);
+						}
+					});
+					s.activateAttack();
+					Game.player.sideshooters.add(s);
+				}
 			}
 		} } };
 		ssa = a;

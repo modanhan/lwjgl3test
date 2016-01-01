@@ -9,6 +9,7 @@ import util.Time;
  */
 public abstract class Bullet extends CollidingGameObject {
 	private float speed, dir;
+	protected int damage = 1;
 	public float dx, dy;
 
 	public Bullet(int shape) {
@@ -61,8 +62,18 @@ public abstract class Bullet extends CollidingGameObject {
 	public float getDir() {
 		return dir;
 	}
-
+	/**
+	 * Only used for player bullets. 
+	 * 
+	 * @return the amount of damage an enemy would take from this bullet.
+	 */
+	public int getDamage() {
+		return damage;
+	}
+	
 	public abstract Bullet clone();
 
 	public abstract Bullet clone(float x, float y);
+
+	
 }

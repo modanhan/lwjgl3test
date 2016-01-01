@@ -8,12 +8,23 @@ import graphics.Texture;
 import static org.lwjgl.opengl.GL11.*;
 
 public class PlayerLaser extends Bullet {
-
 	public PlayerLaser(float theta) {
 		super(LINE);
 		this.theta = theta;
+		radius = Global.player_laser_size;
 	}
-
+	public PlayerLaser(float theta, int damage) {
+		super(LINE);
+		this.theta = theta;
+		this.damage = damage;
+		radius = Global.player_laser_size;
+	}
+	public PlayerLaser(float theta, int damage,float width) {
+		super(LINE);
+		this.theta = theta;
+		this.damage = damage;
+		this.radius = width;
+	}
 	@Override
 	public Bullet clone() {
 		return new PlayerLaser(theta);
@@ -34,13 +45,13 @@ public class PlayerLaser extends Bullet {
 
 		glColor4f(1, 1, 1, 1);
 		glTexCoord2f(0, 0);
-		glVertex2f(0, 1);
+		glVertex2f(0, radius);
 		glTexCoord2f(0, 1);
-		glVertex2f(0, -1);
+		glVertex2f(0, -radius);
 		glTexCoord2f(1, 1);
-		glVertex2f(Global.height + Global.width, 1);
+		glVertex2f(Global.height + Global.width, radius);
 		glTexCoord2f(1, 0);
-		glVertex2f(Global.height + Global.width, -1);
+		glVertex2f(Global.height + Global.width, -radius);
 
 		glEnd();
 		glPopMatrix();
@@ -48,7 +59,7 @@ public class PlayerLaser extends Bullet {
 
 	@Override
 	public void death() {
-		Game.visuals.add(new LaserFadeVisual(x, y, theta, 4.5f, 1000));
+		Game.visuals.add(new LaserFadeVisual(x, y, theta, radius, 1000));
 	}
 
 	@Override
@@ -56,6 +67,7 @@ public class PlayerLaser extends Bullet {
 		Bullet b = clone();
 		b.x = x;
 		b.y = y;
+		b.radius = radius;
 		return b;
 	}
 
