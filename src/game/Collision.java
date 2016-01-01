@@ -29,8 +29,10 @@ public class Collision {
 		for (Bullet g : Game.playerbullets) {
 			for (Enemy h : Game.enemies) {
 				if (collide(g, h)) {
-					((Enemy) h).takeHit(g.getDamage());
-					g.kill();
+					if(!h.remove){
+						((Enemy) h).takeHit(g.getDamage());
+						g.kill();
+					}
 				}
 			}
 		}

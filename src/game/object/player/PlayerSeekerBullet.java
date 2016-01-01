@@ -58,6 +58,8 @@ public class PlayerSeekerBullet extends Bullet {
 		ListIterator<Enemy> iter = targets.listIterator();
 		while (iter.hasNext()) {
 			GameObject g = iter.next();
+			if(g.x - x > distance)continue;
+			if(g.y - y > distance)continue;
 			float dist = (float) Math.hypot(g.x - x, g.y - y);
 			if (dist <= distance) {
 				distance = dist;

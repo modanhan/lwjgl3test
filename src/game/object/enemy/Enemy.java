@@ -100,5 +100,8 @@ public class Enemy extends CollidingGameObject {
 			hp -= damage;
 			hit = true;
 		}
+		if (hp <= 0) {
+			kill();
+		}
 	}
 }

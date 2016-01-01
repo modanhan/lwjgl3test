@@ -22,7 +22,7 @@ public class TestLevel extends Level {
 				public void run() {
 					int rows = 100;
 					for(int i=0;i< rows; i++){
-						Game.addEnemy(new Enemies.SwarmEnemy(Global.gamewidth / rows * i, Global.gameheight+Global.margin));
+						Game.addEnemy(new Enemies.WeakEnemy(Global.gamewidth / rows * i, Global.gameheight+Global.margin));
 					}
 				}
 			});

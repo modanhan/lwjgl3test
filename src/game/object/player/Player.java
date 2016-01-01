@@ -24,8 +24,8 @@ public class Player extends CollidingGameObject {
 	public Player() {
 		super(CIRCLE);
 		radius = Global.player_size;
-		x = Global.width / 2;
-		y = Global.height / 2;
+		x = Global.gamewidth / 2;
+		y = Global.gameheight / 2;
 		sideshooters = new ArrayList<SideShooter>();
 	}
 
