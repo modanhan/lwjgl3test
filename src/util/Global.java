@@ -8,7 +8,7 @@ import org.lwjgl.glfw.GLFW;
 import graphics.Texture;
 
 public class Global {
-	public static int width = 1000, height = 500, margin = 500, length;
+	public static int width = 1600, height = 900, margin = 500, length;
 	public static int gamewidth = 1080, gameheight = 1080;
 	public static boolean fullscreen = false;
 	public static long window;
@@ -20,14 +20,15 @@ public class Global {
 
 	public static Random random = new Random();
 
-	public static float powerup_radius=7.5f;
+	public static float powerup_radius = 7.5f;
 	public static int powerup_switch_time = 2500;
-	public static float powerup_h_speed=.002f;
-	public static int powerup_h_dist=75;
-	public static float powerup_v_speed=.05f;
+	public static float powerup_h_speed = .002f;
+	public static int powerup_h_dist = 75;
+	public static float powerup_v_speed = .05f;
 
 	public static int player_size = 5;
-
+	public static float player_sideshooter_size = 2.5f;
+	
 	public static float linear_bullet_default_speed = 0.3f;
 
 	public static float seeker_bullet_default_speed = 0.5f;
@@ -37,7 +38,10 @@ public class Global {
 	public static float seeker_bullet_maximum_speed = 0.55f;
 	public static float seeker_bullet_targetting_time = 1.2f;
 
+	public static float player_sideshooter_distance = 50f;
+	
 	public static float player_speed = .3f, player_slow_speed = .125f;
+	public static float player_sideshooter_speed = 0.001f;
 
 	public static float player_init_bullet_speed = 0.3f;
 	public static int player_init_bullet_delay = 500;
@@ -46,15 +50,21 @@ public class Global {
 	public static float player_bullet_size = 5;
 	public static int player_bullet_delay = 375;
 	public static int player_bullet_short_delay = 300;
+	public static int player_bullet_offset = 5;
 
 	public static int player_laser_delay = 750;
+	public static int player_laser_offset = 5;
 
-	public static float player_bullet_cone_angle0 = .02f;
 	public static float player_bullet_cone_angle1 = .3f;
+	public static float player_bullet_cone_offset1_x = (float) Math.cos(player_bullet_cone_angle1)
+			* player_bullet_offset;
+	public static float player_bullet_cone_offset1_y = (float) Math.sin(player_bullet_cone_angle1)
+			* player_bullet_offset;
 	public static float player_bullet_cone_angle2 = .55f;
-
-	public static int player_wtf_bullet_delay = 100;
-
+	public static float player_bullet_cone_offset2_x = (float) Math.cos(player_bullet_cone_angle2)
+			* player_bullet_offset;
+	public static float player_bullet_cone_offset2_y = (float) Math.sin(player_bullet_cone_angle2)
+			* player_bullet_offset;
 	public static float enemy_bullet_default_size = 5;
 	public static float enemy_bullet_default_speed = 0.4f;
 
@@ -74,19 +84,18 @@ public class Global {
 	public static int return_boss_bullet_wave_delay = 8000;
 
 	public static class Dir {
-		public static final float UP = (float) (Math.PI / 2),
-				DOWN = (float) (3 * Math.PI / 2), LEFT = (float) Math.PI,
+		public static final float UP = (float) (Math.PI / 2), DOWN = (float) (3 * Math.PI / 2), LEFT = (float) Math.PI,
 				RIGHT = 0, PI2 = (float) (Math.PI * 2);
 	}
-	
+
 	public static class Textures {
 		public static Texture circle;
 
-		public static void load(){
+		public static void load() {
 			circle = new Texture(new File("res/circle.png"));
 		}
 	}
-	
+
 	public static void update() {
 		if (Keyboard.isKeyPressed(GLFW.GLFW_KEY_F1)) {
 			System.out.println("BREAK POINT");
