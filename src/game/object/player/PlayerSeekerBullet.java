@@ -22,7 +22,7 @@ import util.Time;
 public class PlayerSeekerBullet extends Bullet {
 	public List<Enemy> targets;
 
-	private float time;
+	protected float time;
 
 	/**
 	 * 

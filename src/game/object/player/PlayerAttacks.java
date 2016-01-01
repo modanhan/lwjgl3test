@@ -565,30 +565,10 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 0),
-										Global.player_bullet_burst_cooldown, 0*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 1),
-										Global.player_bullet_burst_cooldown, 1*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 2),
-										Global.player_bullet_burst_cooldown, 2*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 3),
-										Global.player_bullet_burst_cooldown, 3*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 4),
-										Global.player_bullet_burst_cooldown, 0*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 5),
-										Global.player_bullet_burst_cooldown, 1*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 6),
-										Global.player_bullet_burst_cooldown, 2*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 7),
-										Global.player_bullet_burst_cooldown, 3*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 8),
-										Global.player_bullet_burst_cooldown, 0*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 9),
-										Global.player_bullet_burst_cooldown, 1*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 10),
-										Global.player_bullet_burst_cooldown, 2*Global.player_bullet_burst_delay);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * 11),
-										Global.player_bullet_burst_cooldown, 3*Global.player_bullet_burst_delay);
+								for(int i=0;i<24;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
+											Global.player_bullet_burst_delay);
+								}								
 							}
 						},
 						/**
@@ -598,8 +578,13 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								float angle = Global.Dir.UP;
+								for(int i=0;i<24;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
+											Global.player_bullet_burst_delay);
+								}
+								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay);
+								PlayerDefenseBullet.maxcount = 5;
 							}
 						},
 						/**
@@ -609,7 +594,18 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
+								float angle = Global.Dir.UP;
+								for(int i=0;i<24;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
+											Global.player_bullet_burst_delay);
+								}
+								for(int i=0;i<Global.player_bullet_extra1_count;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / Global.player_bullet_extra1_count * i),
+											Global.player_bullet_extra1_delay);
+								}
+								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay);
+								PlayerDefenseBullet.maxcount = 5;
+								
 
 							}
 						},
@@ -620,8 +616,17 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								float angle = Global.Dir.UP;
+								for(int i=0;i<24;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
+											Global.player_bullet_burst_delay);
+								}
+								for(int i=0;i<Global.player_bullet_extra1_count;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / Global.player_bullet_extra1_count * i),
+											Global.player_bullet_extra1_delay);
+								}
+								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay/2);
+								PlayerDefenseBullet.maxcount = 10;
 							}
 						},
 						/**
@@ -631,8 +636,17 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								float angle = Global.Dir.UP;
+								for(int i=0;i<24;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
+											Global.player_bullet_burst_delay);
+								}
+								for(int i=0;i<Global.player_bullet_extra1_count;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / Global.player_bullet_extra1_count * i),
+											Global.player_bullet_extra1_delay);
+								}
+								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay/4);
+								PlayerDefenseBullet.maxcount = 20;
 							}
 						},
 						/**
@@ -642,9 +656,19 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								// TODO Auto-generated method stub
-
+								float angle = Global.Dir.UP;
+								for(int i=0;i<24;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
+											Global.player_bullet_burst_delay);
+								}
+								for(int i=0;i<Global.player_bullet_extra2_count;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / Global.player_bullet_extra2_count * i),
+											Global.player_bullet_extra2_delay);
+								}
+								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay/4);
+								PlayerDefenseBullet.maxcount = 20;
 							}
+							
 						} },
 				{
 						/**

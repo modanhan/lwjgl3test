@@ -51,10 +51,17 @@ public class Global {
 	public static float player_bullet_size = 5;
 	public static int player_bullet_delay = 375;
 	public static int player_bullet_short_delay = 300;//player_bullet_delay/1.25
-	public static int player_bullet_burst_delay = 30;
-	public static int player_bullet_burst_cooldown = 500;//player_bullet_delay/1.5*2
-
+	public static int player_bullet_burst_delay = 1000;//player_bullet_delay/1.5*2
+	public static int player_bullet_extra1_delay = player_bullet_delay*5;
+	public static int player_bullet_extra1_count = 10;
+	public static int player_bullet_extra2_delay = player_bullet_delay*10;
+	public static int player_bullet_extra2_count = 50;
+	
 	public static int player_bullet_offset = 5;
+	
+	public static float player_defense_bullet_range = 200;
+	public static double player_defense_bullet_dist = 100;
+	public static int player_defense_bullet_delay = player_bullet_delay;
 	
 	public static int player_laser_init_delay = 750;
 	public static int player_laser_delay = 500;

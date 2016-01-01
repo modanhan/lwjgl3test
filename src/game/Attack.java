@@ -49,6 +49,7 @@ public abstract class Attack {
 					Bullet lb = bullets.get(i).clone(
 							spawner.x + offsetx.get(i),
 							spawner.y + offsety.get(i));
+					if(lb == null)continue;
 					if (friendly)
 						Game.addPlayerBullet(lb);
 					else
