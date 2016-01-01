@@ -88,6 +88,8 @@ public class Collision {
 
 	public static boolean checkCircleCircleIntersection(CollidingGameObject a,
 			CollidingGameObject b) {
+		if(Math.abs(b.x-a.x)>a.radius+b.radius )return false;
+		if(Math.abs(b.y-a.y)>a.radius+b.radius )return false;
 		return (Math.hypot(b.x - a.x, b.y - a.y) <= a.radius + b.radius);
 	}
 

@@ -99,6 +99,8 @@ public class Game {
 		updateList(enemybullets.iterator());
 		updateList(powerups.iterator());
 		updateList(visuals.iterator());
+		System.out.println("Player Bullets:"+playerbullets.size());
+		System.out.println("Enemies:"+enemies.size());
 		Collision.update();
 		render();
 
