@@ -762,7 +762,7 @@ public abstract class SideShooterAttacks {
 					});
 					s.activateAttack();
 					Game.player.sideshooters.add(s);
-				}
+				}				
 			}
 		},
 		/**

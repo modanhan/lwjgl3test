@@ -70,6 +70,8 @@ public class Global {
 	
 	public static int player_laser_offset = 5;
 
+	public static float player_defense_laser_range = 100f;
+	
 	public static float player_bullet_cone_angle1 = .3f;
 	public static float player_bullet_cone_offset1_x = (float) Math.cos(player_bullet_cone_angle1)
 			* player_bullet_offset;

@@ -1,7 +1,9 @@
 package game.lib;
 
 import game.Game;
+import game.object.Bullet;
 import game.object.enemy.Enemy;
+import game.object.enemy.EnemyLinearBullet;
 import util.Global;
 import util.Time;
 
@@ -30,7 +32,7 @@ public class Enemies {
 			hp = 1;
 			tx = x;
 			ty = - Global.margin - 1;
-			radius = 8;
+			radius = 4;
 		}
 		@Override
 		public void update() {
@@ -49,7 +51,7 @@ public class Enemies {
 				tx = Game.player.x;
 				ty = Game.player.y;
 			}
-			radius = 8;
+			radius = 4;
 		}
 		@Override
 		public void update() {
@@ -59,6 +61,21 @@ public class Enemies {
 				ty = Game.player.y;
 			}
 
+		}
+	}
+	public static class BulletEnemy extends Enemy{
+		public int time = 0;
+		public static Bullet b = new EnemyLinearBullet(0.2f,Global.Dir.DOWN);;
+		public BulletEnemy(float x, float y) {
+			super(x, y);
+		}
+		public void update(){
+			super.update();
+			time += Time.getDelta();
+			if(time > 1000){
+				Game.addEnemyBullet(b.clone(x,y));
+				time -= 1000;
+			}
 		}
 	}
 }

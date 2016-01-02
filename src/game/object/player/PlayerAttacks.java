@@ -752,6 +752,7 @@ public class PlayerAttacks {
 										+Global.player_laser_offset, 0);
 								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_delay,
 										-Global.player_laser_offset, 0);	
+								addBullet(new PlayerDefenseLaser(), 500);
 							}
 						},
 						/**
@@ -762,6 +763,7 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
+								addBullet(new PlayerDefenseLaser(), 500);
 							}
 						},
 						/**
@@ -772,6 +774,7 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
+								addBullet(new PlayerDefenseLaser(), 250);
 							}
 						},
 						/**
@@ -782,6 +785,7 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
+								addBullet(new PlayerDefenseLaser(), 250);
 							}
 						},
 						/**
@@ -792,6 +796,7 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
+								addBullet(new PlayerDefenseLaser(), 250);
 							}
 						},
 						/**
@@ -802,6 +807,7 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
+								addBullet(new PlayerDefenseLaser(), 500/3);
 							}
 						},
 						/**
@@ -812,6 +818,7 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
+								addBullet(new PlayerDefenseLaser(), 500/3);
 							}
 						},
 						/**
@@ -822,6 +829,7 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
+								addBullet(new PlayerDefenseLaser(), 500/3);
 							}
 						},
 						/**
@@ -832,6 +840,7 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								addBullet(new PlayerLaser(Global.Dir.UP, 5, Global.player_wide_laser_size), Global.player_laser_delay);	
+								addBullet(new PlayerDefenseLaser(), 500/3);
 							}
 						} } };
 		pa = a;
