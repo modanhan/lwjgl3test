@@ -5,6 +5,7 @@ import events.Event;
 import events.EventHandler;
 import game.Game;
 import game.lib.Enemies;
+import game.object.powerup.Powerup;
 
 /**
  * 
@@ -25,6 +26,13 @@ public class TestLevel extends Level {
 					for(int i=0;i< rows; i++){
 						Game.addEnemy(new Enemies.SwarmEnemy(Global.gamewidth / rows * i, Global.gameheight+Global.margin));
 					}
+				}
+			});
+			EventHandler.add(new Event(i * 500) {
+
+				@Override
+				public void run() {
+					Game.addPowerup(new Powerup(Global.gamewidth/2, Global.gameheight));
 				}
 			});
 		}

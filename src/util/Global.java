@@ -20,7 +20,7 @@ public class Global {
 
 	public static Random random = new Random();
 
-	public static float powerup_radius = 7.5f;
+	public static float powerup_radius = 15f;
 	public static int powerup_switch_time = 2500;
 	public static float powerup_h_speed = .002f;
 	public static int powerup_h_dist = 75;
@@ -107,9 +107,15 @@ public class Global {
 
 	public static class Textures {
 		public static Texture circle;
+		public static Texture linearicon;
+		public static Texture seekericon;
+		public static Texture lasericon;
 
 		public static void load() {
 			circle = new Texture(new File("res/circle.png"));
+			linearicon = new Texture(new File("res/linearicon.png"));
+			seekericon = new Texture(new File("res/seekericon.png"));
+			lasericon = new Texture(new File("res/lasericon.png"));
 		}
 	}
 

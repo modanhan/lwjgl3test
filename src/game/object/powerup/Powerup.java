@@ -22,7 +22,7 @@ public class Powerup extends CollidingGameObject {
 	private long lastswitchtime;
 	private float ox;
 
-	private float[] r = { 1, 0, 0 }, g = { 0, 1, 0 }, b = { 0, 0, 1 }, a = { 1,
+	private float[] r = { 0.75f, 0, 0 }, g = { 0, 0.75f, 0 }, b = { 0, 0, 0.75f }, a = { 1,
 			1, 1 };
 
 	public Powerup(float x, float y) {
@@ -58,6 +58,22 @@ public class Powerup extends CollidingGameObject {
 		glPushMatrix();
 		glTranslatef(x, y, 0);
 		glColor4f(r[type], g[type], b[type], a[type]);
+		Graphics.quad(radius);
+		glPopMatrix();
+		switch(type){
+			case LINEAR:
+				Texture.bind(Global.Textures.linearicon);
+				break;
+			case SEEKER:
+				Texture.bind(Global.Textures.seekericon);
+				break;
+			case LASER:
+				Texture.bind(Global.Textures.lasericon);
+				break;
+		}
+		glPushMatrix();
+		glTranslatef(x, y, 0);
+		glColor4f(1, 1, 1, 1);
 		Graphics.quad(radius);
 		glPopMatrix();
 	}
