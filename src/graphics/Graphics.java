@@ -39,26 +39,26 @@ public class Graphics {
 	}
 	public static void quad(float width, float height){
 		glBegin(GL_TRIANGLE_FAN);
-		glTexCoord2f(1,1); glVertex2f( - width,  - height);
-		glTexCoord2f(1,0); glVertex2f( - width,  + height);
-		glTexCoord2f(0,0); glVertex2f( + width,  + height);
-		glTexCoord2f(0,1); glVertex2f( + width,  - height);
+		glTexCoord2f(0,1); glVertex2f( - width,  - height);
+		glTexCoord2f(0,0); glVertex2f( - width,  + height);
+		glTexCoord2f(1,0); glVertex2f( + width,  + height);
+		glTexCoord2f(1,1); glVertex2f( + width,  - height);
 		glEnd();
 	}
 	public static void quad(float size){
 		glBegin(GL_TRIANGLE_FAN);
-		glTexCoord2f(1,1); glVertex2f( - size,  - size);
-		glTexCoord2f(1,0); glVertex2f( - size,  + size);
-		glTexCoord2f(0,0); glVertex2f( + size,  + size);
-		glTexCoord2f(0,1); glVertex2f( + size,  - size);
+		glTexCoord2f(0,1); glVertex2f( - size,  - size);
+		glTexCoord2f(0,0); glVertex2f( - size,  + size);
+		glTexCoord2f(1,0); glVertex2f( + size,  + size);
+		glTexCoord2f(1,1); glVertex2f( + size,  - size);
 		glEnd();
 	}
 	public static void screenQuad(){
 		glBegin(GL_TRIANGLE_FAN);
-		glTexCoord2f(1,1); glVertex2f(0, 0);
-		glTexCoord2f(1,0); glVertex2f(0, Global.height);
-		glTexCoord2f(0,0); glVertex2f(Global.width, Global.height);
-		glTexCoord2f(0,1); glVertex2f(Global.width, 0);
+		glTexCoord2f(0,1); glVertex2f(0, 0);
+		glTexCoord2f(0,0); glVertex2f(0, Global.height);
+		glTexCoord2f(1,0); glVertex2f(Global.width, Global.height);
+		glTexCoord2f(1,1); glVertex2f(Global.width, 0);
 		glEnd();
 	}
 }
