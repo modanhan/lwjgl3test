@@ -42,6 +42,7 @@ public class Main {
 		glLoadIdentity();
 		glOrtho(0, Global.width, 0, Global.height, 1, -1);
 		glMatrixMode(GL_MODELVIEW);
+		Global.Textures.load();
 
 		Time.init();
 

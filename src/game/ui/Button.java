@@ -6,6 +6,8 @@ import static org.lwjgl.opengl.GL11.glPushMatrix;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import graphics.Graphics;
+import graphics.Texture;
+import util.Global;
 import util.Mouse;
 
 public abstract class Button extends Element {
@@ -32,6 +34,7 @@ public abstract class Button extends Element {
 		if(hovered){
 			renderHovered();
 		}else{
+			Texture.bind(Global.Textures.testtext);
 			glPushMatrix();
 			glTranslatef(x,y,0);
 			glColor3f(.5f, .5f, .5f);
@@ -40,6 +43,7 @@ public abstract class Button extends Element {
 		}
 	}
 	public void renderHovered(){
+		Texture.bind(Global.Textures.testtext);
 		glPushMatrix();
 		glTranslatef(x,y,0);
 		glColor3f(1, 1, 1);

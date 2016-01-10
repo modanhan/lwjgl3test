@@ -10,7 +10,7 @@ import graphics.Texture;
 public class Global {
 	public static int width = 1600, height = 900, margin = 500, length;
 	public static int gamewidth = 1080, gameheight = 1080;
-	public static boolean fullscreen = false;
+	public static boolean fullscreen = true;
 	public static long window;
 	public static boolean running;
 
@@ -110,12 +110,15 @@ public class Global {
 		public static Texture linearicon;
 		public static Texture seekericon;
 		public static Texture lasericon;
+		public static Texture testtext;
 
 		public static void load() {
 			circle = new Texture(new File("res/circle.png"));
 			linearicon = new Texture(new File("res/linearicon.png"));
 			seekericon = new Texture(new File("res/seekericon.png"));
 			lasericon = new Texture(new File("res/lasericon.png"));
+			testtext = new Texture("Test Text","Helvetica");
+
 		}
 	}
 
