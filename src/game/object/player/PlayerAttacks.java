@@ -272,30 +272,35 @@ public class PlayerAttacks {
 
 					@Override
 					public void init() {
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
 								-Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
 								+Global.player_bullet_cone_offset2_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
 								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
 								-Global.player_bullet_cone_offset2_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
 								-Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
 								+Global.player_bullet_cone_offset1_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay, +Global.player_bullet_cone_offset1_x,
 								+Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay, -Global.player_bullet_cone_offset1_x,
 								-Global.player_bullet_cone_offset1_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
 								+2 * Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
@@ -317,12 +322,14 @@ public class PlayerAttacks {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
 								+Global.player_bullet_cone_offset2_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay, +Global.player_bullet_cone_offset2_x,
 								+Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
 								Global.player_bullet_delay, -Global.player_bullet_cone_offset2_x,
 								-Global.player_bullet_cone_offset2_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset1_x,
 								-2 * Global.player_bullet_cone_offset1_y);
@@ -331,6 +338,7 @@ public class PlayerAttacks {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset1_x,
 								+2 * Global.player_bullet_cone_offset1_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset1_x,
 								+2 * Global.player_bullet_cone_offset1_y);
@@ -339,6 +347,7 @@ public class PlayerAttacks {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
 								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset1_x,
 								-2 * Global.player_bullet_cone_offset1_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
 								+2 * Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
@@ -355,37 +364,41 @@ public class PlayerAttacks {
 					@Override
 					public void init() {
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset2_x,
+								Global.player_bullet_delay,400, +2 * Global.player_bullet_cone_offset2_x,
 								-2 * Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay);
+								Global.player_bullet_delay,400);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset2_x,
+								Global.player_bullet_delay,400, -2 * Global.player_bullet_cone_offset2_x,
+								+2 * Global.player_bullet_cone_offset2_y);
+						
+						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
+								Global.player_bullet_delay,400, +2 * Global.player_bullet_cone_offset2_x,
 								+2 * Global.player_bullet_cone_offset2_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset2_x,
-								+2 * Global.player_bullet_cone_offset2_y);
+								Global.player_bullet_delay,400);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset2_x,
+								Global.player_bullet_delay,400, -2 * Global.player_bullet_cone_offset2_x,
 								-2 * Global.player_bullet_cone_offset2_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset1_x,
+								Global.player_bullet_delay,200, +2 * Global.player_bullet_cone_offset1_x,
 								-2 * Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay);
+								Global.player_bullet_delay,200);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset1_x,
+								Global.player_bullet_delay,200, -2 * Global.player_bullet_cone_offset1_x,
+								+2 * Global.player_bullet_cone_offset1_y);
+						
+						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
+								Global.player_bullet_delay,200, +2 * Global.player_bullet_cone_offset1_x,
 								+2 * Global.player_bullet_cone_offset1_y);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, +2 * Global.player_bullet_cone_offset1_x,
-								+2 * Global.player_bullet_cone_offset1_y);
+								Global.player_bullet_delay,200);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay);
-						addBullet(new PlayerLinearBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-								Global.player_bullet_delay, -2 * Global.player_bullet_cone_offset1_x,
+								Global.player_bullet_delay,200, -2 * Global.player_bullet_cone_offset1_x,
 								-2 * Global.player_bullet_cone_offset1_y);
+						
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay,
 								+2 * Global.player_bullet_offset, 0);
 						addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
@@ -402,8 +415,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								addBullet(new PlayerLinearBullet(Global.player_init_bullet_speed, Global.Dir.UP),
-										Global.player_init_bullet_delay);
+								addBullet(new PlayerSeekerBullet(Global.Dir.UP), Global.seeker_bullet_delay_long+250);
 							}
 						},
 						/**
@@ -413,8 +425,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
-								addBullet(new PlayerSeekerBullet(Global.Dir.UP), Global.player_bullet_delay);
+								addBullet(new PlayerSeekerBullet(Global.Dir.UP), Global.seeker_bullet_delay_long);
 							}
 						},
 						/**
@@ -424,11 +435,10 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								addBullet(new PlayerLinearBullet(Global.Dir.UP), Global.player_bullet_delay);
 								addBullet(new PlayerSeekerBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-										Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
 								addBullet(new PlayerSeekerBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-										Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
 							}
 						},
 						/**
@@ -438,14 +448,12 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								addBullet(new PlayerSeekerBullet(Global.Dir.UP + Global.player_bullet_cone_angle1),
-										Global.player_bullet_delay);
 								addBullet(new PlayerSeekerBullet(Global.Dir.UP - Global.player_bullet_cone_angle1),
-										Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
 								addBullet(new PlayerSeekerBullet(Global.Dir.UP + Global.player_bullet_cone_angle2),
-										Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
 								addBullet(new PlayerSeekerBullet(Global.Dir.UP - Global.player_bullet_cone_angle2),
-										Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
 
 							}
 						},
@@ -458,14 +466,14 @@ public class PlayerAttacks {
 							public void init() {
 								float angle = Global.Dir.UP;
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5),
-										Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 2),
-										Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 3),
-										Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 4),
-										Global.player_bullet_delay);
-								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_delay);
+										Global.seeker_bullet_delay_long);
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay_long);
 
 							}
 						},
@@ -477,15 +485,15 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_short_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay, 0);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 1),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 5);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 2),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 5 * 2);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 2);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 3),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 5 * 3);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 3);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 4),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 5 * 4);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 4);
 							}
 						},
 						/**
@@ -496,17 +504,17 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_short_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay, 0);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 1),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 2),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6 * 2);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 2);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 3),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6 * 3);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 3);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 4),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6 * 4);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 4);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 5),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 6 * 5);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 5);
 							}
 						},
 						/**
@@ -517,19 +525,17 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_short_delay, 0);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 1),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 2),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 2);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 3),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 3);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 4),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 4);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 5),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 5);
-								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 6),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 6);
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 2),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 2);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 3),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 3);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 4),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 4);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 5),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 5);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 6 * 1),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 6 * 1);
 							
 							}
 						},
@@ -541,19 +547,19 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								addBullet(new PlayerSeekerBullet(angle), Global.player_bullet_short_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay, 0);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 1),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 2),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 2);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 2);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 3),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 3);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 3);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 4),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 4);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 4);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 5),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 5);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 5);
 								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 6),
-										Global.player_bullet_short_delay, Global.player_bullet_short_delay / 7 * 6);
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 6);
 
 							}
 						},
@@ -565,9 +571,9 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								for(int i=0;i<24;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
-											Global.player_bullet_burst_delay);
+								for(int i=0;i<18;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 18 * i),
+											Global.seeker_bullet_burst_delay_short);
 								}								
 							}
 						},
@@ -579,12 +585,17 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								for(int i=0;i<24;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
-											Global.player_bullet_burst_delay);
+								for(int i=0;i<12;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * i),
+											Global.seeker_bullet_burst_delay_short);
 								}
-								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay);
-								PlayerDefenseBullet.maxcount = 5;
+								for(int i=0;i<12;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 12 * i),
+											Global.seeker_bullet_burst_delay_short,250);
+								}
+								
+							//	addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay);
+							//	PlayerDefenseBullet.maxcount = 4;
 							}
 						},
 						/**
@@ -595,16 +606,21 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								for(int i=0;i<24;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
-											Global.player_bullet_burst_delay);
+								for(int i=0;i<18;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 18 * i),
+											Global.seeker_bullet_burst_delay_short);
 								}
-								for(int i=0;i<Global.player_bullet_extra1_count;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / Global.player_bullet_extra1_count * i),
-											Global.player_bullet_extra1_delay);
-								}
-								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay);
-								PlayerDefenseBullet.maxcount = 5;
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 1),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 2),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 2);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 3),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 3);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 4),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 4);
+							//	addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay);
+							//	PlayerDefenseBullet.maxcount = 4;
 								
 
 							}
@@ -617,16 +633,29 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								for(int i=0;i<24;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
-											Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 1),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 2),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 2);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 3),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 3);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 4),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 4);
+								for(int i=0;i<8;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 8 * i),
+											Global.seeker_bullet_burst_delay_medium);
 								}
-								for(int i=0;i<Global.player_bullet_extra1_count;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / Global.player_bullet_extra1_count * i),
-											Global.player_bullet_extra1_delay);
+								for(int i=0;i<8;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 8 * i),
+											Global.seeker_bullet_burst_delay_medium,250);
 								}
-								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay/2);
-								PlayerDefenseBullet.maxcount = 10;
+								for(int i=0;i<8;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 8 * i),
+											Global.seeker_bullet_burst_delay_medium,500);
+								}
+							//	addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay/2);
+							//	PlayerDefenseBullet.maxcount = 8;
 							}
 						},
 						/**
@@ -637,16 +666,22 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								for(int i=0;i<24;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
-											Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 1),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 2),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 2);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 3),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 3);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 5 * 4),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 5 * 4);
+								for(int i=0;i<15;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 15 * i),
+											Global.seeker_bullet_burst_delay_short);
 								}
-								for(int i=0;i<Global.player_bullet_extra1_count;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / Global.player_bullet_extra1_count * i),
-											Global.player_bullet_extra1_delay);
-								}
-								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay/4);
-								PlayerDefenseBullet.maxcount = 20;
+
+							//	addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay/4);
+							//	PlayerDefenseBullet.maxcount = 16;
 							}
 						},
 						/**
@@ -657,16 +692,26 @@ public class PlayerAttacks {
 							@Override
 							public void init() {
 								float angle = Global.Dir.UP;
-								for(int i=0;i<24;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 24 * i),
-											Global.player_bullet_burst_delay);
+								addBullet(new PlayerSeekerBullet(angle), Global.seeker_bullet_delay, 0);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 1),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 2),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 2);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 3),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 3);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 4),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 4);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 5),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 5);
+								addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 7 * 6),
+										Global.seeker_bullet_delay, Global.seeker_bullet_delay / 7 * 6);
+
+								for(int i=0;i<120;i++){
+									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / 60 * i),
+											Global.seeker_bullet_burst_delay*5,40*(i%40));
 								}
-								for(int i=0;i<Global.player_bullet_extra2_count;i++){
-									addBullet(new PlayerSeekerBullet(angle + Global.Dir.PI2 / Global.player_bullet_extra2_count * i),
-											Global.player_bullet_extra2_delay);
-								}
-								addBullet(new PlayerDefenseBullet(Global.Dir.UP),Global.player_defense_bullet_delay/4);
-								PlayerDefenseBullet.maxcount = 20;
+
+								
 							}
 							
 						} },
@@ -678,8 +723,7 @@ public class PlayerAttacks {
 
 							@Override
 							public void init() {
-								addBullet(new PlayerLinearBullet(Global.player_init_bullet_speed, Global.Dir.UP),
-										Global.player_init_bullet_delay);
+								addBullet(new PlayerLaser(Global.Dir.UP), Global.player_laser_init_delay+250);
 							}
 						},
 						/**

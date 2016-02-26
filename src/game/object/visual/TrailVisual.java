@@ -40,7 +40,7 @@ public class TrailVisual extends GameObject {
 	}
 
 	public TrailVisual(GameObject target, float size, int duration) {
-		this(target, 1, 1, 1, 1, size, duration, true, true);
+		this(target, .75f, .75f, .75f, .5f, size, duration, true, true);
 	}
 
 	@Override

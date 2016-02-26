@@ -123,7 +123,7 @@ public class Player extends CollidingGameObject {
 		Graphics.quad(radius * 2f);
 		glPopMatrix();
 	}
-
+	
 	public void death() {
 		Game.addVisuals(new ExplosionVisual(this.x, this.y, 0, 720, 2500));
 	}

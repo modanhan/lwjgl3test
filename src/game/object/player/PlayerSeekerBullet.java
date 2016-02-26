@@ -46,7 +46,7 @@ public class PlayerSeekerBullet extends Bullet {
 		super(CIRCLE, .5f, dir);
 		targets = Game.enemies;
 		time = 0;
-		radius = 5;
+		radius = Global.player_bullet_size;
 		Game.addVisuals(new TrailVisual(this, 3, 1000));
 	}
 

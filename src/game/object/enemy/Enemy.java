@@ -3,6 +3,7 @@ package game.object.enemy;
 import static org.lwjgl.opengl.GL11.*;
 import game.Game;
 import game.object.CollidingGameObject;
+import game.object.visual.ExplosionVisual;
 import graphics.Graphics;
 import graphics.Texture;
 import util.Global;
@@ -39,7 +40,7 @@ public class Enemy extends CollidingGameObject {
 		b = db = .5f;
 		a = da = 1f;
 		radius = 50;
-		hp=10000;
+		hp=100;
 	}
 
 	public void spawn() {
@@ -47,6 +48,7 @@ public class Enemy extends CollidingGameObject {
 	}
 
 	public void death() {
+		Game.addVisuals(new ExplosionVisual(x, y, 0, 1000, 2000, dr, dg, db, da));
 	}
 
 	@Override

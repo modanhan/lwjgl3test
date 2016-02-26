@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL13;
 import game.level.Level;
 import game.object.Bullet;
 import game.object.GameObject;
+import game.object.SplineMovement;
 import game.object.enemy.Enemy;
 import game.object.player.Player;
 import game.object.player.PlayerAttacks;
@@ -88,19 +89,20 @@ public class Game {
 	}
 
 	public static void update() {
+		player.remove=false;
 		if (player != null) {
 			if (player.remove)
 				player = null;
 			else
 				player.update();
 		}
+		
 		updateList(playerbullets.iterator());
 		updateList(enemies.iterator());
 		updateList(enemybullets.iterator());
 		updateList(powerups.iterator());
 		updateList(visuals.iterator());
-		System.out.println("Player Bullets:"+playerbullets.size());
-		System.out.println("Enemies:"+enemies.size());
+		SplineMovement.update();
 		Collision.update();
 		render();
 

@@ -59,7 +59,7 @@ public class PlayerLaser extends Bullet {
 
 	@Override
 	public void death() {
-		Game.visuals.add(new LaserFadeVisual(x, y, theta, radius, 1000));
+		Game.visuals.add(new LaserFadeVisual(x, y, theta, radius/2, 1000));
 	}
 
 	@Override

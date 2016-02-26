@@ -18,6 +18,12 @@ public class EnemyLinearBullet extends Bullet {
 		super(CIRCLE);
 		radius = 5;
 	}
+	
+	public EnemyLinearBullet(float x, float y, float speed, float dir){
+		super(CIRCLE, speed, dir);
+		this.x=x;
+		this.y=y;
+	}
 
 	public EnemyLinearBullet(float speed, float dir) {
 		super(CIRCLE, speed, dir);
