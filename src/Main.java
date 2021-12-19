@@ -79,7 +79,7 @@ public class Main {
 		init();
 		while (Global.running) {
 			update();
-			if (glfwWindowShouldClose(Global.window) == GL_TRUE) {
+			if (glfwWindowShouldClose(Global.window) == true) {
 				Global.running = false;
 			}
 		}
